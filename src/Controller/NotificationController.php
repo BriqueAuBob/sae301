@@ -29,4 +29,10 @@ class NotificationController extends AbstractController
             'notifications' => $notifications,
         ]);
     }
+    #[Route('/notification/{notification}', name: 'app_notification-delete', methods: 'DELETE')]
+    public function delete(Request $request, EntityManagerInterface $em, Notification $notification): Response {
+        $em->remove($notification);
+        $em->flush();
+        return $this->redirectToRoute('app_notification');
+    }
 }
