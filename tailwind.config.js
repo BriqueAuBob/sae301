@@ -74,7 +74,7 @@ module.exports = {
         }
       },
       fontFamily: {
-        sans: 'Open Sans',
+        sans: 'Inter',
         display: 'Fredoka One'
       },
       boxShadow: {
