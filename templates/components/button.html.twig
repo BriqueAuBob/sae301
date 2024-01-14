@@ -1,13 +1,61 @@
-{% if type is not defined or type is same as('primary') %}
-    <button class="bg-primary-500 hover:bg-primary-300 active:bg-primary-200 ease-out duration-300 flex gap-1 items-center px-3 py-2 rounded-xl text-md border-lime-600 border-2 rounded-3xl shadow-white/60 shadow-inner-lg">
-        {{ text }}
-    </button>
-{% elseif type is same as ('secondary') %}
-    <button class="border-2 border-primary-500 active:bg-primary-50 text-primary-500 ease-out duration-300 flex gap-1 items-center px-3 py-2 rounded-xl text-md">
-        {{ text }}
-    </button>
-{% elseif type is same as ('tertiary') %}
-    <button class="bg-transparent text-primary-500 ease-out duration-300 flex gap-1 items-center px-3 py-2 rounded-xl text-md">
-        {{ text }}
-    </button>
-{% endif %}
+{% set commonClasses = "ease-out duration-300 flex gap-1 items-center px-3 py-2 rounded-xl text-md" %}
+
+{% set typeClasses = {
+    'primary': 'text-gray-950 border-2 rounded-3xl shadow-white/60 shadow-inner-lg',
+    'secondary': 'border-2',
+    'tertiary': ''
+} %}
+
+{% set colorClasses = {
+    'primary': {
+        'bg': 'bg-primary-500 hover:bg-primary-300 active:bg-primary-200',
+        'border': 'border-lime-600',
+        'text': 'text-primary-500'
+    },
+    'info': {
+        'bg': 'bg-info-500 hover:bg-info-300 active:bg-info-200',
+        'border': 'border-info-600',
+        'text': 'text-info-500'
+    },
+    'success': {
+        'bg': 'bg-success-500 hover:bg-success-300 active:bg-success-200',
+        'border': 'border-success-600',
+        'text': 'text-success-500'
+    },
+    'danger': {
+        'bg': 'bg-danger-500 hover:bg-danger-300 active:bg-danger-200',
+        'border': 'border-danger-600',
+        'text': 'text-danger-500'
+    },
+    'warning': {
+        'bg': 'bg-warning-500 hover:bg-warning-300 active:bg-warning-200',
+        'border': 'border-warning-600',
+        'text': 'text-warning-500'
+    }
+} %}
+
+{% set type = type|default('primary') %}
+{% set color = color|default('primary') %}
+
+<button class="{{ commonClasses }} {{ typeClasses[type] }}
+    {% if type == 'primary' %}
+        {{ colorClasses[color]['bg'] }}
+        {{ colorClasses[color]['border'] }}
+    {% elseif type == 'secondary' %}
+        {{ colorClasses[color]['border'] }}
+        {{ colorClasses[color]['text'] }}
+    {% elseif type == 'tertiary' %}
+        {{ colorClasses[color]['text'] }}
+    {% endif %}">
+    {% if iconLeft is defined %}
+        <span class="w-4 h-4 mr-1">
+            {{ include('@icons/' ~ iconLeft ~ '.svg') }}
+        </span>
+    {% endif %}
+    {{ text }}
+    {% if iconRight is defined %}%}
+        <span class="w-4 h-4 ml-1">
+            {{ include('@icons/' ~ iconLeft ~ '.svg') }}
+        </span>
+    {% endif %}
+</button>
