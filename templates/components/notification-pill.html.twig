@@ -1,0 +1,23 @@
+{% set commonClasses = "ease-out duration-300 px-3 py-2 my-4 rounded-xl text-md border border-2" %}
+{% set stateClasses = {
+    'read' : 'bg-gray-100 hover:bg-gray-200 opacity-50',
+    'unread' : 'bg-gray-100 hover:bg-gray-200 opacity-100',
+    }
+%}
+
+{% set state = state|default('unread') %}
+
+
+<div id="card-notification-{{ notification.id }}" class="notification {{ commonClasses }} {{ stateClasses[state] }}">
+    <div class="flex justify-between">
+        <div class="flex items-center gap-1">
+            <img src="{{ asset ('images/icons/archive.svg') }}" alt="fanion">
+            <span class="font-semibold"> {{ notification.title }} </span>
+            <span class="font-light font-sans text-sm text-text-400 "> {{ notification.createdAt|date('d-m-Y H:i:s') }} </span>
+        </div>
+        <img class="delete-notification" data-notification-id="{{ notification.id }}" src="{{ asset('images/icons/trash.svg') }}" alt="poubelle">
+    </div>
+    <div>
+        <p> {{ notification.message }} </p>
+    </div>
+</div>
