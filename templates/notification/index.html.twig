@@ -4,7 +4,7 @@
 
 {% block body %}
 {% for notification in notifications %}
-<div class="notification">
+<div id="card-notification-{{ notification.id }}" class="notification">
         <div class="">
             {{ notification.title }}
         </div>
@@ -15,5 +15,6 @@
             {{ notification.createdAt|date('Y-m-d H:i:s') }}
         </div>
     </div>
+        <span class="delete-notification" data-notification-id="{{ notification.id }}">Supprimer</span>
 {% endfor %}
 {% endblock %}
