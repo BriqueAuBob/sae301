@@ -1,0 +1,13 @@
+{% if type is not defined or type is same as('primary') %}
+    <button class="bg-primary-500 hover:bg-primary-300 active:bg-primary-200 ease-out duration-300 flex gap-1 items-center px-3 py-2 rounded-xl text-md border-lime-600 border-2 rounded-3xl shadow-white/60 shadow-inner-lg">
+        {{ text }}
+    </button>
+{% elseif type is same as ('secondary') %}
+    <button class="border-2 border-primary-500 active:bg-primary-50 text-primary-500 ease-out duration-300 flex gap-1 items-center px-3 py-2 rounded-xl text-md">
+        {{ text }}
+    </button>
+{% elseif type is same as ('tertiary') %}
+    <button class="bg-transparent text-primary-500 ease-out duration-300 flex gap-1 items-center px-3 py-2 rounded-xl text-md">
+        {{ text }}
+    </button>
+{% endif %}

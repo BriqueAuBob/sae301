@@ -1,0 +1,19 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Notifications{% endblock %}
+
+{% block body %}
+{% for notification in notifications %}
+<div class="notification">
+        <div class="">
+            {{ notification.title }}
+        </div>
+        <div class="">
+            {{ notification.message }}
+        </div>
+        <div class="">
+            {{ notification.createdAt|date('Y-m-d H:i:s') }}
+        </div>
+    </div>
+{% endfor %}
+{% endblock %}

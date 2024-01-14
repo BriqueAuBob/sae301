@@ -1,0 +1,27 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Accueil{% endblock %}
+
+{% block body %}
+    <div class="container px-4">
+        {% if app.user.firstname is defined %}
+            <div>
+                <p>Bonjour {{ app.user.firstname }}</p>
+            </div>
+        {% endif %}
+        <div>
+            {{ component('SearchHomework', {
+                'placeholder': 'Rechercher un rendu',
+                'icon': 'calendar',
+            }) }}
+        </div>
+        <div class="mt-4">
+            {% include('components/button.html.twig') with { text: "Créer un rendu" } %}
+            {% include('components/button.html.twig') with { text: "Créer un rendu", type: "secondary" } %}
+            {% include('components/button.html.twig') with { text: "Créer un rendu", type: "tertiary" } %}
+        </div>
+    </div>
+
+
+{% endblock %}
+

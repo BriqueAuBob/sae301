@@ -1,0 +1,14 @@
+<div {{ attributes }}>
+    <div class="flex border-2 border-primary-100 rounded-xl py-2 px-4">
+        {% if icon is defined %}
+            <img src="{{ asset('images/icons/' ~ icon ~ '.svg' ) }}" alt="{{ icon }}"  class="inline-block mr-1">
+        {% endif %}
+        <input data-model="debounce(100)|query" class="w-full" type="text" placeholder="{{ placeholder }}">
+    </div>
+    <div class="grid lg:grid-cols-4 gap-4">
+        {% for homework in this.homeworks %}
+            {% include('components/card-homework.html.twig') with { homework } %}
+            <button class="delete" data-homework-id="{{ homework.id }}">Supprimer</button>
+        {% endfor %}
+    </div>
+</div>

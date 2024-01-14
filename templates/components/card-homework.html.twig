@@ -1,0 +1,38 @@
+<div class="rounded-2xl relative overflow-hidden"
+    style="background-color: #{{ homework.subject.color }}"
+     id="card-homework-{{ homework.id }}"
+>
+    {% if homework.picture %}
+        <img class="absolute bottom-0 w-full left-O h-2/3 object-cover" src="{{ asset('uploads/pictures/' ~ homework.picture) }}" />
+        <div class="absolute bottom-0 w-full left-O h-2/3 bg-gradient-to-b"
+            style="
+                --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to);
+                --tw-gradient-from: #{{ homework.subject.color }} var(--tw-gradient-from-position);
+                --tw-gradient-to: rgb(255 255 255 / 0) var(--tw-gradient-to-position);
+            "
+        ></div>
+    {% endif %}
+    <div class="p-4 relative z-10">
+        <h4 class="font-semibold font-display text-xl">{{ homework.name }}</h4>
+        <p class="mb-3 text-sm">{{ homework.description }}</p>
+        <div class="flex flex-wrap gap-1">
+            {%
+                include 'components/badge.html.twig' with {
+                    name: homework.subject.nameCode ~ ' ' ~ homework.subject.name
+                }
+            %}
+            {%
+                include 'components/badge.html.twig' with {
+                    name: homework.dueDate|date('d/m/Y à H:i'),
+                    icon: 'calendar'
+                }
+            %}
+            {%
+                include 'components/badge.html.twig' with {
+                    name: "Moodle",
+                    icon: 'location'
+                }
+            %}
+        </div>
+    </div>
+</div>
