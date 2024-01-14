@@ -22,7 +22,7 @@ class HomeworkListener
             $notification = new Notification();
             $notification->setTitle('Nouveau devoir');
             $notification->setMessage("Le devoir \"{$homework->getName()}\" a été ajouté à la matière {$homework->getSubject()->getName()}.");
-            $notification->setUserId($user->getId());
+            $notification->setUser($user);
             $notification->setNotDatetimeCreate(new \DateTime('now'));
 
             $event->getObjectManager()->persist($notification);

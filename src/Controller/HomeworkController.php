@@ -7,6 +7,8 @@ use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Mailer\MailerInterface;
+use Symfony\Component\Mime\Email;
 use Symfony\Component\Routing\Annotation\Route;
 use App\Form\HomeworkType;
 use App\Repository\HomeworkRepository;
@@ -15,7 +17,7 @@ use Symfony\Component\String\Slugger\SluggerInterface;
 class HomeworkController extends AbstractController
 {
     #[Route('/homework/{homework}', name: 'app_homework', methods: ['GET', 'POST'])]
-    public function index(Request $request, EntityManagerInterface $em, SluggerInterface $slugger, Homework $homework = null): Response
+    public function index(Request $request, EntityManagerInterface $em, SluggerInterface $slugger, MailerInterface $mailer, Homework $homework = null): Response
     {
         // Créer une instance de Homework si elle n'est pas fournie en paramètre
         if (!$homework) {

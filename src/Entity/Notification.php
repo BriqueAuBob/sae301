@@ -7,6 +7,7 @@ use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: NotificationRepository::class)]
+#[ORM\HasLifecycleCallbacks]
 class Notification
 {
     #[ORM\Id]
@@ -20,8 +21,8 @@ class Notification
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $message = null;
 
-    #[ORM\Column]
-    private ?int $user_id = null;
+    #[ORM\ManyToOne(targetEntity: User::class, inversedBy: 'notification')]
+    private ?User $user = null;
 
     #[ORM\Column(type: Types::DATETIME_MUTABLE)]
     private ?\DateTimeInterface $created_at = null;
@@ -55,14 +56,14 @@ class Notification
         return $this;
     }
 
-    public function getUserId(): ?int
+    public function getUser(): ?User
     {
-        return $this->usr_id;
+        return $this->user;
     }
 
-    public function setUserId(int $usr_id): static
+    public function setUser(User $user): static
     {
-        $this->user_id = $usr_id;
+        $this->user = $user;
 
         return $this;
     }
