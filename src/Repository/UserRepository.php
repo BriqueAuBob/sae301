@@ -40,6 +40,21 @@ class UserRepository extends ServiceEntityRepository implements PasswordUpgrader
         $this->getEntityManager()->flush();
     }
 
+    public function findByGroup(string $group, int $year, int $course): array
+    {
+        return $this->createQueryBuilder('u')
+            ->andWhere('u.course = :course')
+            ->andWhere('u.year = :year')
+            ->andWhere('u.group = :group')
+            ->setParameter('course', $course)
+            ->setParameter('year', $year)
+            ->setParameter('group', $group)
+            ->orderBy('u.id', 'ASC')
+            ->getQuery()
+            ->getResult()
+        ;
+    }
+
 //    /**
 //     * @return User[] Returns an array of User objects
 //     */
