@@ -21,6 +21,10 @@ class NotificationController extends AbstractController
     #[Route('/notification', name: 'app_notification')]
     public function index(): Response
     {
+        $form = $this->createFormBuilder()
+            ->setAction($this->generateUrl('app_notification-delete-all'))
+            ->setMethod('DELETE')
+            ->getForm();
 
         $notifications = $this->em->getRepository(Notification::class)->findBy([
             'user' => $this->getUser(),
@@ -28,6 +32,7 @@ class NotificationController extends AbstractController
 
         return $this->render('notification/index.html.twig', [
             'notifications' => $notifications,
+            'form' => $form->createView(),
         ]);
     }
     #[Route('/notification/{notification}', name: 'app_notification-delete', methods: 'DELETE')]
@@ -36,4 +41,20 @@ class NotificationController extends AbstractController
         $em->flush();
         return $this->redirectToRoute('app_notification');
     }
+
+    #[Route('/notification/delete-all', name: 'app_notification-delete-all', methods: 'DELETE')]
+    public function deleteAll(Request $request, EntityManagerInterface $em): Response {
+
+        $notifications = $em->getRepository(Notification::class)->findBy([
+            'user' => $this->getUser(),
+        ]);
+
+        foreach ($notifications as $notification) {
+            $em->remove($notification);
+        }
+
+        $em->flush();
+        return $this->redirectToRoute('app_notification');
+    }
+
 }

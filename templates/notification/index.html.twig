@@ -8,6 +8,10 @@
         <div class="flex flex-col gap-2">
             {% include ('components/button.html.twig') with { text: 'Tout marquer comme lu', iconLeft: 'tick-circle' } %}
             {% include ('components/button.html.twig') with { text: 'Tout supprimer',color: 'danger', iconLeft: 'trash' } %}
+
+            {{ form_start(form, {'action': path('app_notification-delete-all'), 'method': 'DELETE'}) }}
+            <input type="submit" value="Supprimer">
+            {{ form_end(form) }}
         </div>
     </div>
     <div class="m-4">
