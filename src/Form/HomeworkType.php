@@ -21,6 +21,8 @@ class HomeworkType extends AbstractType
             ->add('group')
             ->add('name')
             ->add('description')
+            ->add('teacher')
+            ->add('platform')
             ->add('picture', FileType::class, [
                 'mapped' => false,
                 'required' => false,

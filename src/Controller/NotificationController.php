@@ -35,26 +35,22 @@ class NotificationController extends AbstractController
             'form' => $form->createView(),
         ]);
     }
+
+    #[Route('/notification/delete-all', name: 'app_notification-delete-all', methods: 'DELETE')]
+    public function deleteAll(Request $request, EntityManagerInterface $em): Response {
+        $notifications = $this->em->getRepository(Notification::class)->findBy([
+            'user' => $this->getUser(),
+        ]);
+        foreach ($notifications as $notification) {
+            $em->remove($notification);
+        }
+        return $this->redirectToRoute('app_notification');
+    }
+
     #[Route('/notification/{notification}', name: 'app_notification-delete', methods: 'DELETE')]
     public function delete(Request $request, EntityManagerInterface $em, Notification $notification): Response {
         $em->remove($notification);
         $em->flush();
         return $this->redirectToRoute('app_notification');
     }
-
-    #[Route('/notification/delete-all', name: 'app_notification-delete-all', methods: 'DELETE')]
-    public function deleteAll(Request $request, EntityManagerInterface $em): Response {
-
-        $notifications = $em->getRepository(Notification::class)->findBy([
-            'user' => $this->getUser(),
-        ]);
-
-        foreach ($notifications as $notification) {
-            $em->remove($notification);
-        }
-
-        $em->flush();
-        return $this->redirectToRoute('app_notification');
-    }
-
 }
