@@ -26,7 +26,7 @@ class HomeworkListener
             $notification->setNotDatetimeCreate(new \DateTime('now'));
 
             $event->getObjectManager()->persist($notification);
+            $event->getObjectManager()->flush();
         }
-        $event->getObjectManager()->flush();
     }
 }
