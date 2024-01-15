@@ -53,6 +53,12 @@ class Homework
     #[ORM\OneToMany(mappedBy: 'homework_id', targetEntity: Check::class, orphanRemoval: true)]
     private Collection $checks;
 
+    #[ORM\Column(length: 255)]
+    private ?string $teacher = null;
+
+    #[ORM\Column(length: 255)]
+    private ?string $platform = null;
+
     public function __construct()
     {
         $this->checks = new ArrayCollection();
@@ -209,6 +215,30 @@ class Homework
                 $check->setHomeworkId(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getTeacher(): ?string
+    {
+        return $this->teacher;
+    }
+
+    public function setTeacher(string $teacher): static
+    {
+        $this->teacher = $teacher;
+
+        return $this;
+    }
+
+    public function getPlatform(): ?string
+    {
+        return $this->platform;
+    }
+
+    public function setPlatform(string $platform): static
+    {
+        $this->platform = $platform;
 
         return $this;
     }
