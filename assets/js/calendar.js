@@ -31,7 +31,8 @@ document.addEventListener('DOMContentLoaded', function() {
         },
         eventClick: function(info) {
             //Appel en ajax pour la modale
-            console.log(info.event.id);
+
+            console.log(info.event);
 
             info.el.style.borderColor = 'red';
         }

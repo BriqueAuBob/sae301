@@ -64,4 +64,18 @@ class HomeworkController extends AbstractController
         $em->flush();
         return $this->redirectToRoute('app_index');
     }
+
+    #[Route('/homework/{homework}/view', name: 'app_homework-view', methods: 'GET')]
+    public function view(EntityManagerInterface $entityManager, Request $request):Response{
+        //Récupération de {homework}
+        $homework = $request->get('homework');
+        //Récupération de {homework} par  l'entité Homework
+        $result = $entityManager->getRepository(Homework::class)->findById($homework);
+
+        return $this->render('homework/view.html.twig', [
+            'controller_name' => 'ViewHomeworkController',
+            'homework' => $result,
+        ]);
+
+    }
 }

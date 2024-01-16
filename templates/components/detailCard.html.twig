@@ -1,33 +1,36 @@
-<div class="relative rounded-xl overflow-hidden">
-    {% if homework.picture %}
-        <img class="absolute bottom-0 w-full left-O h-full object-cover opacity-10 blur-sm" src="{{ asset('uploads/pictures/' ~ homework.picture) }}" />
-    {% endif %}
-    <div class="p-4 relative z-10">
-        {%if homework.picture %}
-            <div>
-                <img class="w-full h-40 object-cover mb-2 rounded-xl" src="{{ asset('uploads/pictures/' ~ homework.picture) }}" alt="{{ homework.picture }}">
+{% for hw in homework %}
+    <div class="relative rounded-xl overflow-hidden">
+        {% if hw.name is defined %}
+            {% if hw.picture is defined %}
+                <img class="absolute bottom-0 w-full left-O h-full object-cover opacity-10 blur-sm" src="{{ asset('uploads/pictures/' ~ hw.picture) }}" />
+            {% endif %}
+            <div class="p-4 relative z-10">
+                {% if hw.picture is defined %}
+                    <div>
+                        <img class="w-full h-40 object-cover mb-2 rounded-xl" src="{{ asset('uploads/pictures/' ~ hw.picture) }}" alt="{{ hw.picture }}">
+                    </div>
+                {% endif %}
+                <div class="flex flex-col gap-2">
+                    <h4 class="font-semibold font-display text-xl">{{ hw.name }}</h4>
+                    <p class="text-sm">{{ hw.description }}</p>
+                    <div class="text-sm">
+                        <img src="{{ asset('images/icons/calendar.svg') }}" alt="calendar" class="inline-block mr-1">
+                        {{ hw.dueDate|date('d/m/Y à H:i')}}
+                    </div>
+                    <div class="text-sm">
+                        <img src="{{ asset('images/icons/location.svg') }}" alt="location" class="inline-block mr-1">
+                        {{ hw.platform }}
+                    </div>
+                    <div class="text-sm">
+                        <img src="{{ asset('images/icons/archive.svg') }}" alt="fanion" class="inline-block mr-1">
+                        {{ hw.subject.name }}
+                    </div>
+                    <div class="text-sm">
+                        <img src="{{ asset('images/icons/user-tick.svg') }}" alt="user icon" class="inline-block mr-1">
+                        {{ hw.teacher }}
+                    </div>
+                </div>
             </div>
         {% endif %}
-        <div class="flex flex-col gap-2">
-            <h4 class="font-semibold font-display text-xl">{{ homework.name }}</h4>
-            <p class="text-sm">{{ homework.description }}</p>
-            <div class="text-sm">
-                <img src="{{ asset('images/icons/calendar.svg') }}" alt="calendar" class="inline-block mr-1">
-                {{ homework.dueDate|date('d/m/Y à H:i')}}
-            </div>
-            <div class="text-sm">
-                <img src="{{ asset('images/icons/location.svg') }}" alt="location" class="inline-block mr-1">
-                {{ homework.platform}}
-            </div>
-            <div class="text-sm">
-                <img src="{{ asset('images/icons/archive.svg') }}" alt="fanion" class="inline-block mr-1">
-                {{ homework.subject.name}}
-            </div>
-            <div class="text-sm">
-                <img src="{{ asset('images/icons/user-tick.svg') }}" alt="user icon" class="inline-block mr-1">
-                {{ homework.teacher}}
-            </div>
-        </div>
-
     </div>
-</div>
+{% endfor %}
