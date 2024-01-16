@@ -32,11 +32,11 @@ services:
         arguments:
             $entityManager: '@doctrine.orm.entity_manager'
 
-        App\Twig\NotificationExtension:
-            arguments:
-                $notificationService: '@App\Service\NotificationService'
-            tags:
-                - { name: twig.extension }
+    App\Twig\NotificationExtension:
+        arguments:
+            $notificationService: '@App\Service\NotificationService'
+        tags:
+            - { name: twig.extension }
 
     # add more service definitions when explicit configuration is needed
     # please note that last definitions always *replace* previous ones

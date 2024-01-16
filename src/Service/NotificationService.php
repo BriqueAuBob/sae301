@@ -1,6 +1,7 @@
 <?php
 namespace App\Service;
 
+use App\Entity\Notification;
 use Doctrine\ORM\EntityManagerInterface;
 
 class NotificationService
@@ -12,8 +13,13 @@ class NotificationService
         $this->entityManager = $entityManager;
     }
 
-    public function getUnreadNotificationCount($userId)
+    public function getUnreadNotificationCount($userId): int
     {
+        $unreadNotifications = $this->entityManager->getRepository(Notification::class)->findBy([
+            'user' => $userId,
+            'isRead' => false,
+        ]);
 
+        return count($unreadNotifications);
     }
 }
