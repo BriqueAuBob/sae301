@@ -26,6 +26,3 @@ document.addEventListener('DOMContentLoaded', function() {
     calendar.setOption('locale', 'fr');
     calendar.render();
 });
-// $(document).ready(function(){
-//
-// })
