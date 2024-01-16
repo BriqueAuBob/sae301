@@ -21,12 +21,20 @@ class NotificationListener
 
     public function postPersist(Notification $notification, PostPersistEventArgs $event): void
     {
-        $email = new Email();
-        $email->from('contact@iutask.com')
-            ->to($notification->getUser()->getEmail())
-            ->subject($notification->getTitle())
-            ->html('<p>'.$notification->getMessage().'</p>');
+        $user = $notification->getUser();
+        $emails = [$user->getEmail()];
+        $emails = array_merge($emails, array_map(function($email) {
+            return $email->getEmail();
+        }, $user->getEmails()->toArray()));
 
-        $this->mailer->send($email);
+        foreach ($emails as $email) {
+            $mail = new Email();
+            $mail->from('contact@iutask.com')
+                ->to($email)
+                ->subject($notification->getTitle())
+                ->html('<p>'.$notification->getMessage().'</p>');
+
+            $this->mailer->send($mail);
+        }
     }
 }

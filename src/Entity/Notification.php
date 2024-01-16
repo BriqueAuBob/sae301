@@ -27,6 +27,9 @@ class Notification
     #[ORM\Column(type: Types::DATETIME_MUTABLE)]
     private ?\DateTimeInterface $created_at = null;
 
+    #[ORM\Column]
+    private ?bool $isRead = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -76,6 +79,18 @@ class Notification
     public function setNotDatetimeCreate(\DateTimeInterface $not_datetime_create): static
     {
         $this->created_at = $not_datetime_create;
+
+        return $this;
+    }
+
+    public function isIsRead(): ?bool
+    {
+        return $this->isRead;
+    }
+
+    public function setIsRead(bool $isRead): static
+    {
+        $this->isRead = $isRead;
 
         return $this;
     }
