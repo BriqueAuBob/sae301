@@ -31,6 +31,16 @@ class HomeworkController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+
+            // ajouter l'user connecté comme auteur
+            $homework->setAuthor($this->getUser());
+            //ajouter l'année de l'utilisateur comme année du devoir
+            $homework->setYear($this->getUser()->getYear());
+            // ajouter la date du jour en date de création
+            $homework->setCreatedAt(new \DateTime('now'));
+
+
+
             $pictureFile = $form->get('picture')->getData();
 
             if ($pictureFile) {

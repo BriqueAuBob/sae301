@@ -28,7 +28,7 @@ class Notification
     private ?\DateTimeInterface $created_at = null;
 
     #[ORM\Column]
-    private ?bool $isRead = null;
+    private ?bool $isRead = false;
 
     public function getId(): ?int
     {

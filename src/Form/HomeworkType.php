@@ -40,12 +40,8 @@ class HomeworkType extends AbstractType
                 ]
             ])
             ->add('due_date')
-            ->add('created_at')
+//            ->add('created_at')
             ->add('updated_at')
-            ->add('author', EntityType::class, [
-                'class' => User::class,
-'choice_label' => 'id',
-            ])
             ->add('subject', EntityType::class, [
                 'class' => Subject::class,
 'choice_label' => 'id',
