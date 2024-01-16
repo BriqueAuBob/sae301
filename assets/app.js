@@ -7,4 +7,5 @@ import './bootstrap.js';
  */
 import './styles/app.css'
 import './js/delete.js'
+import './js/isRead.js'
 
