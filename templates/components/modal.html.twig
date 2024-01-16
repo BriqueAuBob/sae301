@@ -1,0 +1,13 @@
+<div {{ attributes.defaults({
+    class: 'absolute z-50 min-h-screen min-w-screen flex flex-col justify-center items-center opacity-0 transition-opacity duration-300 pointer-events-none',
+    tabindex: '-1',
+    id: id
+}).defaults(stimulus_controller('modal')) }}>
+    <div class="fixed inset-0 bg-black opacity-50" data-close-modal="modal-homework"></div>
+    <div class="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-white rounded-lg shadow-lg w-1/2">
+        test
+        {% if homework.name is defined %}
+            {{ homework.name }}
+        {% endif %}
+    </div>
+</div>

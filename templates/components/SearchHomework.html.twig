@@ -6,9 +6,17 @@
         <input data-model="debounce(300)|query" class="w-full py-2 focus:outline-none" type="text" placeholder="{{ placeholder }}">
     </div>
     <div class="grid lg:grid-cols-4 gap-4">
-        {% for homework in this.homeworks %}
-            {% include('components/card-homework.html.twig') with { homework } %}
-            <button class="delete" data-homework-id="{{ homework.id }}">Supprimer</button>
+        {% for hw in this.homeworks %}
+            <button class="text-left" data-toggle="modal" data-modal-id="modal-homework" data-homework="{{ homework|json_encode }}" data-action="live#action" data-action-name="setHomework({{ hw }})">
+                {% include('components/card-homework.html.twig') with { homework: hw } %}
+            </button>
+            <button class="delete" data-homework-id="{{ hw.id }}">Supprimer</button>
         {% endfor %}
     </div>
+    {{
+        component('Modal', {
+            id: 'modal-homework',
+            homework: homework
+        })
+    }}
 </div>
