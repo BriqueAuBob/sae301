@@ -12,6 +12,14 @@ document.addEventListener('DOMContentLoaded', function() {
             day: 'Jour',
             list: 'Liste'
         },
+        businessHours: {
+            daysOfWeek: [ 1, 2, 3, 4, 5],
+
+            startTime: '08:00',
+            endTime: '20:00',
+        },
+        slotMinTime: '08:00',
+        slotMaxTime: '20:00',
         headerToolbar:{
             start: 'prev,next today',
             center: 'title',
