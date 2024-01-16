@@ -9,10 +9,14 @@
             {% for homework in homeworks %}
 {#                Si dernière ligne#}
                 {% if loop.last %}
-                    { "title": "{{ homework.name }}", "start": "{{ homework.dueDate|date('Y-m-d H:i:s')}}", "allDay": false }
+                    { "title": "{{ homework.name }}", "start": "{{ homework.dueDate|date('Y-m-d H:i:s')}}", "allDay": false, "HomeworkID":"{{ homework.id }}"}
                 {% else %}
-                    { "title": "{{ homework.name }}", "start": "{{ homework.dueDate|date('Y-m-d H:i:s') }}", "allDay": false },
+                    { "title": "{{ homework.name }}", "start": "{{ homework.dueDate|date('Y-m-d H:i:s') }}", "allDay": false, "HomeworkID":"{{ homework.id }}"},
                 {% endif %}
             {% endfor %}
         ]'></div>
+{#    Modale en plein écran et fixe#}
+    <div id="CalendarModale" class="fixed top-0 left-0 z-50 overflow-scroll h-full w-full hidden">
+
+    </div>
 {% endblock %}

@@ -31,8 +31,15 @@ document.addEventListener('DOMContentLoaded', function() {
         },
         eventClick: function(info) {
             //Appel en ajax pour la modale
-
-            console.log(info.event);
+            $.ajax({
+                url: '/homework/'+ info.event._def.extendedProps.HomeworkID+'/view/',
+                type: 'GET',
+                success: function(data){
+                    $('#CalendarModale').html(data);
+                    $('#CalendarModale').addClass('block');
+                    $('#CalendarModale').removeClass('hidden');
+                }
+            })
 
             info.el.style.borderColor = 'red';
         }
