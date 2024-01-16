@@ -15,14 +15,14 @@
             <div class="mt-6 lg:mt-0">
                 <h4 class="text-2xl mb-4">Historique</h4>
                 <ul class="bg-white rounded-2xl border-gray-400 border-2 text-gray-900 text-sm font-medium p-5">
-                    <li class="px-4 py-3 border-2 border-gray-400 w-full rounded-lg mb-3">Rendus épinglés</li>
-                    <li class="px-4 py-3 border-2 border-gray-400 w-full rounded-lg mb-3">Liste des rendus créés</li>
-                    <li class="px-4 py-3 border-2 border-gray-400 w-full rounded-lg">Commentaires déposés</li>
+                    <li class="px-4 py-3 border-2 border-gray-400 w-full rounded-lg mb-3 flex items-center">Rendus épinglés {{ source('@icons/arrow-down.svg') }}</li>
+                    <li class="px-4 py-3 border-2 border-gray-400 w-full rounded-lg mb-3 flex items-center">Liste des rendus créés {{ source('@icons/arrow-down.svg') }}</li>
+                    <li class="px-4 py-3 border-2 border-gray-400 w-full rounded-lg flex items-center">Commentaires déposés {{ source('@icons/arrow-down.svg') }}</li>
                 </ul>
                 <div></div>
                 <div></div>
             </div>
         </div>
-        <a href="{{ path('app_logout') }}">Se déconnecter</a>
+        <a href="{{ path('app_logout') }}">{{ source('@icons/logout.svg') }}</a>
     </div>
 {% endblock %}
