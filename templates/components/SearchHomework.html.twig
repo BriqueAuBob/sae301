@@ -7,16 +7,16 @@
     </div>
     <div class="grid lg:grid-cols-4 gap-4">
         {% for hw in this.homeworks %}
-            <button class="text-left" data-toggle="modal" data-modal-id="modal-homework" data-homework="{{ homework|json_encode }}" data-action="live#action" data-action-name="setHomework({{ hw }})">
+            <button type="button" class="text-left" data-toggle="modal" data-modal-id="modal-homework-{{ hw.id }}" data-homework="{{ hw|json_encode }}">
                 {% include('components/card-homework.html.twig') with { homework: hw } %}
             </button>
             <button class="delete" data-homework-id="{{ hw.id }}">Supprimer</button>
+            {{
+                component('Modal', {
+                    id: 'modal-homework-' ~ hw.id,
+                    homework: hw
+                })
+            }}
         {% endfor %}
     </div>
-    {{
-        component('Modal', {
-            id: 'modal-homework',
-            homework: homework
-        })
-    }}
 </div>

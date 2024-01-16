@@ -5,6 +5,7 @@ namespace App\Components;
 use App\Entity\Homework;
 use App\Repository\HomeworkRepository;
 use Symfony\UX\LiveComponent\Attribute\AsLiveComponent;
+use Symfony\UX\LiveComponent\Attribute\LiveAction;
 use Symfony\UX\LiveComponent\Attribute\LiveArg;
 use Symfony\UX\LiveComponent\Attribute\LiveListener;
 use Symfony\UX\LiveComponent\Attribute\LiveProp;
@@ -36,9 +37,13 @@ class SearchHomework
         return $this->homeworkRepository->search($this->query);
     }
 
-    #[LiveListener('setHomework')]
-    public function setHomework(#[LiveArg] ?Homework $homework): void
+    #[LiveAction]
+    public function setHomework(#[LiveArg('homework_id')] ?Homework $homework_id): void
     {
-        $this->homework = $homework;
+        if(null === $homework_id) {
+            $this->homework = null;
+            return;
+        }
+        $this->homework = $this->homeworkRepository->find($homework_id);
     }
 }
