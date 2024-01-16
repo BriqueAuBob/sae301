@@ -9,9 +9,9 @@
             {% for homework in homeworks %}
 {#                Si dernière ligne#}
                 {% if loop.last %}
-                    { "title": "{{ homework.name }}", "start": "{{ homework.dueDate|date('Y-m-d') }}", "allDay": true }
+                    { "title": "{{ homework.name }}", "start": "{{ homework.dueDate|date('Y-m-d H:i:s')}}", "allDay": false }
                 {% else %}
-                    { "title": "{{ homework.name }}", "start": "{{ homework.dueDate|date('Y-m-d') }}", "allDay": true },
+                    { "title": "{{ homework.name }}", "start": "{{ homework.dueDate|date('Y-m-d H:i:s') }}", "allDay": false },
                 {% endif %}
             {% endfor %}
         ]'></div>
