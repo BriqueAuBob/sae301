@@ -1,9 +1,14 @@
-{% set commonClasses = "ease-out duration-300 flex gap-1 items-center px-3 py-2 rounded-xl text-md text-center justify-center" %}
+{% set commonClasses = "ease-out duration-300 flex gap-1 items-center text-center justify-center" %}
 
 {% set typeClasses = {
     'primary': 'text-gray-950 border-2 rounded-3xl shadow-white/60 shadow-inner-lg',
     'secondary': 'border-2',
     'tertiary': ''
+} %}
+
+{% set sizes = {
+    'md': 'text-md px-3 py-2',
+    'xl': 'text-2xl px-4 py-3',
 } %}
 
 {% set colorClasses = {
@@ -36,8 +41,10 @@
 
 {% set type = type|default('primary') %}
 {% set color = color|default('primary') %}
+{% set size = size|default('md') %}
+{% set rounded = rounded|default(false) %}
 
-<button class="{{ commonClasses }} {{ typeClasses[type] }}
+<button class="{{ commonClasses }} {{ sizes[size] }} {{ typeClasses[type] }} {{ rounded ? 'rounded-full' : 'rounded-xl' }}
     {% if type == 'primary' %}
         {{ colorClasses[color]['bg'] }}
         {{ colorClasses[color]['border'] }}
@@ -48,7 +55,7 @@
         {{ colorClasses[color]['text'] }}
     {% endif %}">
     {% if iconLeft is defined %}
-        <span class="w-4 h-4 mr-1">
+        <span class="{{ size == 'xl' ? 'w-12 h-12' : 'w-4 h-4' }} mr-1">
             {{ include('@icons/' ~ iconLeft ~ '.svg') }}
         </span>
     {% endif %}

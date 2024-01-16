@@ -46,8 +46,6 @@ h1{
     justify-content: center;
     color: var(--fc-primary-color);
     font-family: var(--fc-font-familly);
-    font-weight: var(--fc-font-weight);
-    font-size: var(--fc-font-size);
 }
 
 /*Mois et année */

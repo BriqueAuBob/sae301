@@ -242,4 +242,24 @@ class Homework
 
         return $this;
     }
+
+    public function __toString(): string
+    {
+        return json_encode([
+            'id' => $this->id,
+            'author' => $this->author,
+            'subject' => $this->subject,
+            'year' => $this->year,
+            'group' => $this->group,
+            'name' => $this->name,
+            'description' => $this->description,
+            'picture' => $this->picture,
+            'due_date' => $this->due_date,
+            'created_at' => $this->created_at,
+            'updated_at' => $this->updated_at,
+            'checks' => $this->checks,
+            'teacher' => $this->teacher,
+            'platform' => $this->platform,
+        ]);
+    }
 }

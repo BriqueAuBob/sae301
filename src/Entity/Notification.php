@@ -21,14 +21,14 @@ class Notification
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $message = null;
 
-    #[ORM\ManyToOne(targetEntity: User::class, inversedBy: 'notification')]
+    #[ORM\ManyToOne(targetEntity: User::class, inversedBy: 'notifications')]
     private ?User $user = null;
 
     #[ORM\Column(type: Types::DATETIME_MUTABLE)]
     private ?\DateTimeInterface $created_at = null;
 
     #[ORM\Column]
-    private ?bool $isRead = null;
+    private ?bool $isRead = false;
 
     public function getId(): ?int
     {
