@@ -7,6 +7,10 @@
         <div class="flex flex-col lg:justify-between lg:gap-8 lg:flex-row-reverse">
             <div>
                 <h1 class="text-2xl mb-4">Mon profil</h1>
+                <div class="flex mb-6">
+                    <a href="{{ path('app_settings') }}">{{ source('@icons/settings.svg') }}</a>
+                    <a href="{{ path('app_logout') }}">{{ source('@icons/logout.svg') }}</a>
+                </div>
                 <div class="bg-primary-500 lg:px-14 py-5 px-2 rounded-2xl border-primary-600 border-2 flex flex-col items-center lg:w-fit">
                     <h4><span class="font-bold">{{ app.user.name }}</span> TP {{ app.user.group }}</h4>
                     <span>{{ app.user.email }}</span>
@@ -15,14 +19,11 @@
             <div class="mt-6 lg:mt-0">
                 <h4 class="text-2xl mb-4">Historique</h4>
                 <ul class="bg-white rounded-2xl border-2 text-gray-900 text-sm font-medium p-5">
-                    <li class="px-4 py-3 border-2 w-full rounded-lg mb-3 flex items-center">Rendus épinglés {{ source('@icons/arrow-down.svg') }}</li>
-                    <li class="px-4 py-3 border-2 w-full rounded-lg mb-3 flex items-center">Liste des rendus créés {{ source('@icons/arrow-down.svg') }}</li>
-                    <li class="px-4 py-3 border-2 w-full rounded-lg flex items-center">Commentaires déposés {{ source('@icons/arrow-down.svg') }}</li>
+                    <li class="px-4 py-3 border-2 w-full rounded-lg mb-3 flex items-center" id="li-1">Rendus épinglés {{ source('@icons/arrow-down.svg') }}</li>
+                    <li class="px-4 py-3 border-2 w-full rounded-lg mb-3 flex items-center" id="li-2">Liste des rendus créés {{ source('@icons/arrow-down.svg') }}</li>
+                    <li class="px-4 py-3 border-2 w-full rounded-lg flex items-center" id="li-3">Commentaires déposés {{ source('@icons/arrow-down.svg') }}</li>
                 </ul>
-                <div></div>
-                <div></div>
             </div>
         </div>
-        <a href="{{ path('app_logout') }}">{{ source('@icons/logout.svg') }}</a>
     </div>
 {% endblock %}

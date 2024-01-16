@@ -15,4 +15,10 @@ class ProfileController extends AbstractController
     {
         return $this->render('profile/profile.html.twig');
     }
+
+    #[Route('/parametres', name: 'app_settings')]
+    public function settings(): Response
+    {
+        return $this->render('profile/settings.html.twig');
+    }
 }
