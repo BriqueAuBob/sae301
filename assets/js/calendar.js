@@ -1,5 +1,7 @@
 document.addEventListener('DOMContentLoaded', function() {
-    const calendarEl = document.getElementById('calendar')
+    const calendarEl = document.getElementById('calendar');
+    const eventData = JSON.parse(calendarEl.dataset.events || '[]');
+
     const calendar = new FullCalendar.Calendar(calendarEl, {
         locale: 'fr',
         timeZone: 'local',
@@ -10,15 +12,12 @@ document.addEventListener('DOMContentLoaded', function() {
             day: 'Jour',
             list: 'Liste'
         },
-        events: [
-            { start: '2018-09-01T12:30:00Z' },
-            { start: '2018-09-01T12:30:00+XX:XX' },
-            { start: '2018-09-01T12:30:00' }
-        ],
+        events: eventData,
         dateClick: function(arg) {
             console.log(arg.date.toString());
         }
-    })
+    });
+
     calendar.setOption('locale', 'fr');
-    calendar.render()
-})
+    calendar.render();
+});
