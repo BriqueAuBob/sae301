@@ -7,6 +7,7 @@ import './bootstrap.js';
  */
 // Import $ from jQuery
 import'./js/jquery.js';
+
 import './styles/app.css'
 import './styles/calendar.css'
 import './js/delete.js'

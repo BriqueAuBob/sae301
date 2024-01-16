@@ -10,9 +10,16 @@
                 Accueil
             </a>
         </li>
-        <li>
+        <li class="relative">
             <a class="flex flex-col lg:flex-row lg:gap-2 items-center" href="{{ path('app_notification') }}">
-                {{ source('@icons/bell.svg') }}
+                <span class="relative">
+                    {{ source('@icons/bell.svg') }}
+                    {% if unread_notification_count(app.user.id) > 0 %}
+                        <div class="absolute top-0 right-0 w-fit bg-primary-500 rounded-full px-1 aspect-square flex justify-center items-center text-xs">
+                            {{ unread_notification_count(app.user.id) }}
+                        </div>
+                    {% endif %}
+                </span>
                 Notifications
             </a>
         </li>

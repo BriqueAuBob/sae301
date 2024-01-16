@@ -15,11 +15,9 @@
                 'icon': 'calendar',
             }) }}
         </div>
-        <div>
-            {% for homework in homeworks %}
-            {% include('components/FullHomeworkCard.html.twig')%}
-            {% endfor %}
-        </div>
+        <a href="{{ path('app_homework') }}" class="fixed right-8 bottom-8">
+            {% include('components/button.html.twig') with { text: '', iconLeft: 'add-circle', size: "xl", rounded: true } %}
+        </a>
         <div class="mt-4">
             {% include('components/button.html.twig') with { text: "Créer un rendu" } %}
             {% include('components/button.html.twig') with { text: "Créer un rendu", type: "secondary" } %}
