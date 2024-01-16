@@ -36,6 +36,8 @@ class HomeworkController extends AbstractController
             $homework->setAuthor($this->getUser());
             //ajouter l'année de l'utilisateur comme année du devoir
             $homework->setYear($this->getUser()->getYear());
+            //ajouter le groupe de l'utilisateur comme groupe du devoir
+            $homework->setGroup($this->getUser()->getGroup());
             // ajouter la date du jour en date de création
             $homework->setCreatedAt(new \DateTime('now'));
 
