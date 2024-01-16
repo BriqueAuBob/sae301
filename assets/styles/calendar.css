@@ -8,7 +8,6 @@
     --fc-font-size: 48px;
     --fc-text-font-weight: 400;
 
-
     /* Définition des couleurs principales et secondaire*/
     --fc-primary-color: #8CD867;
     --fc-primary-color-50 : #F0FAEB;
@@ -20,26 +19,26 @@
     --fc-button-text-weight: 500;
 
     /* Définition du style des boutons qui s'appliquent directement*/
-    --fc-button-text-color: #121316;
+    --fc-button-text-color: #000000;
 
+    /* --fc-button-hover-text-color: #17171a; */
     --fc-button-bg-color: #8CD867;
     --fc-button-border-color: #121316;
 
-    --fc-button-hover-bg-color: #61A3EE;
-    --fc-button-hover-border-color: #121316;
-    --fc-button-active-bg-color: #F5AC47;
+    --fc-button-hover-bg-color: #F0FAEB;
+    --fc-button-hover-border-color: #8CD867;
+    --fc-button-active-bg-color: #61A3EE;
     --fc-button-active-border-color: #121316;
 }
 
 
-/* Change the width */
-
+/* Changemement the width */
 #calendar{
     display: inline-block;
     width: 90%;
     margin-left: 80px;
-}
 
+}
 
 /*Titre Calendrier*/
 h1{
@@ -63,29 +62,98 @@ h1{
     font-weight: var(--fc-text-font-weight);
 }
 
-
 .fc-toolbar-chunk{
     font-family: var(--fc-font-familly);
 }
-
 
 .fc .fc-button-primary:disabled{
     font-weight: var(--fc-button-text-weight);
 
     &:hover{
         background-color: var(--fc-button-hover-bg-color);
+        color: var(--fc-button-hover-text-color);
     }
 }
 
 /*tableau du calendrier, barre supérieure avec les jours*/
 thead{
     background-color: var(--fc-secondary-color-200);
+    height: 30px;
 }
 
 /* Changer la couleur du jour actif */
-
 .fc-day-today {
     background: var(--fc-primary-color-50) !important;
     border: none !important;
+    border-radius: 0px;
+}
+
+.fc-prev-button.fc-button.fc-button-primary, .fc-next-button.fc-button.fc-button-primary,
+.fc-today-button.fc-button.fc-button-primary{
+    border: 1px solid var(--fc-primary-color);
+}
+
+/* Mise en style du calendrier partie semaine et jour*/
+
+.fc-timeGridWeek-view.fc-view.fc-timegrid, .fc-timeGridDay-view.fc-view.fc-timegrid{
+    height: 661px;
+}
+
+/* Mise en style du deuxième calendrier */
+
+.fc-timegrid-slot-label-cushion.fc-scrollgrid-shrink-cushion{
+    font-family: var(--fc-font-familly);
+}
+
+/* Responsive */
+@media only screen and (max-width: 765px) {
+    h1{
+        text-align: center;
+    }
+
+    #calendar{
+        margin: 0;
+        display: inline-block;
+        width: 100%;
+    }
+
+    .fc-dayGridMonth-view.fc-view.fc-daygrid{
+        display: flex;
+        justify-content: center;
+        height: 335px;
+    }
+
+    .fc-header-toolbar.fc-toolbar{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 15px;
+    }
+}
+
+@media only screen and (min-width: 765px) {
+
+    #calendar{
+        display: inline-block;
+        width: 90%;
+
+        h1{
+            text-align: center;
+        }
+
+        #calendar{
+            margin: 0;
+            display: inline-block;
+            width: 100%;
+        }
+
+        .fc-dayGridMonth-view.fc-view.fc-daygrid{
+            display: flex;
+            flex-direction: row;
+        }
+
+    }
+
 
 }
