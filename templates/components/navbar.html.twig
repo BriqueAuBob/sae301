@@ -10,11 +10,16 @@
                 Accueil
             </a>
         </li>
-        <li>
+        <li class="relative">
             <a class="flex flex-col lg:flex-row lg:gap-2 items-center" href="{{ path('app_notification') }}">
                 {{ source('@icons/bell.svg') }}
                 Notifications
             </a>
+
+            {% if app.user.notifications | length > 0 %}
+
+                <div class="absolute top-0 left-8 lg:left-0 bg-primary-500 rounded-full w-2 h-2"></div>
+            {% endif %}
         </li>
         <li>
             <a class="flex flex-col lg:flex-row lg:gap-2 items-center" href="{{ path('app_calendar') }}">

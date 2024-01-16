@@ -21,7 +21,7 @@ class Notification
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $message = null;
 
-    #[ORM\ManyToOne(targetEntity: User::class, inversedBy: 'notification')]
+    #[ORM\ManyToOne(targetEntity: User::class, inversedBy: 'notifications')]
     private ?User $user = null;
 
     #[ORM\Column(type: Types::DATETIME_MUTABLE)]
