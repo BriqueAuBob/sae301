@@ -6,10 +6,12 @@
     <div class="m-4">
         <h1 class="text-5xl mb-4">Notifications</h1>
         <div class="flex flex-col gap-2">
-            {% include ('components/button.html.twig') with { text: 'Tout marquer comme lu', iconLeft: 'tick-circle' } %}
-            {{ form_start(form, {'action': path('app_notification-delete-all'), 'method': 'DELETE'}) }}
+            {{ form_start(readAllButton, {'action': path('app_notification-read-all'), 'method': 'PATCH'}) }}
+                {% include ('components/button.html.twig') with { text: 'Tout marquer comme lu', iconLeft: 'tick-circle' } %}
+            {{ form_end(readAllButton) }}
+            {{ form_start(deleteAllButton, {'action': path('app_notification-delete-all'), 'method': 'DELETE'}) }}
                 {% include ('components/button.html.twig') with { text: 'Tout supprimer',color: 'danger', iconLeft: 'trash' } %}
-            {{ form_end(form) }}
+            {{ form_end(deleteAllButton) }}
 
             <div class="font-semibold">
                 Tu as {{ readNotificationsCount }} notification(s) non lue(s).
