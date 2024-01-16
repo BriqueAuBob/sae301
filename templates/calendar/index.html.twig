@@ -5,7 +5,13 @@
 {% block body %}
     <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.10/index.global.min.js" integrity="sha256-J37ZtjEw94oWBNZ9w/XC73raGXE9t10//XHJfKz2QCM=" crossorigin="anonymous"></script>
     <div id="calendar" data-events='[
-  { "title": "Événement 1", "start": "2024-01-17T12:00:00", "allDay": true },
-  { "title": "Événement 2", "start": "2024-01-18T15:00:00", "allDay": false }
-]'></div>
+            {% for homework in homeworks %}
+{#                Si dernière ligne#}
+                {% if loop.last %}
+                    { "title": "{{ homework.name }}", "start": "{{ homework.dueDate|date('Y-m-d') }}T12:00:00", "allDay": true }
+                {% else %}
+                    { "title": "{{ homework.name }}", "start": "{{ homework.dueDate|date('Y-m-d') }}T12:00:00", "allDay": true },
+                {% endif %}
+            {% endfor %}
+        ]'></div>
 {% endblock %}
