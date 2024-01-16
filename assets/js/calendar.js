@@ -15,9 +15,17 @@ document.addEventListener('DOMContentLoaded', function() {
         events: eventData,
         dateClick: function(arg) {
             console.log(arg.date.toString());
+        },
+        eventClick: function(info) {
+            //Appel en ajax pour la modale
+
+            info.el.style.borderColor = 'red';
         }
     });
 
     calendar.setOption('locale', 'fr');
     calendar.render();
 });
+// $(document).ready(function(){
+//
+// })
