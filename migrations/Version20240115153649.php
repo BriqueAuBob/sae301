@@ -10,7 +10,7 @@ use Doctrine\Migrations\AbstractMigration;
 /**
  * Auto-generated Migration: Please modify to your needs!
  */
-final class Version20240115132021 extends AbstractMigration
+final class Version20240115153649 extends AbstractMigration
 {
     public function getDescription(): string
     {
@@ -20,14 +20,12 @@ final class Version20240115132021 extends AbstractMigration
     public function up(Schema $schema): void
     {
         // this up() migration is auto-generated, please modify it to your needs
-        $this->addSql('ALTER TABLE homework ADD teacher VARCHAR(255) NOT NULL, ADD platform VARCHAR(255) NOT NULL');
-
+        $this->addSql('ALTER TABLE notification ADD is_read TINYINT(1) NOT NULL');
     }
 
     public function down(Schema $schema): void
     {
         // this down() migration is auto-generated, please modify it to your needs
-        $this->addSql('ALTER TABLE notification DROP FOREIGN KEY FK_BF5476CAA76ED395');
-
+        $this->addSql('ALTER TABLE notification DROP is_read');
     }
 }

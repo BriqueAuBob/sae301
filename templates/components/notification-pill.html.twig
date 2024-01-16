@@ -1,14 +1,9 @@
-{% set commonClasses = "ease-out duration-300 px-3 py-2 my-4 rounded-xl text-md border border-2" %}
-{% set stateClasses = {
-    'read' : 'bg-text-50 hover:bg-text-100 opacity-50',
-    'unread' : 'bg-text-50 hover:bg-text-100 opacity-100',
-    }
-%}
-
-{% set state = state|default('unread') %}
+{% set commonClasses = "ease-out duration-300 px-3 py-2 my-4 rounded-xl text-md border border-2 bg-text-50 hover:bg-text-100 opacity-100" %}
 
 
-<div id="card-notification-{{ notification.id }}" class="notification {{ commonClasses }} {{ stateClasses[state] }}">
+<div id="card-notification-{{ notification.id }}" class="notification {{ commonClasses }}
+ {% if notification.isRead %} opacity-50 {% endif %}
+" data-notification-id="{{ notification.id }}">
     <div class="flex justify-between">
         <div class="flex items-center gap-1">
             <img src="{{ asset ('images/icons/archive.svg') }}" alt="fanion">
@@ -21,3 +16,4 @@
         <p> {{ notification.message }} </p>
     </div>
 </div>
+
