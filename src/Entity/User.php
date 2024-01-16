@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use App\Repository\UserRepository;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
@@ -42,6 +43,9 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     #[ORM\Column(name: '`group`', length: 1)]
     private ?string $group = null;
+
+    #[ORM\OneToMany(mappedBy: 'user', targetEntity: Email::class)]
+    private Collection $emails;
 
     public function getId(): ?int
     {
@@ -174,6 +178,18 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setGroup(string $group): static
     {
         $this->group = $group;
+
+        return $this;
+    }
+
+    public function getEmails(): Collection
+    {
+        return $this->emails;
+    }
+
+    public function setEmails(Collection $emails): static
+    {
+        $this->emails = $emails;
 
         return $this;
     }
