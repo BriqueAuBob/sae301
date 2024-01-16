@@ -21,9 +21,15 @@ class NotificationController extends AbstractController
     #[Route('/notification', name: 'app_notification')]
     public function index(): Response
     {
-        $form = $this->createFormBuilder()
+        // formulaire pour supprimer toutes les notifications
+        $deleteAllButton = $this->createFormBuilder()
             ->setAction($this->generateUrl('app_notification-delete-all'))
             ->setMethod('DELETE')
+            ->getForm();
+        //formulaire pour marquer toutes les notifications comme lues
+        $readAllButton = $this->createFormBuilder()
+            ->setAction($this->generateUrl('app_notification-read-all'))
+            ->setMethod('PATCH')
             ->getForm();
 
         $notifications = $this->em->getRepository(Notification::class)->findBy(
@@ -38,11 +44,25 @@ class NotificationController extends AbstractController
         return $this->render('notification/index.html.twig', [
             'notifications' => $notifications,
             'readNotificationsCount' => $readNotificationsCount,
-            'form' => $form->createView(),
+            'deleteAllButton' =>$deleteAllButton->createView(),
+            'readAllButton' =>$readAllButton->createView(),
         ]);
     }
 
+    #[Route('/notification/read-all', name: 'app_notification-read-all', methods: 'PATCH')]
+    public function readAll(Request $request, EntityManagerInterface $em): Response {
 
+        $notifications = $em->getRepository(Notification::class)->findBy([
+            'user' => $this->getUser(),
+        ]);
+
+        foreach ($notifications as $notification) {
+            $notification->setIsRead(true);
+        }
+
+        $em->flush();
+        return $this->redirectToRoute('app_notification');
+    }
 
     #[Route('/notification/{id}', name: 'app_notification-is-read', methods: 'PATCH')]
     public function isRead(Request $request, EntityManagerInterface $em, $id): Response {
@@ -56,6 +76,7 @@ class NotificationController extends AbstractController
         $em->flush();
         return $this->redirectToRoute('app_notification');
     }
+
 
 
     #[Route('/notification/delete-all', name: 'app_notification-delete-all', methods: 'DELETE')]
