@@ -1,4 +1,4 @@
-<div {{ attributes }}>
+<div>
     <div class="flex border-2 border-primary-100 rounded-xl pl-4 pr-1 mb-4">
         {% if icon is defined %}
             <img src="{{ asset('images/icons/' ~ icon ~ '.svg' ) }}" alt="{{ icon }}"  class="inline-block mr-1">
@@ -11,12 +11,12 @@
                 {% include('components/card-homework.html.twig') with { homework: hw } %}
             </button>
             <button class="delete" data-homework-id="{{ hw.id }}">Supprimer</button>
-            {{
-                component('Modal', {
+            {%
+                include('components/modal.html.twig') with {
                     id: 'modal-homework-' ~ hw.id,
                     homework: hw
-                })
-            }}
+                }
+            %}
         {% endfor %}
     </div>
 </div>

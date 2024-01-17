@@ -170,10 +170,11 @@ class Homework
         return $this->created_at;
     }
 
-    public function setCreatedAt(\DateTimeInterface $datetime_create): static
+    #[ORM\PrePersist]
+    public function setCreatedAt(): static
     {
-        $this->created_at = $datetime_create;
-
+        $this->created_at = new \DateTimeImmutable();
+        $this->setUpdatedAt();
         return $this;
     }
 
@@ -182,9 +183,10 @@ class Homework
         return $this->updated_at;
     }
 
-    public function setUpdatedAt(\DateTimeInterface $datetime_update): static
+    #[ORM\PreUpdate]
+    public function setUpdatedAt(): static
     {
-        $this->updated_at = $datetime_update;
+        $this->updated_at = new \DateTimeImmutable();
 
         return $this;
     }
