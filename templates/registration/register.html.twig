@@ -11,62 +11,82 @@
 
     {{ form_errors(registrationForm) }}
 
-    {{ form_start(registrationForm) }}
+    {{ form_start(registrationForm)}}
 
     <div>
-        {{ form_row(registrationForm.email, {
-            label_attr:{class:'bg-white'},
-            row_attr:{class:'bg-white'},
-            attr:{class:'w-full h-full py-3', 'placeholder':'john.doe@etudiant.univ-reims.fr', 'border-black':'border-4 p-8', 'border-blue-100':'border-4 p-8'},
-        })
-        }}
-    </div>
 
-        {{ form_row(registrationForm.firstname, {
-            label_attr:{class:'bg-white'},
-            row_attr:{class:'bg-white'},
-            attr:{class:'w-full h-full py-3', 'placeholder':'John', 'border-black':'border-4 p-8', 'border-blue-100':'border-4 p-8'},
-        })
-        }}
+        {{ form_row(registrationForm.email,) }}
+        {% include ('components/input.html.twig') with {
+            id: 'email',
+            'label': 'Email',
+            'name': 'email',
+            'type': 'email',
+            'placeholder': 'john.doe@etudiant.univ-reims.fr',
+         } %}
 
 
-        {{ form_row(registrationForm.lastname, {
-            label_attr:{class:'bg-white'},
-            row_attr:{class:'bg-white'},
-            attr:{class:'w-full h-full py-3', 'placeholder':'Doe', 'border-black':'border-4 p-8', 'border-blue-100':'border-4 p-8'},
+        {{ form_row(registrationForm.firstname) }}
+        {% include ('components/input.html.twig') with {
+            id: 'firstname',
+            'label': 'Firstname',
+            'name': 'firstname',
+            'type': 'text',
+            'placeholder': 'John',
+         } %}
 
-        }) }}
+
+        {{ form_row(registrationForm.lastname) }}
+        {% include ('components/input.html.twig') with {
+            id: 'lastname',
+            'label': 'Lastname',
+            'name': 'lastname',
+            'type': 'text',
+            'placeholder': 'Doe',
+         } %}
 
 
-        {{ form_row(registrationForm.plainPassword, {
-            label: 'Password',
-            label_attr:{class:'bg-white'},
-            attr:{class:'w-full h-full py-3', 'placeholder':'********', 'border-black':'border-4 p-8', 'border-blue-100':'border-4 p-8'},
-        }) }}
+        {{ form_row(registrationForm.plainPassword) }}
+        {% include ('components/input.html.twig') with {
+            id: 'password',
+            'label': 'Password',
+            'name': 'password',
+            'type': 'password',
+            'placeholder': '********',
+         } %}
 
 
         {{ form_row(registrationForm.course) }}
+        {% include ('components/input.html.twig') with {
+            id: 'course',
+            'label': 'Course',
+            'name': 'course',
+            'type': 'text',
+            'placeholder': 'Computer Science',
+         } %}
 
-        {{ form_row(registrationForm.group, {
 
-            label_attr:{class:'bg-white'},
-            row_attr:{class:'bg-white'},
-            attr:{class:'w-full h-full py-3', 'placeholder':'A', 'border-black':'border-4 p-8', 'border-blue-100':'border-4 p-8'},
-        }
-        ) }}
+        {{ form_row(registrationForm.group) }}
+        {% include ('components/input.html.twig') with {
+            id: 'group',
+            'label': 'Group',
+            'name': 'group',
+            'type': 'text',
+            'placeholder': 'A',
+         } %}
 
-
-        {{ form_row(registrationForm.year, {
-            label_attr:{class:'bg-white'},
-            row_attr:{class:'bg-white'},
-            attr:{class:'w-full h-full py-3', 'placeholder':'2021', 'border-black':'border-4 p-8', 'border-blue-100':'border-4 p-8'},
-        }
-        ) }}
-
+        {{ form_row(registrationForm.year) }}
+        {% include ('components/input.html.twig') with {
+            id: 'year',
+            'label': 'Year',
+            'name': 'year',
+            'type': 'text',
+            'placeholder': '2021',
+         } %}
 
 
         {{ form_row(registrationForm.agreeTerms) }}
 
-        <button type="submit" class="btn">Register</button>
-    {{ form_end(registrationForm) }}
+            <button type="submit" class="btn">Register</button>
+        {{ form_end(registrationForm) }}
+    </div>
 {% endblock %}
