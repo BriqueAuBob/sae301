@@ -17,8 +17,14 @@ class ProfileController extends AbstractController
     }
 
     #[Route('/parametres', name: 'app_settings')]
-    public function settings(): Response
+    public function viewSettings(): Response
     {
         return $this->render('profile/settings.html.twig');
+    }
+
+    #[Route('/mentions-legales', name: 'app_mentions')]
+    public function viewMentions(): Response
+    {
+        return $this->render('profile/mentions.html.twig');
     }
 }
