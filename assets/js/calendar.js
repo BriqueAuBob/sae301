@@ -1,7 +1,7 @@
 document.addEventListener('DOMContentLoaded', function() {
+
     const calendarEl = document.getElementById('calendar');
     const eventData = JSON.parse(calendarEl.dataset.events || '[]');
-
     const calendar = new FullCalendar.Calendar(calendarEl, {
         locale: 'fr',
         timeZone: 'local',
@@ -44,7 +44,9 @@ document.addEventListener('DOMContentLoaded', function() {
             info.el.style.borderColor = 'red';
         }
     });
-
     calendar.setOption('locale', 'fr');
     calendar.render();
+
+    console.log(calendarEl);
+    console.log(calendar);
 });
