@@ -5,13 +5,16 @@
             <img src="{{ asset('images/icons/' ~ icon ~ '.svg' ) }}" alt="{{ icon }}"  class="inline-block mr-1">
         {% endif %}
         <input class="w-full h-full py-3"
-               name="{{ name }}" id="{{ id }}"
+               name="{{ name }}"
+               id="{{ id }}"
                type="{{ type|default('text') }}"
                placeholder="{{ placeholder }}"
                value="{{ value|default('') }}"
                 {% if required is defined and required %}required{% endif %}
                 {% if disabled is defined and disabled %}disabled{% endif %}
                 autocomplete="{{ autocomplete|default('off') }}"
+                {% if autofocus is defined and autofocus %}autofocus{% endif %}
+                {% if readonly is defined and readonly %}readonly{% endif %}
         >
     </div>
 </div>
