@@ -18,10 +18,9 @@
             {{ form_row(registrationForm.email,
                 {
                     'attr': {
-                    'class': 'w-full h-full py-3 focus:outline-none',
-                    'class':'flex border-2 border-primary-100 rounded-xl px-4',
+                    'class': 'w-full h-full py-3 focus:outline-none flex border-2 border-primary-100 rounded-xl px-4',
                     'id': 'inputEmail',
-                    'placeholder': 'Adresse mail',
+                    'placeholder': 'john.doe@etudiant.univ-reims.fr',
                     'autofocus': true
 
                 },
@@ -34,8 +33,7 @@
             {{ form_row(registrationForm.firstname,
                 {
                 'attr': {
-                    'class': 'w-full h-full py-3 focus:outline-none',
-                    'class':'flex border-2 border-primary-100 rounded-xl px-4',
+                    'class': 'w-full h-full py-3 focus:outline-none flex border-2 border-primary-100 rounded-xl px-4',
                     'id': 'inputFistname',
                     'placeholder': 'John',
                     'autofocus': true
@@ -49,8 +47,7 @@
         {{ form_row(registrationForm.lastname,
             {
             'attr': {
-                'class': 'w-full h-full py-3 focus:outline-none',
-                'class':'flex border-2 border-primary-100 rounded-xl px-4',
+                'class': 'w-full h-full py-3 focus:outline-none flex border-2 border-primary-100 rounded-xl px-4',
                 'id': 'inputLastname',
                 'placeholder': 'Doe',
                 'autofocus': true
@@ -65,23 +62,25 @@
 
         {{ form_row(registrationForm.plainPassword, {
             'attr': {
-                'class': 'w-full h-full py-3 focus:outline-none',
-                'class':'flex border-2 border-primary-100 rounded-xl px-4',
+                'class': 'w-full h-full py-3 focus:outline-none flex border-2 border-primary-100 rounded-xl px-4',
                 'id': 'inputPassword',
                 'placeholder': 'Mot de Passe',
                 'autofocus': true
-
             },
-            label: 'Password',
-            required: true
+            'label': 'Password',
+            'required': true
         }) }}
 
+        <small>{{ form_help(registrationForm.plainPassword,
+                {
+                    'label': 'Your Password must have 6 characters or more',
+                }
+            ) }}</small>
 
         {{ form_row(registrationForm.course,
             {
             'attr': {
-                'class': 'w-full h-full py-3 focus:outline-none',
-                'class':'flex border-2 border-primary-100 rounded-xl px-4',
+                'class': 'w-full h-full py-3 focus:outline-none flex border-2 border-primary-100 rounded-xl px-4',
                 'id': 'inputCourse',
                 'placeholder': 'Cours',
                 'autofocus': true
@@ -96,8 +95,7 @@
         {{ form_row(registrationForm.group,
             {
             'attr': {
-                'class': 'w-full h-full py-3 focus:outline-none',
-                'class':'flex border-2 border-primary-100 rounded-xl px-4',
+                'class': 'w-full h-full py-3 focus:outline-none flex border-2 border-primary-100 rounded-xl px-4',
                 'id': 'inputGroup',
                 'placeholder': 'Groupe',
                 'autofocus': true
@@ -112,8 +110,7 @@
         {{ form_row(registrationForm.year,
             {
             'attr': {
-                'class': 'w-full h-full py-3 focus:outline-none',
-                'class':'flex border-2 border-primary-100 rounded-xl px-4',
+                'class': 'w-full h-full py-3 focus:outline-none flex border-2 border-primary-100 rounded-xl px-4',
                 'id': 'inputYear',
                 'placeholder': 'Année',
                 'autofocus': true
