@@ -1,13 +1,6 @@
-{% extends 'base.html.twig' %}
-{% block body %}
-
-{#{{#}
-{#    component('Modal', {#}
-{#    id: 'modal-homework-calendar',#}
-{#    homework: homeworks[0],#}
-{#    })#}
-{#}}#}
-    <div id="CalendarModale" data-modal-id="modal-homework-calendar">
-        <h1>Test</h1>
-    </div>
-{% endblock %}
+{%
+    include('components/modal.html.twig') with {
+    id: 'modal-homework-calendar',
+    homework: homeworks[0],
+    }
+%}

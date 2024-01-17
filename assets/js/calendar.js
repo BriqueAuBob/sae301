@@ -36,8 +36,8 @@ document.addEventListener('DOMContentLoaded', function() {
                 type: 'GET',
                 success: function(data){
                     $('#CalendarModale').html(data);
-                    $('#CalendarModale').addClass('block');
-                    $('#CalendarModale').removeClass('hidden');
+                    // console.log(data);
+                    modalCalendar(data);
                 }
             })
 
@@ -48,3 +48,15 @@ document.addEventListener('DOMContentLoaded', function() {
     calendar.setOption('locale', 'fr');
     calendar.render();
 });
+
+function modalCalendar(div) {
+    if ($(div).attr('id') === 'modal-homework-calendar') {
+        $('#modal-homework-calendar').addClass('opacity-1');
+        $('#modal-homework-calendar').removeClass('opacity-0');
+        $('#modal-homework-calendar').removeClass('pointer-events-none');
+        $('#modal-homework-calendar').addClass('pointer-events-auto');
+
+        console.log('non');
+    }
+    console.log('non');
+}
