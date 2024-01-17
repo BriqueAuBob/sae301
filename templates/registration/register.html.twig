@@ -15,17 +15,45 @@
 
         {{ form_start(registrationForm)}}
 
-           {{ form_row(registrationForm.email,) }}
+            <div>
+                {{ form_label(registrationForm.email) }}
+                {% include ('components/input.html.twig') with {
+                    id: registrationForm.email.vars.id,
+                    label: registrationForm.email.vars.label,
+                    name: registrationForm.email.vars.full_name,
+                    type: registrationForm.email.vars.block_prefixes[1],
+                    placeholder: 'john.doe@etudiant.univ-reims.fr',
+                    value: registrationForm.email.vars.value,
+                    required: registrationForm.email.vars.required,
+                } %}
+                {{ form_errors(registrationForm.email) }}
+            </div>
+
+{#          {{ form_row(registrationForm.email,) }}}
+{#            {% include ('components/input.html.twig') with {#}
+{#                id: 'email',#}
+{#                'label': 'Email',#}
+{#                'name': 'email',#}
+{#                'type': 'email',#}
+{#                'placeholder': 'john.doe@etudiant.univ-reims.fr',#}
+{#             } %}#}
+
+        <div>
+            {{ form_label(registrationForm.firstname) }}
             {% include ('components/input.html.twig') with {
-                id: 'email',
-                'label': 'Email',
-                'name': 'email',
-                'type': 'email',
-                'placeholder': 'john.doe@etudiant.univ-reims.fr',
-             } %}
+                id: registrationForm.firstname.vars.id,
+                label: registrationForm.firstname.vars.label,
+                name: registrationForm.firstname.vars.full_name,
+                type: registrationForm.firstname.vars.block_prefixes[1],
+                placeholder: 'John',
+                value: registrationForm.firstname.vars.value,
+                required: registrationForm.firstname.vars.required,
+            } %}
+            {{ form_errors(registrationForm.firstname) }}
+        </div>
 
 
-    {#        {{ form_row(registrationForm.firstname) }}#}
+    {#        {{ form_row(registrationForm.firstname) }}
             {% include ('components/input.html.twig') with {
                 id: 'firstname',
                 'label': 'Firstname',
@@ -33,9 +61,22 @@
                 'type': 'text',
                 'placeholder': 'John',
              } %}
+    #}
+        <div>
+            {{ form_label(registrationForm.lastname) }}
+            {% include ('components/input.html.twig') with {
+                id: registrationForm.lastname.vars.id,
+                label: registrationForm.lastname.vars.label,
+                name: registrationForm.lastname.vars.full_name,
+                type: registrationForm.lastname.vars.block_prefixes[1],
+                placeholder: 'Doe',
+                value: registrationForm.lastname.vars.value,
+                required: registrationForm.lastname.vars.required,
+            } %}
+            {{ form_errors(registrationForm.lastname) }}
+        </div>
 
-
-    {#        {{ form_row(registrationForm.lastname) }}#}
+    {#        {{ form_row(registrationForm.lastname) }}
             {% include ('components/input.html.twig') with {
                 id: 'lastname',
                 'label': 'Lastname',
@@ -43,9 +84,25 @@
                 'type': 'text',
                 'placeholder': 'Doe',
              } %}
+    #}
 
 
-    {#        {{ form_row(registrationForm.plainPassword) }}#}
+        <div>
+            {{ form_label(registrationForm.plainPassword) }}
+            {% include ('components/input.html.twig') with {
+                id: registrationForm.plainPassword.vars.id,
+                label: registrationForm.plainPassword.vars.label,
+                name: registrationForm.plainPassword.vars.full_name,
+                type: registrationForm.plainPassword.vars.block_prefixes[1],
+                placeholder: '********',
+                value: registrationForm.plainPassword.vars.value,
+                required: registrationForm.plainPassword.vars.required,
+            } %}
+            {{ form_errors(registrationForm.lastname) }}
+        </div>
+
+
+    {#        {{ form_row(registrationForm.plainPassword) }}
             {% include ('components/input.html.twig') with {
                 id: 'password',
                 'label': 'Password',
@@ -53,11 +110,15 @@
                 'type': 'password',
                 'placeholder': '********',
              } %}
+    #}
 
+        <div>
+            {{ form_errors(registrationForm.course) }}
+        </div>
 
             {{ form_row(registrationForm.course) }}
 
-    {#       {{ form_row(registrationForm.group) }}#}
+    {#       {{ form_row(registrationForm.group) }}
             {% include ('components/input.html.twig') with {
                 id: 'group',
                 'label': 'Group',
@@ -66,7 +127,23 @@
                 'placeholder': 'A',
              } %}
 
-    {#        {{ form_row(registrationForm.year) }}#}
+    #}
+
+        <div>
+            {{ form_label(registrationForm.year) }}
+            {% include ('components/input.html.twig') with {
+                id: registrationForm.year.vars.id,
+                label: registrationForm.year.vars.label,
+                name: registrationForm.year.vars.full_name,
+                type: registrationForm.year.vars.block_prefixes[1],
+                placeholder: '2024',
+                value: registrationForm.year.vars.value,
+                required: registrationForm.year.vars.required,
+            } %}
+            {{ form_errors(registrationForm.course) }}
+        </div>
+
+    {#        {{ form_row(registrationForm.year) }}
             {% include ('components/input.html.twig') with {
                 id: 'year',
                 'label': 'Year',
@@ -74,7 +151,7 @@
                 'type': 'text',
                 'placeholder': '2021',
              } %}
-
+    #}
 
             {{ form_row(registrationForm.agreeTerms) }}
 
