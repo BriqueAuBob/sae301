@@ -3,19 +3,22 @@
 {% block title %}Hello HomeworkController!{% endblock %}
 
 {% block body %}
-    <h1>Ajout d'un nouveau rendu</h1>
-    <h2>Informations générales</h2>
-
+<div class="m-4">
+    <h1 class="text-5xl mb-4">Ajout d'un nouveau rendu</h1>
+    <h2 class="font-semibold">Informations générales</h2>
     {{ form_start(form) }}
     {{ form_row(form.name, {icon: 'calendar'}) }}
-    {{ form_row(form.teacher, {'icon': 'calendar'}) }}
-    {{ form_row(form.description, {'icon': 'calendar'}) }}
-    {{ form_row(form.platform, {'icon': 'calendar'}) }}
     {{ form_row(form.picture, {'icon': 'calendar'}) }}
-    {{ form_row(form.due_date, {'icon': 'calendar'}) }}
+    {{ form_row(form.description, {'icon': 'calendar'}) }}
     {{ form_row(form.subject, {'icon': 'calendar'}) }}
+    {{ form_row(form.due_date, {'icon': 'calendar'}) }}
+    <h2 class="font-semibold">Plus d'informations</h2>
+    {{ form_row(form.teacher, {'icon': 'calendar'}) }}
+    {{ form_row(form.platform, {'icon': 'calendar'}) }}
 
-    <button type="submit">Créer</button>
+    {% include ('components/button.html.twig') with {text: 'Ajouter le rendu', iconLeft: 'add-circle', fullWidth: true} %}
 
     {{ form_end(form) }}
+
+</div>
 {% endblock %}
