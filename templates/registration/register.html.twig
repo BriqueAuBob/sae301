@@ -14,7 +14,7 @@
         {{ form_start(registrationForm) }}
 
 
-
+        <div class="my-4">
             {{ form_row(registrationForm.email,
                 {
                     'attr': {
@@ -28,8 +28,9 @@
                     'required': true
                 }
             ) }}
+        </div>
 
-
+        <div class="my-4">
             {{ form_row(registrationForm.firstname,
                 {
                 'attr': {
@@ -43,88 +44,106 @@
                 'required': true
                 }
             ) }}
+        </div>
 
-        {{ form_row(registrationForm.lastname,
-            {
-            'attr': {
-                'class': 'w-full h-full py-3 focus:outline-none flex border-2 border-primary-100 rounded-xl px-4',
-                'id': 'inputLastname',
-                'placeholder': 'Doe',
-                'autofocus': true
-
-            },
-            'label': 'Nom',
-            'required': true
-            }
-
-        ) }}
-
-
-        {{ form_row(registrationForm.plainPassword, {
-            'attr': {
-                'class': 'w-full h-full py-3 focus:outline-none flex border-2 border-primary-100 rounded-xl px-4',
-                'id': 'inputPassword',
-                'placeholder': 'Mot de Passe',
-                'autofocus': true
-            },
-            'label': 'Password',
-            'required': true
-        }) }}
-
-        <small>{{ form_help(registrationForm.plainPassword,
+        <div class="my-4">
+            {{ form_row(registrationForm.lastname,
                 {
-                    'label': 'Your Password must have 6 characters or more',
+                'attr': {
+                    'class': 'w-full h-full py-3 focus:outline-none flex border-2 border-primary-100 rounded-xl px-4',
+                    'id': 'inputLastname',
+                    'placeholder': 'Doe',
+                    'autofocus': true
+
+                },
+                'label': 'Nom',
+                'required': true
                 }
-            ) }}</small>
 
-        {{ form_row(registrationForm.course,
-            {
-            'attr': {
-                'class': 'w-full h-full py-3 focus:outline-none flex border-2 border-primary-100 rounded-xl px-4',
-                'id': 'inputCourse',
-                'placeholder': 'Cours',
-                'autofocus': true
+            ) }}
+        </div>
 
-            },
-            'label': 'Cours',
-            'required': true
-            }
-        ) }}
+        <div>
+            {{ form_row(registrationForm.plainPassword, {
+                'attr': {
+                    'class': 'w-full h-full py-3 focus:outline-none flex border-2 border-primary-100 rounded-xl px-4',
+                    'id': 'inputPassword',
+                    'placeholder': 'Mot de Passe',
+                    'autofocus': true
+                },
+                'label': 'Password',
+                'required': true
+            }) }}
+        </div>
 
+        <div>
+            <small>{{ form_help(registrationForm.plainPassword,
+                    {
+                        help: 'Votre mot de passe doit comporter 6 caractères minimum',
+                        color: 'text-slate-500'
+                    }
+                    ) }}
+            </small>
+        </div>
 
-        {{ form_row(registrationForm.group,
-            {
-            'attr': {
-                'class': 'w-full h-full py-3 focus:outline-none flex border-2 border-primary-100 rounded-xl px-4',
-                'id': 'inputGroup',
-                'placeholder': 'Groupe',
-                'autofocus': true
+        <div class="my-4">
+            {{ form_row(registrationForm.course,
+                {
+                'attr': {
+                    'class': 'w-full h-full py-3 focus:outline-none flex border-2 border-primary-100 rounded-xl px-4',
+                    'id': 'inputCourse',
+                    'placeholder': 'Cours',
+                    'autofocus': true
 
-            },
-            'label': 'Groupe',
-            'required': true
-            }
-        ) }}
+                },
+                'label': 'Cours',
+                'required': true
+                }
+            ) }}
+        </div>
 
+        <div class="my-4">
+            {{ form_row(registrationForm.group,
+                {
+                'attr': {
+                    'class': 'w-full h-full py-3 focus:outline-none flex border-2 border-primary-100 rounded-xl px-4',
+                    'id': 'inputGroup',
+                    'placeholder': 'Groupe',
+                    'autofocus': true
 
-        {{ form_row(registrationForm.year,
-            {
-            'attr': {
-                'class': 'w-full h-full py-3 focus:outline-none flex border-2 border-primary-100 rounded-xl px-4',
-                'id': 'inputYear',
-                'placeholder': 'Année',
-                'autofocus': true
+                },
+                'label': 'Groupe',
+                'required': true
+                }
+            ) }}
+        </div>
 
-            },
-            'label': 'Année',
-            'required': true
-            }
-        ) }}
+        <div class="my-4">
+            {{ form_row(registrationForm.year,
+                {
+                'attr': {
+                    'class': 'w-full h-full py-3 focus:outline-none flex border-2 border-primary-100 rounded-xl px-4',
+                    'id': 'inputYear',
+                    'placeholder': 'Année',
+                    'autofocus': true
 
+                },
+                'label': 'Année',
+                'required': true
+                }
+            ) }}
+        </div>
 
-        {{ form_row(registrationForm.agreeTerms) }}
-        {% include ('components/button.html.twig') with {text: "S'inscrire"} %}
-        {#    <button type="submit" class="btn">Register</button>#}
-        {{ form_end(registrationForm) }}
+        <div class="my-2">
+            {{ form_row(registrationForm.agreeTerms) }}
+        </div>
+
+        <div class="my-4">
+            {% include ('components/button.html.twig') with {text: "S'inscrire"} %}
+            {#    <button type="submit" class="btn">Register</button>#}
+        <div>
+
+            {{ form_end(registrationForm) }}
+
     </div>
 {% endblock %}
