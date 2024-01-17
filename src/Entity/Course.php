@@ -20,10 +20,10 @@ class Course
     #[ORM\Column(length: 100)]
     private ?string $name = null;
 
-    #[ORM\OneToMany(mappedBy: 'sub_id', targetEntity: Subject::class, orphanRemoval: true)]
+    #[ORM\OneToMany(mappedBy: 'course', targetEntity: Subject::class, orphanRemoval: true)]
     private Collection $subject;
 
-    #[ORM\OneToMany(mappedBy: 'course_id', targetEntity: User::class, orphanRemoval: true)]
+    #[ORM\OneToMany(mappedBy: 'course', targetEntity: User::class, orphanRemoval: true)]
     private Collection $user;
 
     public function getId(): ?int
@@ -51,6 +51,21 @@ class Course
     public function setName(string $name): static
     {
         $this->name = $name;
+
+        return $this;
+    }
+
+    public function getSubjects(): Collection
+    {
+        return $this->subject;
+    }
+
+    public function addSubject(Subject $subject): static
+    {
+        if (!$this->subject->contains($subject)) {
+            $this->subject[] = $subject;
+            $subject->setCourse($this);
+        }
 
         return $this;
     }

@@ -1,0 +1,40 @@
+{% extends 'admin/base.html.twig' %}
+
+{% block title %}Tickets | IUTask{% endblock %}
+
+{% block body %}
+    <div class="container px-4 py-8">
+        <h1 class="text-4xl my-6">Gestion des signalements</h1>
+        <ul role="list" class="mx-auto divide-y divide-gray-100 mt-6">
+            {% for ticket in tickets %}
+                <li class="flex flex-col lg:flex-row items-center justify-between gap-x-9 py-5">
+                    <div class="flex w-full lg:w-2/5 gap-x-4">
+                        <img class="h-12 w-12 flex-none rounded-full bg-gray-50 object-cover" src="https://upload.wikimedia.org/wikipedia/commons/5/5a/John_Doe%2C_born_John_Nommensen_Duchac.jpg" alt="{{ ticket.author.name }}">
+                        <div class="flex-auto">
+                            <p class="text-sm font-semibold leading-6 text-gray-900">{{ ticket.author.name }}</p>
+                            <p class="mt-1 truncate text-xs leading-5 text-gray-500">Auteur du signalement</p>
+                        </div>
+                    </div>
+                    <div class="w-full lg:w-1/5 mt-3 lg:mt-0">
+                        <p class="text-sm font-semibold leading-6 text-gray-900">{{ ticket.homework.name }}</p>
+                        <p class="mt-1 text-xs text-gray-500">{{ ticket.message }}</p>
+                    </div>
+                    <div class="w-full lg:w-1/5 mt-3 lg:mt-0">
+                        <p class="text-sm font-semibold leading-6 text-gray-900">Résolu ?</p>
+                        <p class="mt-1 truncate text-xs leading-5 text-gray-500">{% if ticket.close %}❌{% else %}✅{% endif %}</p>
+                    </div>
+                    <div class="w-full lg:w-1/5 shrink-0 sm:flex sm:flex-col sm:items-end">
+                        <div class="flex justify-center items-center gap-2 float-end lg:float-none">
+                            <a href="{# path('app_dashboard_user_edit', {id: ticket.id}) #}">
+                                {{ include('@icons/link.svg') }}
+                            </a>
+                            <a href="{# path('app_dashboard_user_delete', {id: ticket.id}) #}">
+                                {{ include('@icons/archive.svg') }}
+                            </a>
+                        </div>
+                    </div>
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
+{% endblock %}
