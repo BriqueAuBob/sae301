@@ -9,84 +9,78 @@
 
     <h1>Register</h1>
 
-    {{ form_errors(registrationForm) }}
+    <div class="m-4 lg:w-1/2 lg:m-auto">
 
-    {{ form_start(registrationForm)}}
+        {{ form_errors(registrationForm) }}
 
-    <div>
+        {{ form_start(registrationForm)}}
 
-        {{ form_row(registrationForm.email,) }}
-        {% include ('components/input.html.twig') with {
-            id: 'email',
-            'label': 'Email',
-            'name': 'email',
-            'type': 'email',
-            'placeholder': 'john.doe@etudiant.univ-reims.fr',
-         } %}
-
-
-        {{ form_row(registrationForm.firstname) }}
-        {% include ('components/input.html.twig') with {
-            id: 'firstname',
-            'label': 'Firstname',
-            'name': 'firstname',
-            'type': 'text',
-            'placeholder': 'John',
-         } %}
+           {{ form_row(registrationForm.email,) }}
+            {% include ('components/input.html.twig') with {
+                id: 'email',
+                'label': 'Email',
+                'name': 'email',
+                'type': 'email',
+                'placeholder': 'john.doe@etudiant.univ-reims.fr',
+             } %}
 
 
-        {{ form_row(registrationForm.lastname) }}
-        {% include ('components/input.html.twig') with {
-            id: 'lastname',
-            'label': 'Lastname',
-            'name': 'lastname',
-            'type': 'text',
-            'placeholder': 'Doe',
-         } %}
+    {#        {{ form_row(registrationForm.firstname) }}#}
+            {% include ('components/input.html.twig') with {
+                id: 'firstname',
+                'label': 'Firstname',
+                'name': 'firstname',
+                'type': 'text',
+                'placeholder': 'John',
+             } %}
 
 
-        {{ form_row(registrationForm.plainPassword) }}
-        {% include ('components/input.html.twig') with {
-            id: 'password',
-            'label': 'Password',
-            'name': 'password',
-            'type': 'password',
-            'placeholder': '********',
-         } %}
+    {#        {{ form_row(registrationForm.lastname) }}#}
+            {% include ('components/input.html.twig') with {
+                id: 'lastname',
+                'label': 'Lastname',
+                'name': 'lastname',
+                'type': 'text',
+                'placeholder': 'Doe',
+             } %}
 
 
-        {{ form_row(registrationForm.course) }}
-        {% include ('components/input.html.twig') with {
-            id: 'course',
-            'label': 'Course',
-            'name': 'course',
-            'type': 'text',
-            'placeholder': 'Computer Science',
-         } %}
+    {#        {{ form_row(registrationForm.plainPassword) }}#}
+            {% include ('components/input.html.twig') with {
+                id: 'password',
+                'label': 'Password',
+                'name': 'password',
+                'type': 'password',
+                'placeholder': '********',
+             } %}
 
 
-        {{ form_row(registrationForm.group) }}
-        {% include ('components/input.html.twig') with {
-            id: 'group',
-            'label': 'Group',
-            'name': 'group',
-            'type': 'text',
-            'placeholder': 'A',
-         } %}
+            {{ form_row(registrationForm.course) }}
 
-        {{ form_row(registrationForm.year) }}
-        {% include ('components/input.html.twig') with {
-            id: 'year',
-            'label': 'Year',
-            'name': 'year',
-            'type': 'text',
-            'placeholder': '2021',
-         } %}
+    {#       {{ form_row(registrationForm.group) }}#}
+            {% include ('components/input.html.twig') with {
+                id: 'group',
+                'label': 'Group',
+                'name': 'group',
+                'type': 'text',
+                'placeholder': 'A',
+             } %}
+
+    {#        {{ form_row(registrationForm.year) }}#}
+            {% include ('components/input.html.twig') with {
+                id: 'year',
+                'label': 'Year',
+                'name': 'year',
+                'type': 'text',
+                'placeholder': '2021',
+             } %}
 
 
-        {{ form_row(registrationForm.agreeTerms) }}
+            {{ form_row(registrationForm.agreeTerms) }}
 
-            <button type="submit" class="btn">Register</button>
-        {{ form_end(registrationForm) }}
+
+    {% include ('components/button.html.twig') with {text: 'Register'}%}
+{#<button type="submit" class="btn">Register</button>#}
     </div>
+
 {% endblock %}
