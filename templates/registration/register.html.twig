@@ -13,21 +13,58 @@
 
     {{ form_start(registrationForm) }}
 
+    <div>
         {{ form_row(registrationForm.email, {
             label_attr:{class:'bg-white'},
             row_attr:{class:'bg-white'},
             attr:{class:'w-full h-full py-3', 'placeholder':'john.doe@etudiant.univ-reims.fr', 'border-black':'border-4 p-8', 'border-blue-100':'border-4 p-8'},
-        } ) }}
+        })
+        }}
+    </div>
+
+        {{ form_row(registrationForm.firstname, {
+            label_attr:{class:'bg-white'},
+            row_attr:{class:'bg-white'},
+            attr:{class:'w-full h-full py-3', 'placeholder':'John', 'border-black':'border-4 p-8', 'border-blue-100':'border-4 p-8'},
+        })
+        }}
 
 
-        {{ form_row(registrationForm.firstname) }}
-        {{ form_row(registrationForm.lastname) }}
-        {{ form_row(registrationForm.plainPassword, {
-            label: 'Password'
+        {{ form_row(registrationForm.lastname, {
+            label_attr:{class:'bg-white'},
+            row_attr:{class:'bg-white'},
+            attr:{class:'w-full h-full py-3', 'placeholder':'Doe', 'border-black':'border-4 p-8', 'border-blue-100':'border-4 p-8'},
+
         }) }}
+
+
+        {{ form_row(registrationForm.plainPassword, {
+            label: 'Password',
+            label_attr:{class:'bg-white'},
+            attr:{class:'w-full h-full py-3', 'placeholder':'********', 'border-black':'border-4 p-8', 'border-blue-100':'border-4 p-8'},
+        }) }}
+
+
         {{ form_row(registrationForm.course) }}
-        {{ form_row(registrationForm.group) }}
-        {{ form_row(registrationForm.year) }}
+
+        {{ form_row(registrationForm.group, {
+
+            label_attr:{class:'bg-white'},
+            row_attr:{class:'bg-white'},
+            attr:{class:'w-full h-full py-3', 'placeholder':'A', 'border-black':'border-4 p-8', 'border-blue-100':'border-4 p-8'},
+        }
+        ) }}
+
+
+        {{ form_row(registrationForm.year, {
+            label_attr:{class:'bg-white'},
+            row_attr:{class:'bg-white'},
+            attr:{class:'w-full h-full py-3', 'placeholder':'2021', 'border-black':'border-4 p-8', 'border-blue-100':'border-4 p-8'},
+        }
+        ) }}
+
+
+
         {{ form_row(registrationForm.agreeTerms) }}
 
         <button type="submit" class="btn">Register</button>
