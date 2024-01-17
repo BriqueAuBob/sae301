@@ -1,10 +1,10 @@
-<div class="relative rounded-xl overflow-hidden">
+<div class="relative rounded-xl overflow-hidden" {% if homework.picture is null %} style="background-color: #{{ homework.subject.color }}50;" {% endif %}>
     {% if homework.name is defined %}
-        {% if homework.picture is defined %}
-            <img class="absolute bottom-0 w-full left-O h-full object-cover opacity-10 blur-sm" src="{{ asset('uploads/pictures/' ~ homework.picture) }}" />
+        {% if homework.picture is not null %}
+            <img class="absolute bottom-0 w-full left-O h-full object-cover opacity-20 blur-sm" src="{{ asset('uploads/pictures/' ~ homework.picture) }}" />
         {% endif %}
         <div class="p-4 relative z-10">
-            {% if homework.picture is defined %}
+            {% if homework.picture is not null %}
                 <div>
                     <img class="w-full h-40 object-cover mb-2 rounded-xl" src="{{ asset('uploads/pictures/' ~ homework.picture) }}" alt="{{ homework.picture }}">
                 </div>

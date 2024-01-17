@@ -4,6 +4,9 @@ module.exports = {
     "./assets/**/*.js",
     "./templates/**/*.html.twig",
   ],
+  safelist: [
+      '-translate-y-1/2'
+  ],
   theme: {
     extend: {
       "colors": {
