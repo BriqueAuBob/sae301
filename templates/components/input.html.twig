@@ -1,6 +1,7 @@
 <div class="flex border-2 border-primary-100 rounded-xl px-4">
+    <label for="{{ id }}" class="sr-only">{{ label }}</label>
     {% if icon is defined %}
         <img src="{{ asset('images/icons/' ~ icon ~ '.svg' ) }}" alt="{{ icon }}"  class="inline-block mr-1">
     {% endif %}
-    <input class="w-full h-full py-3" type="text" placeholder="{{ placeholder }}">
+    <input class="w-full h-full py-3" name="{{ name }}" id="{{ id }}" type="text" placeholder="{{ placeholder }}">
 </div>
