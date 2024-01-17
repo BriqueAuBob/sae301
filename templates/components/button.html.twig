@@ -43,8 +43,9 @@
 {% set color = color|default('primary') %}
 {% set size = size|default('md') %}
 {% set rounded = rounded|default(false) %}
+{% set fullWidth = fullWidth|default(false) %}
 
-<button class="{{ commonClasses }} {{ sizes[size] }} {{ typeClasses[type] }} {{ rounded ? 'rounded-full' : 'rounded-xl' }}
+<button class="{{ commonClasses }} {{ sizes[size] }} {{ typeClasses[type] }} {{ rounded ? 'rounded-full' : 'rounded-xl' }} {{ fullWidth ? 'w-full' : '' }}
     {% if type == 'primary' %}
         {{ colorClasses[color]['bg'] }}
         {{ colorClasses[color]['border'] }}
