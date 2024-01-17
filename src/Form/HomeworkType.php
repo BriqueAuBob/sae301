@@ -54,13 +54,12 @@ class HomeworkType extends AbstractType
             ])
             ->add('due_date', DateTimeType::class, [
                 'label' => 'Date de rendu (requis)',
-                'widget' => 'choice',
+                'widget' => 'single_text',
             ])
 //            ->add('created_at')
-            ->add('updated_at')
             ->add('subject', EntityType::class, [
                 'class' => Subject::class,
-'choice_label' => 'id',
+                'choice_label' => 'name',
             ])
         ;
     }

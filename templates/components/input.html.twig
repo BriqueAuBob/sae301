@@ -4,7 +4,7 @@
         {% if icon is defined %}
             <img src="{{ asset('images/icons/' ~ icon ~ '.svg' ) }}" alt="{{ icon }}"  class="inline-block mr-1">
         {% endif %}
-        <input class="w-full h-full py-3"
+        <input class="w-full h-full py-3 focus:outline-none"
                name="{{ name }}"
                id="{{ id }}"
                type="{{ type|default('text') }}"

@@ -40,7 +40,7 @@ class Ticket
         return $this->author;
     }
 
-    public function isOpen(): ?bool
+    public function isClose(): ?bool
     {
         return $this->status;
     }
