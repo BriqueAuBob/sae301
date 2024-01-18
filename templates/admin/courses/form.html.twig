@@ -1,0 +1,53 @@
+{% extends 'admin/base.html.twig' %}
+
+{% block title %}Département | IUTask{% endblock %}
+
+{% block body %}
+    <div class="container px-4 py-8">
+        <h1 class="text-4xl my-6">Gestion du département : {{ course.name }}</h1>
+        <div class="flex flex-col lg:flex-row justify-center gap-6 lg:gap-10">
+            <div class="w-fit">
+                <div class="mt-6">
+                    {{ form_start(form) }}
+                    <dl class="divide-y divide-gray-100">
+                        <div class="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
+                            <dt class="text-sm font-medium leading-6 text-gray-900">Nom du département</dt>
+                            <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">{{ form_widget(form.name, { 'attr': { 'size' : 40, 'placeholder' : 'Métiers du Multimédia et de l\'Internet' } }) }}</dd>
+                        </div>
+                        <div class="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
+                            <dt class="text-sm font-medium leading-6 text-gray-900">Nom codé</dt>
+                            <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">{{ form_widget(form.name_code, { 'attr': { 'placeholder' : 'MMI' } }) }}</dd>
+                        </div>
+                    </dl>
+                    <input type="submit" value="Valider" class="bg-primary-500 mt-4 px-4 py-2 rounded-2xl border-primary-600 border-2 hover:bg-primary-200">
+                    {{ form_end(form) }}
+                </div>
+            </div>
+            {% if subjects %}
+                <div class="mt-6">
+                    <span class="flex items-center gap-4">
+                        Matières associées
+                        <a href="{# path('') #}">{% include('components/button.html.twig') with { text: "Ajouter une matière", color: "primary" } %}</a>
+                    </span>
+                    <ul class="mt-4 bg-white rounded-lg border border-gray-200 text-gray-900 text-sm font-medium h-fit divide-y divide-gray-100">
+                        {% for subject in subjects %}
+                            <li class="px-4 py-3 w-full rounded-b-lg flex items-center justify-between gap-6">
+                                <span>{{ subject.nameCode }} {{ subject.name }}</span>
+                                <div class="flex items-center gap-4">
+                                    <a href="{{ path('app_dashboard_subject_edit', {id: subject.id}) }}">
+                                        {{ include('@icons/edit.svg') }}
+                                    </a>
+                                    <a href="{# path('app_dashboard_subject_delete', {id: subject.id}) #}">
+                                        {{ include('@icons/trash.svg') }}
+                                    </a>
+                                </div>
+                            </li>
+                        {% else %}
+                            <li class="p-4">Aucune matière</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            {% endif %}
+        </div>
+    </div>
+{% endblock %}

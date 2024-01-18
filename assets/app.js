@@ -8,9 +8,11 @@ import './bootstrap.js';
 // Import $ from jQuery
 import'./js/jquery.js';
 
+import './js/calendar.js'
+
 import './styles/app.css'
 import './styles/calendar.css'
+
 import './js/delete.js'
-import './js/calendar.js'
 import './js/isRead.js'
 import './js/modal.js'

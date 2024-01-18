@@ -1,0 +1,34 @@
+{% extends 'admin/base.html.twig' %}
+
+{% block title %}Départements | IUTask{% endblock %}
+
+{% block body %}
+    <div class="container px-4 py-8">
+        <h1 class="text-4xl my-6">Gestion des départements</h1>
+        <ul role="list" class="mx-auto divide-y divide-gray-100 mt-6">
+            <a href="{{ path('app_dashboard_course_form') }}" class="block mb-4">{% include('components/button.html.twig') with { text: "Ajouter un département", color: "primary" } %}</a>
+            {% for course in courses %}
+                <li class="flex flex-col lg:flex-row items-center justify-center lg:justify-between gap-x-9 py-5">
+                    <div class="w-full lg:w-2/4">
+                        <p class="text-sm font-semibold leading-6 text-gray-900">{{ course.name }}</p>
+                        <p class="mt-1 text-xs text-gray-500">{{ course.nameCode }}</p>
+                    </div>
+                    <div class="w-full lg:w-1/4 mt-3 lg:mt-0">
+                        <p class="text-sm font-semibold leading-6 text-gray-900">Matières</p>
+                        <p class="mt-1 truncate text-xs leading-5 text-gray-500">{{ course.subjects|length }}</p>
+                    </div>
+                    <div class="w-full lg:w-1/4 shrink-0 sm:flex sm:flex-col sm:items-end">
+                        <div class="flex justify-center items-center gap-2 float-end lg:float-none">
+                            <a href="{{ path('app_dashboard_course_form', {id: course.id}) }}">
+                                {{ include('@icons/edit.svg') }}
+                            </a>
+                            <a href="{# path('app_dashboard_user_delete', {id: course.id}) #}">
+                                {{ include('@icons/trash.svg') }}
+                            </a>
+                        </div>
+                    </div>
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
+{% endblock %}
