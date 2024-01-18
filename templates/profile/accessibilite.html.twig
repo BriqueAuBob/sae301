@@ -4,123 +4,133 @@
 
 {% block body %}
     <div class="container p-4">
-        <h1 class="text-5xl mb-6">Déclaration d'accessibilité</h1>
-        <div>
-            <p>
-                IUTask s'engage à rendre ses sites internet, intranet, extranet et ses progiciels accessibles conformément à l'article 47 de la loi n°2005-102 du 11 février 2005.
-            </p>
-            <br>
-            <p>
-                Cette déclaration d'accessibilité s'applique au site <a href="https://iutask.fr">https://iutask.fr</a>.
-            </p>
-        </div>
-        <div class="mb-4">
-            <h6 class="text-2xl">État de conformité</h6>
-            <div class="indent-4 pt-2">
-                <p>
-                    IUTask est non conforme avec le référentiel général d'amélioration de l'accessibilité (RGAA) version 4.0, en raison des non-conformités et des dérogations énumérées ci-dessous.
-                </p>
-            </div>
-        </div>
-        <div class="mb-4">
-            <h6 class="text-2xl">Résultats des test</h6>
-            <div class="indent-4 pt-2">
-                <p>
-                    L'audit de conformité réalisé le 18/01/2021 par Louna Petitfils révèle que :
+        <div class="flex flex-col lg:justify-center gap-8 lg:gap-16 lg:flex-row-reverse">
+            <div>
+                <h1 class="text-5xl mb-6">Déclaration d'accessibilité</h1>
+                <div>
+                    <p>
+                        IUTask s'engage à rendre ses sites internet, intranet, extranet et ses progiciels accessibles conformément à l'article 47 de la loi n°2005-102 du 11 février 2005.
+                    </p>
+                    <br>
+                    <p>
+                        Cette déclaration d'accessibilité s'applique au site <a href="https://iutask.fr">https://iutask.fr</a>.
+                    </p>
+                </div>
+                <div class="mb-4">
+                    <h6 class="text-2xl">État de conformité</h6>
+                    <div class="indent-4 pt-2">
+                        <p>
+                            IUTask est non conforme avec le référentiel général d'amélioration de l'accessibilité (RGAA) version 4.0, en raison des non-conformités et des dérogations énumérées ci-dessous.
+                        </p>
+                    </div>
+                </div>
+                <div class="mb-4">
+                    <h6 class="text-2xl">Résultats des test</h6>
+                    <div class="indent-4 pt-2">
+                        <p>
+                            L'audit de conformité réalisé le 18/01/2021 par Louna Petitfils révèle que :
 
-                    <li>
-                        Moins de 50% des critères du RGAA version 4 sont respectés.
-                    </li>
-                </p>
-            </div>
-        </div>
-        <div class="mb-4">
-            <h6 class="text-2xl">Établissement de cette déclaration d'accessibilité</h6>
-            <div class="indent-4 p-2">
-                <p> Cette déclaration a été étable le 18/01/2024. Elle a été mise à jour le 18/01/2024</p>
-            </div>
-            <h6>Technologies utilisées pour la réalisation de IUTask</h6>
-            <div class="indent-4 p-2">
-               <li>HTML5</li>
-                <li>CSS</li>
-                <li>JavaScript</li>
-                <li>PHP</li>
-                <li>Twig</li>
-                <li>Tailwind</li>
-                <li>JQuery</li>
-                <li>Bootstrap</li>
-                <li>Symfony</li>
-                <li>FullCalendar</li>
-                <li>Json</li>
-            </div>
-        </div>
-        <div class="mb-4">
-            <h6 class="text-2xl">Environnement de test</h6>
-            <div class="indent-4 p-2">
-                <p>
-                    Les vérifications de restitution des contenus ont été réalisées sur la base de la combinaison
-                    fournie par la base de référence suivante du RGAA, avec les versions suivantes :
-                    <li>Firefox et NVDA</li>
-                    <li>Chrome et VoiceOver</li>
-                    <li>Edge et JAWS</li>
-                    <li>Firefox et TalkBack</li>
-                </p>
-        </div>
-        <div class="mb-4">
-            <h6 class="text-2xl">Outil pour évaluer l'accessibilité</h6>
-            <div class="indent-4 p-2">
-            <p>
-                <li>Contrast color</li>
-                <li>Assitant RGAA</li>
-                <li>HeadingsMap</li>
-            </p>
-        </div>
-        <div class="mb-4">
-            <h6 class="text-2xl">Page du site ayant fait l'object de la vérification de conformité</h6>
-            <div class="indent-4 p-2">
-            <p>
-                <a href="{{ path('app_index') }}">Page d'accueil </a></li>
-                <a href="{{ path('app_login') }}">Page de connexion </a></li>
-                <a href="{{ path('app_logout') }}">Page de déconnexion </a></li>
-                <a href="{{ path('app_register') }}">Page d'inscription </a></li>
-                <a href="{{ path('app_homework') }}">Page rendu </a></li>
-                <a href="{{ path('app_calendar') }}">Page du calendrier </a></li>
-                <a href="{{ path('app_dashboard') }}">Page du dashboard </a></li>
-                <a href="{{ path('app_notification') }}">Page des notifications </a></li>
-                <a href="{{ path('app_profile') }}">Page profil </a></li>
-            </p>
-        </div>
-        <div class="mb-4">
-            <h6 class="text-2xl">Retour d'informations et Contact</h6>
-            <div class="indent-4 p-2">
-                <p>
-                    Si vous n’arrivez pas à accéder à un contenu ou à un service, vous pouvez contacter le responsable de nom, url du site pour être orienté vers une alternative accessible ou obtenir le contenu sous une autre forme.
+                            <li>
+                                Moins de 50% des critères du RGAA version 4 sont respectés.
+                            </li>
+                        </p>
+                    </div>
+                </div>
+                <div class="mb-4">
+                    <h6 class="text-2xl">Établissement de cette déclaration d'accessibilité</h6>
+                    <div class="indent-4 p-2">
+                        <p> Cette déclaration a été étable le 18/01/2024. Elle a été mise à jour le 18/01/2024</p>
+                    </div>
+                    <h6>Technologies utilisées pour la réalisation de IUTask</h6>
+                    <div class="indent-4 p-2">
+                        <li>HTML5</li>
+                        <li>CSS</li>
+                        <li>JavaScript</li>
+                        <li>PHP</li>
+                        <li>Twig</li>
+                        <li>Tailwind</li>
+                        <li>JQuery</li>
+                        <li>Bootstrap</li>
+                        <li>Symfony</li>
+                        <li>FullCalendar</li>
+                        <li>Json</li>
+                    </div>
+                </div>
+                <div class="mb-4">
+                    <h6 class="text-2xl">Environnement de test</h6>
+                    <div class="indent-4 p-2">
+                        <p>
+                            Les vérifications de restitution des contenus ont été réalisées sur la base de la combinaison
+                            fournie par la base de référence suivante du RGAA, avec les versions suivantes :
+                            <li>Firefox et NVDA</li>
+                            <li>Chrome et VoiceOver</li>
+                            <li>Edge et JAWS</li>
+                            <li>Firefox et TalkBack</li>
+                        </p>
+                    </div>
+                </div>
+                <div class="mb-4">
+                    <h6 class="text-2xl">Outil pour évaluer l'accessibilité</h6>
+                    <div class="indent-4 p-2">
+                        <p>
+                            <li>Contrast color</li>
+                            <li>Assitant RGAA</li>
+                            <li>HeadingsMap</li>
+                        </p>
+                    </div>
+                </div>
+                <div class="mb-4">
+                    <h6 class="text-2xl">Page du site ayant fait l'object de la vérification de conformité</h6>
+                    <div class="indent-4 p-2">
+                        <p>
+                            <li><a href="{{ path('app_index') }}">Page d'accueil </a></li>
+                            <li><a href="{{ path('app_login') }}">Page de connexion </a></li>
+                            <li><a href="{{ path('app_logout') }}">Page de déconnexion </a></li>
+                            <li><a href="{{ path('app_register') }}">Page d'inscription </a></li>
+                            <li><a href="{{ path('app_homework') }}">Page rendu </a></li>
+                            <li><a href="{{ path('app_calendar') }}">Page du calendrier </a></li>
+                            <li><a href="{{ path('app_dashboard') }}">Page du dashboard </a></li>
+                            <li><a href="{{ path('app_notification') }}">Page des notifications </a></li>
+                            <li><a href="{{ path('app_profile') }}">Page profil </a></li>
+                        </p>
+                    </div>
+                </div>
+                <div class="mb-4">
+                    <h6 class="text-2xl">Retour d'informations et Contact</h6>
+                    <div class="indent-4 p-2">
+                        <p>
+                            Si vous n’arrivez pas à accéder à un contenu ou à un service, vous pouvez contacter le responsable de nom, url du site pour être orienté vers une alternative accessible ou obtenir le contenu sous une autre forme.
 
-                    Envoyer un message à IUTask.contact@gmail.com
-                </p>
+                            Envoyer un message à IUTask.contact@gmail.com
+                        </p>
+                    </div>
+                </div>
+
+                <div class="mb-4">
+                    <h6 class="text-2xl">Voie de retour</h6>
+                    <div class="indent-4 p-2">
+                        <p>
+                            Si vous constatez un défaut d’accessibilité vous empêchant d’accéder à un contenu ou une fonctionnalité du site, que vous nous le signalez et que vous ne parvenez pas à obtenir une réponse de notre part, vous êtes en droit de faire parvenir vos doléances ou une demande de saisine au Défenseur des droits.
+                        </p>
+                        <br>
+                        <p>
+                            Plusieurs moyens sont à votre disposition :
+
+                            <li> <a href="https://formulaire.defenseurdesdroits.fr/formulaire_saisine/">Écrire un message au Défenseur des droits</a></li>
+                            <li> <a href="https://www.defenseurdesdroits.fr/carte-des-delegues"> Contacter le délégué du Défenseur des droits dans votre région</a> </li>
+                            <li>Envoyer un courrier par la poste (gratuit, ne pas mettre de timbre)
+                                Défenseur des droits
+                                Libre réponse 71120
+                                75342 Paris CEDEX 07
+                            </li>
+                        </p>
+                    </div>
+                </div>
+                <span class="text-lg italic">Date de dernière mise à jour : 16/01/2024</span>
+            </div>
+            <div>
+                {% include('components/sidebar.html.twig') %}
             </div>
         </div>
-
-        <div class="mb-4">
-            <h6 class="text-2xl">Voie de retour</h6>
-            <div class="indent-4 p-2">
-                <p>
-                    Si vous constatez un défaut d’accessibilité vous empêchant d’accéder à un contenu ou une fonctionnalité du site, que vous nous le signalez et que vous ne parvenez pas à obtenir une réponse de notre part, vous êtes en droit de faire parvenir vos doléances ou une demande de saisine au Défenseur des droits.
-                </p>
-                <br>
-                <p>
-                    Plusieurs moyens sont à votre disposition :
-
-                    <li> <a href="https://formulaire.defenseurdesdroits.fr/formulaire_saisine/">Écrire un message au Défenseur des droits</a></li>
-                    <li> <a href="https://www.defenseurdesdroits.fr/carte-des-delegues"> Contacter le délégué du Défenseur des droits dans votre région</a> </li>
-                    <li>Envoyer un courrier par la poste (gratuit, ne pas mettre de timbre)
-                        Défenseur des droits
-                        Libre réponse 71120
-                        75342 Paris CEDEX 07
-                    </li>
-                </p>
-            </div>
-        </div>
-        <span class="text-lg italic">Date de dernière mise à jour : 16/01/2024</span>
     </div>
 {% endblock %}
