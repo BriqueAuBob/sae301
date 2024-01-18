@@ -10,13 +10,16 @@
 
 {%- block form_widget_simple -%}
     {%- set type = type|default('text') -%}
-    <div class="flex border-2 border-primary-100 rounded-xl px-4">
+    {%- set style = 'flex border-2 border-primary-100 rounded-xl px-4' -%}
+    <div class="{{ type != 'hidden' ? style : '' }}">
         {% if icon is defined %}
             <img src="{{ asset('images/icons/' ~ icon ~ '.svg') }}" alt="{{ icon }}" class="inline-block mr-1">
         {% endif %}
         <input type="{{ type }}" {{ block('widget_attributes') }}{% if value is not empty %} value="{{ value }}"{% endif %}>
     </div>
 {%- endblock form_widget_simple -%}
+
+
 
 
 {%- block form_widget_compound -%}
