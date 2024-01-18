@@ -40,12 +40,17 @@
 
 }
 
+.fc .fc-button:disabled{
+    opacity: 1;
+}
+
 /*Titre Calendrier*/
 h1{
     display: flex;
     justify-content: center;
-    color: var(--fc-primary-color);
+    color: var(--fc-text-color);
     font-family: var(--fc-font-familly);
+    margin-bottom: 15px;
 }
 
 /*Mois et année */
@@ -81,7 +86,7 @@ thead{
 
 /* Changer la couleur du jour actif */
 .fc-day-today {
-    background: var(--fc-primary-color-50) !important;
+    background: var(--fc-primary-color) !important;
     border: none !important;
     border-radius: 0px;
 }
@@ -89,6 +94,10 @@ thead{
 .fc-prev-button.fc-button.fc-button-primary, .fc-next-button.fc-button.fc-button-primary,
 .fc-today-button.fc-button.fc-button-primary{
     border: 1px solid var(--fc-primary-color);
+}
+
+.fc-today-button.fc-button.fc-button-primary{
+    background-color: var(--fc-primary-color);
 }
 
 /* Mise en style du calendrier partie semaine et jour*/
