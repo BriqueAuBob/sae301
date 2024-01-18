@@ -81,10 +81,13 @@ class HomeworkController extends AbstractController
         $homework = $request->get('homework');
         //Récupération de {homework} par  l'entité Homework
         $result = $entityManager->getRepository(Homework::class)->findById($homework);
+        if(!$result)
+        {
+            throw $this->createNotFoundException('Aucun devoir trouvé pour cet id : '.$homework);
+        }
 
         return $this->render('homework/view.html.twig', [
-            'controller_name' => 'ViewHomeworkController',
-            'homework' => $result,
+            'homework' => $result[0],
         ]);
 
     }

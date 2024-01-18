@@ -7,6 +7,10 @@ modals.forEach((element) => {
         modal.classList.toggle('opacity-0');
         modal.classList.toggle('pointer-events-none');
 
+        fetch(element.dataset.contentUrl).then((res) => res.text()).then((res) => {
+            modal.querySelector("#" + target + '-content').innerHTML = res;
+        })
+
         const modalContent = modal.querySelector('.modal-content');
         modalContent.classList.toggle('translate-y-8');
         modalContent.classList.toggle('-translate-y-1/2');
