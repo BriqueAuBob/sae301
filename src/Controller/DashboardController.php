@@ -96,7 +96,7 @@ class DashboardController extends AbstractController
         $this->em->remove($user);
         $this->em->flush();
 
-        $this->addFlash('success', 'L\'utilisateur <b>' . $user->getName() . '</b> a bien été supprimé !');
+        $this->addFlash('success', 'L\'utilisateur ' . $user->getName() . ' a bien été supprimé !');
         return $this->redirectToRoute('app_dashboard_users');
     }
 
@@ -132,6 +132,11 @@ class DashboardController extends AbstractController
             $form->getData();
             $this->em->persist($course);
             $this->em->flush();
+            if ($id) {
+                $this->addFlash('success', 'Le département <b>' . $course->getName() . '</b> a bien été modifié !');
+            } else {
+                $this->addFlash('success', 'Le département <b>' . $course->getName() . '</b> a bien été ajouté !');
+            }
             return $this->redirectToRoute('app_dashboard_courses');
         }
 
@@ -149,7 +154,7 @@ class DashboardController extends AbstractController
         $this->em->remove($course);
         $this->em->flush();
 
-        $this->addFlash('success', 'Le département <b>' . $course->getName() . '</b> a bien été supprimée !');
+        $this->addFlash('success', 'Le département <b>' . $course->getName() . '</b> a bien été supprimé !');
         return $this->redirectToRoute('app_dashboard_courses');
     }
 
@@ -177,6 +182,11 @@ class DashboardController extends AbstractController
             $form->getData();
             $this->em->persist($subject);
             $this->em->flush();
+            if ($id) {
+                $this->addFlash('success', 'La matière <b>' . $subject->getName() . '</b> a bien été modifiée !');
+            } else {
+                $this->addFlash('success', 'La matière <b>' . $subject->getName() . '</b> a bien été ajoutée !');
+            }
             return $this->redirectToRoute('app_dashboard_course_form', ['id_course' => $subject->getCourse()->getId()]);
         }
 

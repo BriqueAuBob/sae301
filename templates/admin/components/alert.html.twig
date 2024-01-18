@@ -1,7 +1,13 @@
 {% for label, messages in app.flashes %}
     {% for message in messages %}
-        <div class="alert alert-{{ label }}">
-            {{ message|trans({}, 'flashes') }}
-        </div>
+        {% if label == 'success' %}
+            <div class="mx-auto py-4 px-7 mt-7 text-sm text-green-800 rounded-lg bg-green-100 w-fit" role="alert">
+                {{ message }}
+            </div>
+        {% elseif label == 'danger' %}
+            <div class="mx-auto py-4 px-7 mt-7 text-sm text-yellow-800 rounded-lg bg-red-100 w-fit" role="alert">
+                <span class="font-medium">Erreur :</span> {{ message }}
+            </div>
+        {% endif %}
     {% endfor %}
 {% endfor %}
