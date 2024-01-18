@@ -6,3 +6,10 @@ const app = startStimulusApp();
 
 // app.register('some_controller_name', SomeImportedController);
 // app.register('modal', ModalController)
+import './styles/app.css'
+import './styles/calendar.css'
+
+import './js/calendar.js'
+import './js/delete.js'
+import './js/isRead.js'
+import './js/modal.js'

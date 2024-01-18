@@ -30,15 +30,19 @@ $(document).ready(function(){
             console.log(arg.date.toString());
         },
         eventClick: function(info) {
-            //Appel en ajax pour la modale
-            $.ajax({
-                url: '/homework/'+ info.event._def.extendedProps.HomeworkID+'/view/',
-                type: 'GET',
-                success: function(data){
-                    $('#CalendarModale').html(data);
-                    modalCalendar(data);
-                }
+            const target = 'homework-modal';
+            const modal = document.getElementById(target);
+            modal.classList.toggle('opacity-0');
+            modal.classList.toggle('pointer-events-none');
+
+            fetch('/homework/'+ info.event._def.extendedProps.HomeworkID+'/view/').then((res) => res.text()).then((res) => {
+                modal.querySelector("#" + target + '-content').innerHTML = res;
             })
+
+            const modalContent = modal.querySelector('.modal-content');
+            modalContent.classList.toggle('translate-y-8');
+            modalContent.classList.toggle('-translate-y-1/2');
+            modalContent.classList.toggle('scale-75');
 
             info.el.style.borderColor = 'red';
         }
@@ -91,26 +95,3 @@ function toggleModaleCalendar(selector, state){
     }
 
 }
-// Ouverture de la modale
-function modalCalendar(divCalendar) {
-    let target = $(divCalendar).attr('id');
-    let selector = $('#'+target);
-    console.log(target);
-    if (target === 'modal-homework-calendar') {
-        toggleModaleCalendar(selector, true);
-    }
-}
-
-// Fermeture de la modale
-$("#CalendarModale").click(function(event){
-    if(event.target.classList.contains('closeModalButton')){
-        let selector = $("#modal-homework-calendar");
-        toggleModaleCalendar(selector, false);
-    }
-    if($(event.target).hasClass('bgCloseModal') ){
-        let selector = $("#modal-homework-calendar");
-        toggleModaleCalendar(selector, false);
-        // console.log('test');
-    }
-    console.log(event.target);
-})
