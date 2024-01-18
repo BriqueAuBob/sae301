@@ -9,7 +9,7 @@
             {% for user in users %}
             <li class="flex flex-col lg:flex-row items-center justify-between gap-x-9 py-5">
                 <div class="flex w-full lg:w-2/5 gap-x-4">
-                    <img class="h-12 w-12 flex-none rounded-full bg-gray-50 object-cover" src="https://upload.wikimedia.org/wikipedia/commons/5/5a/John_Doe%2C_born_John_Nommensen_Duchac.jpg" alt="{{ user.name }}">
+                    <img class="h-12 w-12 flex-none rounded-full bg-gray-50 object-cover" src="https://ui-avatars.com/api/?name={{ app.user.firstname }}+{{ app.user.lastname }}" alt="{{ user.name }}">
                     <div class="flex-auto">
                         <p class="text-sm font-semibold leading-6 text-gray-900">{{ user.name }}</p>
                         <p class="mt-1 truncate text-xs leading-5 text-gray-500">{{ user.email }}</p>

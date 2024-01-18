@@ -23,7 +23,7 @@
                     <div class="relative ml-3">
                         <div class="flex items-center">
                             <button type="button" class="relative flex max-w-xs items-center rounded-full bg-primary-900 text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-primary-800" id="user-menu-button" aria-expanded="false" aria-haspopup="true">
-                                <img class="h-8 w-8 rounded-full object-cover" src="https://upload.wikimedia.org/wikipedia/commons/5/5a/John_Doe%2C_born_John_Nommensen_Duchac.jpg" alt="{{ app.user.name }}">
+                                <img class="h-8 w-8 rounded-full object-cover" src="https://ui-avatars.com/api/?name={{ app.user.firstname }}+{{ app.user.lastname }}" alt="{{ app.user.name }}">
                             </button>
                             <span class="text-white p-2">{{ app.user.firstname }}</span> <a href="{{ path('app_logout') }}">{{ include('@icons/logout.svg') }}</a>
                         </div>
