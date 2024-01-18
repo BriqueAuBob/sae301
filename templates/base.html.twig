@@ -9,6 +9,10 @@
         {% block stylesheets %}
             {{ encore_entry_link_tags('app') }}
         {% endblock %}
+    </head>
+    <body class="min-h-screen">
+        {{ include('components/navbar.html.twig') }}
+        {% block body %}{% endblock %}
 
         {% block javascripts %}
             <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -17,9 +21,5 @@
             {{ encore_entry_script_tags('isRead') }}
             {{ encore_entry_script_tags('modal') }}
         {% endblock %}
-    </head>
-    <body class="min-h-screen">
-        {{ include('components/navbar.html.twig') }}
-        {% block body %}{% endblock %}
     </body>
 </html>
