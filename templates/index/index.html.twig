@@ -6,15 +6,15 @@
     <div class="container px-4">
         {% if app.user.firstname is defined %}
             <div>
-                <h2 class="text-black text-4xl mb-4">Bonjour {{ app.user.firstname }} ! 👋</h2>
+                <h2 class="text-4xl mb-4">Bonjour {{ app.user.firstname }} ! 👋</h2>
             </div>
         {% endif %}
-        <div>
+        <divgit>
             {{ component('SearchHomework', {
                 'placeholder': 'Rechercher un rendu',
                 'icon': 'calendar',
             }) }}
-        </div>
+        </divgit>
         <a href="{{ path('app_homework') }}" class="fixed right-8 bottom-32 lg:bottom-8 z-30">
             {% include('components/button.html.twig') with { text: '', iconLeft: 'add-circle', size: "xl", rounded: true } %}
         </a>
