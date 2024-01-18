@@ -16,14 +16,14 @@ class Comment
     #[ORM\ManyToOne(targetEntity: User::class, inversedBy: 'comments')]
     private ?User $author = null;
 
+    #[ORM\Column]
     private ?string $content = null;
 
     #[ORM\ManyToOne(targetEntity: Homework::class, inversedBy: 'comments')]
     private ?Homework $homework = null;
 
+    #[ORM\Column]
     private ?\DateTimeInterface $createdAt = null;
-
-    private ?\DateTimeInterface $updatedAt = null;
 
     public function getAuthor(): ?User
     {
@@ -69,18 +69,6 @@ class Comment
     public function setCreatedAt(\DateTimeInterface $createdAt): self
     {
         $this->createdAt = $createdAt;
-
-        return $this;
-    }
-
-    public function getUpdatedAt(): ?\DateTimeInterface
-    {
-        return $this->updatedAt;
-    }
-
-    public function setUpdatedAt(\DateTimeInterface $updatedAt): self
-    {
-        $this->updatedAt = $updatedAt;
 
         return $this;
     }
