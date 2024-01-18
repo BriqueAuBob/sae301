@@ -5,7 +5,8 @@ module.exports = {
     "./templates/**/*.html.twig",
   ],
   safelist: [
-      '-translate-y-1/2'
+      '-translate-y-1/2',
+      'cursor-pointer'
   ],
   theme: {
     extend: {
