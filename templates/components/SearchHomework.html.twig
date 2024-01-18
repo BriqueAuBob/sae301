@@ -1,9 +1,10 @@
-<div>
+<div {{ attributes }}>
     <div class="flex border-2 border-primary-100 rounded-xl pl-4 pr-1 mb-4">
+        <label for="search" class="sr-only">Rechercher</label>
         {% if icon is defined %}
             <img src="{{ asset('images/icons/' ~ icon ~ '.svg' ) }}" alt="{{ icon }}"  class="inline-block mr-1">
         {% endif %}
-        <input data-model="debounce(300)|query" class="w-full py-2 focus:outline-none" type="text" placeholder="{{ placeholder }}">
+        <input data-model="debounce(300)|query" id="search" class="w-full py-2 focus:outline-none" type="text" placeholder="{{ placeholder }}">
     </div>
     <div class="grid lg:grid-cols-4 gap-4">
         {% for hw in this.homeworks %}

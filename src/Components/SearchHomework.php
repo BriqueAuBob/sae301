@@ -25,9 +25,6 @@ class SearchHomework
     #[LiveProp(writable: true)]
     public string $query = '';
 
-    #[LiveProp(writable: true)]
-    public ?Homework $homework = null;
-
     public function __construct(private HomeworkRepository $homeworkRepository)
     {
     }
@@ -35,15 +32,5 @@ class SearchHomework
     public function getHomeworks(): array
     {
         return $this->homeworkRepository->search($this->query);
-    }
-
-    #[LiveAction]
-    public function setHomework(#[LiveArg('homework_id')] ?Homework $homework_id): void
-    {
-        if(null === $homework_id) {
-            $this->homework = null;
-            return;
-        }
-        $this->homework = $this->homeworkRepository->find($homework_id);
     }
 }
