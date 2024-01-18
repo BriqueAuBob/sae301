@@ -59,7 +59,7 @@ const loopDropdowns = () => {
     const dropdowns = document.querySelectorAll('[data-toggle="dropdown"]');
     dropdowns.forEach((dropdown) => {
         dropdown.parentElement.addEventListener('click', (event) => {
-            event.preventDefault();
+
             dropdown.classList.toggle('opacity-0');
             dropdown.classList.toggle('pointer-events-none');
             dropdown.classList.toggle('scale-90');
