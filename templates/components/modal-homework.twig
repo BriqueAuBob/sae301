@@ -6,7 +6,7 @@
             <div class="absolute left-1/2 bottom-2 -translate-x-1/2 bg-white px-1 py-3 border rounded-2xl z-50 opacity-0 pointer-events-none scale-90 ease-out duration-300" data-toggle="dropdown">
                 <ul class="w-full">
                     <li class="hover:bg-gray-100 px-2 py-1">
-                        <a href="#">Modifier</a>
+                        <a href="{{ path('app_homework', {homework: homework.id}) }}">Modifier</a>
                     </li>
                     <li class="delete hover:bg-gray-100 px-2 py-1 text-danger-500 cursor-pointer" data-homework-id="{{ homework.id }}">Supprimer</li>
                 </ul>
@@ -38,7 +38,7 @@
                 </div>
             </div>
             <div>
-                <p class="text-sm">fjezfeiehfiuefheiueheziufheziufhezfiuzehffieuzh</p>
+                <p class="text-sm">Test</p>
             </div>
         </div>
     </div>

@@ -1,0 +1,10 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello CommentController!{% endblock %}
+
+{% block body %}
+{{ form_start(form) }}
+{{ form_widget(form) }}
+    {% include ('components/button.html.twig') with {text: 'Ajouter un commentaire', color: 'info'} %}
+{{ form_end(form) }}
+{% endblock %}
