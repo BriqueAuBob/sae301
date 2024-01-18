@@ -1,13 +1,13 @@
 <div class="absolute z-50 min-h-screen min-w-screen flex flex-col justify-center items-center opacity-0 transition-opacity duration-300 pointer-events-none" tabindex="-1" id="{{ id }}">
-    <div class="fixed inset-0 bg-black opacity-50" data-close-modal="modal-homework-{{ homework.id }}"></div>
+    <div class="fixed inset-0 bg-black opacity-50 bgCloseModal" data-close-modal="modal-homework-{{ homework.id }}"></div>
     <div class="modal-content fixed top-1/2 left-1/2 -translate-x-1/2 translate-y-8 scale-75 bg-white border rounded-xl shadow-lg w-[95%] max-w-[600px] max-h-[80%] overflow-y-scroll ease-out duration-300">
         <div class="p-6">
             <div class="flex justify-between mb-2">
                 <h3 class="font-semibold font-display text-xl">Rendu</h3>
                 <div class="flex gap-2">
                     <img class="w-6 h-6" src="{{ asset('images/icons/more-circle.svg') }}" alt="icone menu deroulant">
-                    <button data-close-modal="modal-homework-{{ homework.id }}">
-                        <img class="w-6 h-6" src="{{ asset('images/icons/close.svg') }}" alt="icone croix pour fermer">
+                    <button class="closeModalButton" data-close-modal="modal-homework-{{ homework.id }}">
+                        <img class="closeModalButton w-6 h-6" src="{{ asset('images/icons/close.svg') }}" alt="icone croix pour fermer">
                     </button>
                 </div>
             </div>
