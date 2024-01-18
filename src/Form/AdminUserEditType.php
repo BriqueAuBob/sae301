@@ -6,11 +6,21 @@ use App\Entity\Course;
 use App\Entity\User;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Security\Core\Authorization\AuthorizationCheckerInterface;
 
 class AdminUserEditType extends AbstractType
 {
+    private AuthorizationCheckerInterface $authChecker;
+
+    public function __construct(AuthorizationCheckerInterface $authChecker)
+    {
+        $this->authChecker = $authChecker;
+    }
+
+
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
@@ -24,6 +34,20 @@ class AdminUserEditType extends AbstractType
                 'choice_label' => 'name',
             ])
         ;
+
+        if ($this->authChecker->isGranted('ROLE_SUPER_ADMIN')) {
+            $builder->add('roles', ChoiceType::class, [
+                'choices' => [
+                    'Étudiant' => 'ROLE_USER',
+                    'Modérateur' => 'ROLE_MOD',
+                    'Administrateur' => 'ROLE_ADMIN',
+                    'Super Administrateur' => 'ROLE_SUPER_ADMIN'
+                ],
+                'expanded' => true,
+                'multiple' => true,
+                'label' => 'Rôles'
+            ]);
+        }
     }
 
     public function configureOptions(OptionsResolver $resolver): void
