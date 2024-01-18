@@ -21,3 +21,5 @@ deleteAction(document.querySelectorAll('.delete-notification'), (button) => {
     document.getElementById('card-notification-' + button.dataset.notificationId).remove();
     button.remove();
 });
+
+export { deleteAction };

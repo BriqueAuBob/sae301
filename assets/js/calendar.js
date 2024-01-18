@@ -3,6 +3,19 @@ import '../styles/calendar.css'
 $(document).ready(function(){
     const calendarEl = document.getElementById('calendar');
     const eventData = JSON.parse(calendarEl.dataset.events || '[]');
+    eventData.forEach(function (event) {
+        var horraires = event.start.split(' ')[1];
+        var heure = horraires.split(':')[0];
+        var minutes = horraires.split(':')[1];
+        if (heure >=23){
+            heure = heure - 1;
+            //Set the new time
+            event.start = event.start.split(' ')[0] + ' ' + heure + ':' + minutes;
+
+        }
+
+    });
+
 
     const calendar = new FullCalendar.Calendar(calendarEl, {
         locale: 'fr',
@@ -21,7 +34,7 @@ $(document).ready(function(){
             endTime: '20:00',
         },
         slotMinTime: '08:00',
-        slotMaxTime: '20:00',
+        slotMaxTime: '23:59',
         headerToolbar:{
             start: 'prev,next today',
             center: 'title',
@@ -32,6 +45,7 @@ $(document).ready(function(){
             console.log(arg.date.toString());
         },
         eventClick: function(info) {
+            console.log(info.event._instance);
             const target = 'homework-modal';
             const modal = document.getElementById(target);
             modal.classList.toggle('opacity-0');

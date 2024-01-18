@@ -13,8 +13,13 @@
         ></div>
     {% endif %}
     <div class="p-4 relative z-10">
-        <h4 class="font-semibold font-display text-xl">{{ homework.name }}</h4>
-        <p class="mb-3 text-sm">{{ homework.description }}</p>
+        {%
+            include 'components/titleCard-homework.html.twig' with {
+            title: homework.name,
+            subtitle: homework.description,
+            color: homework.subject.color
+        }
+        %}
         <div class="flex flex-wrap gap-1">
             {%
                 include 'components/badge.html.twig' with {

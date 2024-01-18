@@ -4,7 +4,7 @@
 
 {% block body %}
     <div class="container px-4 py-8">
-        <h1 class="text-4xl my-6">Gestion des départements</h1>
+        <h1 class="text-4xl my-6 text-center">Gestion des départements</h1>
         <ul role="list" class="mx-auto divide-y divide-gray-100 mt-6">
             <a href="{{ path('app_dashboard_course_form') }}" class="block mb-4">{% include('components/button.html.twig') with { text: "Ajouter un département", color: "primary" } %}</a>
             {% for course in courses %}

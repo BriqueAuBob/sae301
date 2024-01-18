@@ -53,6 +53,9 @@ class Homework
     #[ORM\OneToMany(mappedBy: 'homework_id', targetEntity: Check::class, orphanRemoval: true)]
     private Collection $checks;
 
+    #[ORM\OneToMany(mappedBy: 'homework', targetEntity: Comment::class, orphanRemoval: true)]
+    private Collection $comments;
+
     #[ORM\Column(length: 255)]
     private ?string $teacher = null;
 
@@ -62,6 +65,7 @@ class Homework
     public function __construct()
     {
         $this->checks = new ArrayCollection();
+        $this->comments = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -203,7 +207,7 @@ class Homework
     {
         if (!$this->checks->contains($check)) {
             $this->checks->add($check);
-            $check->setHomeworkId($this);
+            $check->setCheHwId($this);
         }
 
         return $this;
@@ -214,7 +218,7 @@ class Homework
         if ($this->checks->removeElement($check)) {
             // set the owning side to null (unless already changed)
             if ($check->getHomework() === $this) {
-                $check->setHomeworkId(null);
+                $check->setCheHwId(null);
             }
         }
 
@@ -243,6 +247,11 @@ class Homework
         $this->platform = $platform;
 
         return $this;
+    }
+
+    public function getComments(): Collection
+    {
+        return $this->comments;
     }
 
     public function __toString(): string

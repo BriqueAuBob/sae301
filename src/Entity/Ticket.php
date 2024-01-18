@@ -42,7 +42,11 @@ class Ticket
 
     public function isClose(): ?bool
     {
-        return $this->status;
+        if ($this->status == 0) {
+            return false;
+        } else {
+            return true;
+        }
     }
 
     public function setStatus(bool $status): static
@@ -60,6 +64,13 @@ class Ticket
     public function setMessage(string $message): static
     {
         $this->message = $message;
+
+        return $this;
+    }
+
+    public function setResolved(): static
+    {
+        $this->status = true;
 
         return $this;
     }
