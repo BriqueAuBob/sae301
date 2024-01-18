@@ -14,6 +14,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Security\Http\Attribute\IsGranted;
 
 class DashboardController extends AbstractController
 {
@@ -62,6 +63,7 @@ class DashboardController extends AbstractController
     }
 
     #[Route('/admin/user/edit/{id}', name: 'app_dashboard_user_edit', methods: ['GET', 'POST'])]
+    #[IsGranted("ROLE_ADMIN")]
     public function viewUser(Request $request, int $id): Response
     {
         $user = $this->em->getRepository(User::class)->find($id);
@@ -81,6 +83,7 @@ class DashboardController extends AbstractController
     }
 
     #[Route('/admin/user/delete/{id}', name: 'app_dashboard_user_delete', methods: ['GET'])]
+    #[IsGranted("ROLE_ADMIN")]
     public function deleteUser(User $user): Response
     {
         $this->em->remove($user);
@@ -109,6 +112,7 @@ class DashboardController extends AbstractController
      * @return Response
      */
     #[Route('/admin/courses', name: 'app_dashboard_courses')]
+    #[IsGranted("ROLE_SUPER_ADMIN")]
     public function viewCourses(): Response
     {
         $courses = $this->em->getRepository(Course::class)->findAll();
@@ -118,7 +122,8 @@ class DashboardController extends AbstractController
         ]);
     }
 
-    #[Route('/admin/course/{id}', name: 'app_dashboard_course_form', methods: ['GET', 'POST'])]
+    #[Route('/admin/course/{id}', name: 'app_dashboard_course_form', requirements: ['id' => '\d+'], methods: ['GET', 'POST'])]
+    #[IsGranted("ROLE_SUPER_ADMIN")]
     public function formCourse(Request $request, int $id = null): Response
     {
         if ($id) {
@@ -144,28 +149,58 @@ class DashboardController extends AbstractController
         ]);
     }
 
+    #[Route('/admin/course/delete/{id}', name: 'app_dashboard_course_delete', methods: ['GET'])]
+    #[IsGranted("ROLE_SUPER_ADMIN")]
+    public function deleteCourse(Course $course): Response
+    {
+        $this->em->remove($course);
+        $this->em->flush();
+
+        $this->addFlash('success', 'Le département <b>' . $course->getName() . '</b> a bien été supprimée !');
+        return $this->redirectToRoute('app_dashboard_courses');
+    }
+
     /**
      * Gestion des matières
      * @param Request $request
-     * @param int $id
+     * @param int|null $id_course
+     * @param int|null $id
      * @return Response
      */
-    #[Route('/admin/course/subject/{id}', name: 'app_dashboard_subject_edit', methods: ['GET', 'POST'])]
-    public function editSubject(Request $request, int $id): Response
+    #[Route('/admin/course/{id_course}/subject/{id}', name: 'app_dashboard_subject_form', requirements: ['id' => '\d+', 'id_course' => '\d+'], methods: ['GET', 'POST'])]
+    #[IsGranted("ROLE_SUPER_ADMIN")]
+    public function editSubject(Request $request, int $id_course = null, int $id = null): Response
     {
-        $subject = $this->em->getRepository(Subject::class)->find($id);
+        if ($id) {
+            $subject = $this->em->getRepository(Subject::class)->find($id);
+        } else {
+            $subject = new Subject();
+        }
+
         $form = $this->createForm(SubjectType::class, $subject)->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $subject->setColor(substr($subject->getColor(), 1));
             $form->getData();
+            $this->em->persist($subject);
             $this->em->flush();
-            $this->addFlash('success', 'La matière <b>' . $subject->getName() . '</b> a bien été modifiée !');
-            return $this->redirectToRoute('app_dashboard_course_edit', ['id' => $id]);
+            return $this->redirectToRoute('app_dashboard_course_form', ['id_course' => $subject->getCourse()->getId()]);
         }
 
-        return $this->render('admin/courses/subject/edit.html.twig', [
+        return $this->render('admin/courses/subject/form.html.twig', [
             'subject' => $subject,
             'form' => $form
         ]);
+    }
+
+    #[Route('/admin/course/subject/delete/{id}', name: 'app_dashboard_subject_delete', methods: ['GET'])]
+    #[IsGranted("ROLE_SUPER_ADMIN")]
+    public function deleteSubject(Subject $subject): Response
+    {
+        $this->em->remove($subject);
+        $this->em->flush();
+
+        $this->addFlash('success', 'La matière <b>' . $subject->getName() . '</b> a bien été supprimée !');
+        return $this->redirectToRoute('app_dashboard_course_form', ['id' => $subject->getCourse()->getId()]);
     }
 }

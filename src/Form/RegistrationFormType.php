@@ -26,7 +26,7 @@ class RegistrationFormType extends AbstractType
             ->add('year')
             ->add('course',EntityType::class, [
                 'class' => Course::class,
-                'choice_label' => 'id',
+                'choice_label' => 'name_code',
             ])
             ->add('agreeTerms', CheckboxType::class, [
                 'mapped' => false,
