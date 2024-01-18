@@ -17,7 +17,8 @@
             include 'components/titleCard-homework.html.twig' with {
             title: homework.name,
             subtitle: homework.description,
-            color: homework.subject.color
+            color: homework.subject.color,
+            id: homework.id
         }
         %}
         <div class="flex flex-wrap gap-1">

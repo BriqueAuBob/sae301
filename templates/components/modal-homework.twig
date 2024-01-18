@@ -25,16 +25,27 @@
 {% include ('components/detailCard.html.twig') with { homework: homework } %}
 
 <div class="my-2">
-    <div class="flex justify-between items-end mb-4">
+    <div class="flex justify-between items-end items-end mb-4">
         <h4 class="font-semibold font-display text-xl">Commentaires</h4>
-        {% include('components/button.html.twig') with { text: "Ajouter un commentaire", color: "info", iconLeft: "message" } %}
+        {% include('components/button.html.twig') with {
+            text: "Ajouter un commentaire",
+            color: "info",
+            iconLeft: "message",
+            props: {
+                'data-toggle': "modal",
+                'data-modal-id': "modal-comment",
+                'data-content-url': path('app_comment', {
+                    homework: homework.id,
+                })
+            }
+        } %}
     </div>
-    <div class="my-2 after:block after:content-[''] after:w-full after:bg-text-50 after:h-px after:mt-2">
-        <div>
+    {% for comment in homework.comments %}
+        <div class="py-2 after:block after:content-[''] after:w-full after:bg-text-50 after:h-px after:mt-2 border-b">
             <div class="flex justify-between">
                 <div class="flex items-center gap-2">
-                    <span class="font-semibold font-display">Prenom Nom</span>
-                    <span class="font-light font-sans text-sm text-text-400 ">Il y a 2h</span>
+                    <span class="font-semibold font-display">{{ comment.author.firstname }} {{ comment.author.lastname }}</span>
+                    <span class="font-light font-sans text-sm text-text-400 ">{{ comment.createdAt|format_datetime('relative_short') }}</span>
                 </div>
                 <div class="flex gap-2">
                     <img class="w-4 h-4" src="{{ asset('images/icons/edit.svg') }}" alt="icone crayon pour modifier">
@@ -45,5 +56,9 @@
                 <p class="text-sm">Test</p>
             </div>
         </div>
-    </div>
+    {% endfor %}
 </div>
+
+{% include('components/modal.html.twig') with {
+    id: 'modal-comment'
+} %}
