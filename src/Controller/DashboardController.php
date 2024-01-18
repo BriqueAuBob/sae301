@@ -14,6 +14,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Security\Core\Authorization\AuthorizationCheckerInterface;
 use Symfony\Component\Security\Http\Attribute\IsGranted;
 
 class DashboardController extends AbstractController
@@ -26,9 +27,23 @@ class DashboardController extends AbstractController
     }
 
     #[Route('/admin', name: 'app_dashboard')]
-    public function index(): Response
+    public function index(AuthorizationCheckerInterface $checker): Response
     {
-        $tickets = $this->em->getRepository(Ticket::class)->findBy(['status' => 0]);
+        $currentUser = $this->getUser();
+
+        if ($checker->isGranted('ROLE_MOD') && !$checker->isGranted('ROLE_ADMIN') && !$checker->isGranted('ROLE_SUPER_ADMIN')) {
+            $group = $currentUser->getGroup();
+            $ticketRepo = $this->em->getRepository(Ticket::class);
+            $tickets = $ticketRepo->createQueryBuilder('t')
+                ->leftJoin('t.homework', 'h')
+                ->andWhere('h.group = :group')
+                ->andWhere('t.status = 0')
+                ->setParameter('group', $group)
+                ->getQuery()
+                ->getResult();
+        } else {
+            $tickets = $this->em->getRepository(Ticket::class)->findBy(['status' => 0], ['status' => 'ASC', 'id' => 'DESC']);
+        }
 
         return $this->render('admin/index.html.twig', [
             'tickets' => $tickets
