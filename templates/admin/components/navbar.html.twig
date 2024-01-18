@@ -8,9 +8,13 @@
                 <div class="hidden md:block">
                     <div class="ml-10 flex items-center space-x-4">
                         <a href="{{ path('app_dashboard') }}" class="text-white rounded-md px-3 py-2 text-base font-medium flex items-center" aria-current="page">{{ include('@icons/home.svg') }}</a>
+                        {% if is_granted('ROLE_ADMIN') %}
                         <a href="{{ path('app_dashboard_users') }}" class="{% if currentRoute == 'app_dashboard_users' %}{{ active }}{% endif %} text-white hover:bg-primary-600 block rounded-md px-3 py-2 text-base font-medium">Utilisateurs</a>
+                        {% endif %}
                         <a href="{{ path('app_dashboard_tickets') }}" class="{% if currentRoute == 'app_dashboard_tickets' %}{{ active }}{% endif %} text-white hover:bg-primary-600 block rounded-md px-3 py-2 text-base font-medium">Signalements</a>
+                        {% if is_granted('ROLE_SUPER_ADMIN') %}
                         <a href="{{ path('app_dashboard_courses') }}" class="{% if currentRoute == 'app_dashboard_courses' %}{{ active }}{% endif %} text-white hover:bg-primary-600 block rounded-md px-3 py-2 text-base font-medium">Départements</a>
+                        {% endif %}
                     </div>
                 </div>
             </div>
@@ -43,10 +47,14 @@
 
     <div class="md:hidden" id="mobile-menu">
         <div class="space-y-1 px-2 pb-3 pt-2 sm:px-3">
-            <a href="{{ path('app_dashboard') }}" class="{% if currentRoute == 'app_dashboard' %}{{ active }}{% endif %} text-white block rounded-md px-3 py-2 text-base font-medium" aria-current="page">Dashboard</a>
-            <a href="{{ path('app_dashboard_users') }}" class="{% if currentRoute == 'app_dashboard_users' %}{{ active }}{% endif %} text-white hover:bg-primary-600 block rounded-md px-3 py-2 text-base font-medium">Utilisateurs</a>
+            <a href="{{ path('app_dashboard') }}" class="text-white rounded-md px-3 py-2 text-base font-medium flex items-center" aria-current="page">{{ include('@icons/home.svg') }}</a>
+            {% if is_granted('ROLE_ADMIN') %}
+                <a href="{{ path('app_dashboard_users') }}" class="{% if currentRoute == 'app_dashboard_users' %}{{ active }}{% endif %} text-white hover:bg-primary-600 block rounded-md px-3 py-2 text-base font-medium">Utilisateurs</a>
+            {% endif %}
             <a href="{{ path('app_dashboard_tickets') }}" class="{% if currentRoute == 'app_dashboard_tickets' %}{{ active }}{% endif %} text-white hover:bg-primary-600 block rounded-md px-3 py-2 text-base font-medium">Signalements</a>
-            <a href="{{ path('app_dashboard_courses') }}" class="{% if currentRoute == 'app_dashboard_courses' %}{{ active }}{% endif %} text-white hover:bg-primary-600 block rounded-md px-3 py-2 text-base font-medium">Départements</a>
+            {% if is_granted('ROLE_SUPER_ADMIN') %}
+                <a href="{{ path('app_dashboard_courses') }}" class="{% if currentRoute == 'app_dashboard_courses' %}{{ active }}{% endif %} text-white hover:bg-primary-600 block rounded-md px-3 py-2 text-base font-medium">Départements</a>
+            {% endif %}
         </div>
     </div>
 </nav>

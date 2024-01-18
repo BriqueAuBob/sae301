@@ -11,7 +11,7 @@
             <dl class="divide-y divide-gray-100">
                 <div class="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
                     <dt class="text-sm font-medium leading-6 text-gray-900">Nom complet</dt>
-                    <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">{{ form_widget(form.firstname) }} {{ form_widget(form.lastname) }}</dd>
+                    <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0 flex gap-2">{{ form_widget(form.firstname, { 'attr': { 'size': 15 } }) }} {{ form_widget(form.lastname, { 'attr': { 'size': 20 } }) }}</dd>
                 </div>
                 <div class="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
                     <dt class="text-sm font-medium leading-6 text-gray-900">Département</dt>
@@ -29,10 +29,12 @@
                     <dt class="text-sm font-medium leading-6 text-gray-900">Adresse mail</dt>
                     <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">{{ form_widget(form.email, { 'attr': { 'size' : 40 } }) }}</dd>
                 </div>
-                <div class="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
-                    <dt class="text-sm font-medium leading-6 text-gray-900">Rôles</dt>
-                    <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0 cursor-not-allowed">{% for role in user.roles %} {{ role }} {% endfor %}</dd>
-                </div>
+                {% if is_granted('ROLE_SUPER_ADMIN') %}
+                    <div class="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
+                        <dt class="text-sm font-medium leading-6 text-gray-900">Rôles</dt>
+                        <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0 cursor-not-allowed">{{ form_widget(form.roles) }}</dd>
+                    </div>
+                {% endif %}
             </dl>
             <input type="submit" value="Modifier" class="bg-primary-500 mt-4 px-4 py-2 rounded-2xl border-primary-600 border-2 hover:bg-primary-200">
             {{ form_end(form) }}

@@ -22,7 +22,7 @@
                             <a href="{{ path('app_dashboard_course_form', {id: course.id}) }}">
                                 {{ include('@icons/edit.svg') }}
                             </a>
-                            <a href="{# path('app_dashboard_user_delete', {id: course.id}) #}">
+                            <a href="{{ path('app_dashboard_course_delete', {id: course.id}) }}">
                                 {{ include('@icons/trash.svg') }}
                             </a>
                         </div>
