@@ -1,5 +1,6 @@
 {% extends 'base.html.twig' %}
 
+
 {% block title %}Hello HomeworkController!{% endblock %}
 
 {% block body %}
@@ -7,14 +8,14 @@
     <h1 class="text-5xl mb-4">Ajout d'un nouveau rendu</h1>
     <h2 class="font-semibold">Informations générales</h2>
     {{ form_start(form) }}
-    {{ form_row(form.name, {icon: 'calendar'}) }}
-    {{ form_row(form.picture, {'icon': 'calendar'}) }}
-    {{ form_row(form.description, {'icon': 'calendar'}) }}
-    {{ form_row(form.subject, {'icon': 'calendar'}) }}
-    {{ form_row(form.due_date, {'icon': 'calendar'}) }}
+    {{ form_row(form.name, {icon: 'user-tick'}) }}
+    {{ form_row(form.picture) }}
+    {{ form_row(form.description) }}
+    {{ form_row(form.subject, {'icon': 'teacher'}) }}
+    {{ form_row(form.due_date, {'icon': 'tag'}) }}
     <h2 class="font-semibold">Plus d'informations</h2>
-    {{ form_row(form.teacher, {'icon': 'calendar'}) }}
-    {{ form_row(form.platform, {'icon': 'calendar'}) }}
+    {{ form_row(form.teacher, {'icon': 'user-tick'}) }}
+    {{ form_row(form.platform, {'icon': 'location'}) }}
 
     {% include ('components/button.html.twig') with {text: 'Ajouter le rendu', iconLeft: 'add-circle', fullWidth: true} %}
 
