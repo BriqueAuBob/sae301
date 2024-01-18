@@ -6,9 +6,12 @@
 {%- endblock form_row -%}
 
 {%- block widget_attributes -%}
-    {%- set attr = attr|merge({ class: attr.class|default(widget_class|default('w-full h-full py-3 focus:outline-none flex border-2 border-primary-100 rounded-xl px-4')) ~ (disabled ? ' ' ~ widget_disabled_class|default('border-gray-300 text-gray-500')) ~ (errors|length ? ' ' ~ widget_errors_class|default('border-red-700')) }) -%}
-    {{- parent() -}}
+    {%- set attr = attr|merge({ class: attr.class|default(widget_class|default('w-full h-full py-3 focus:outline-none flex  px-4')) ~ (disabled ? ' ' ~ widget_disabled_class|default('border-gray-300 text-gray-500')) ~ (errors|length ? ' ' ~ widget_errors_class|default('border-red-700')) }) -%}
+
+        {{- parent() -}}
 {%- endblock widget_attributes -%}
+
+
 
 {%- block form_label -%}
     {%- set label_attr = label_attr|merge({ class: label_attr.class|default(label_class|default('block font-medium text-sm ml-1')) }) -%}
