@@ -15,7 +15,7 @@
             </ul>
             <div class="mt-6 flex flex-col gap-2">
                 <a href="{{ path('app_logout') }}">{% include('components/button.html.twig') with { text: "Déconnexion", color: "danger" } %}</a>
-                <a href="{# path('app_dashboard') #}">{% include('components/button.html.twig') with { text: "Administration", color: "warning" } %}</a>
+                <a href="{{ path('app_dashboard') }}" target="_blank">{% include('components/button.html.twig') with { text: "Administration", color: "warning" } %}</a>
             </div>
     </div>
 {% endblock %}

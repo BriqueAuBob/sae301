@@ -7,6 +7,7 @@ use App\Entity\User;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -23,7 +24,13 @@ class RegistrationFormType extends AbstractType
             ->add('firstname')
             ->add('lastname')
             ->add('group')
-            ->add('year')
+            ->add('year', ChoiceType::class, [
+                'choices' => [
+                    '1ère année' => '1',
+                    '2ème année' => '2',
+                    '3ème année' => '3'
+                ],
+            ])
             ->add('course',EntityType::class, [
                 'class' => Course::class,
                 'choice_label' => 'name_code',
