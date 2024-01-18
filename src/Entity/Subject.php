@@ -28,7 +28,7 @@ class Subject
     #[ORM\Column(length: 6, nullable: true)]
     private ?string $color = null;
 
-    #[ORM\OneToMany(mappedBy: 'hw_id', targetEntity: Homework::class, orphanRemoval: true)]
+    #[ORM\OneToMany(mappedBy: 'subject', targetEntity: Homework::class, orphanRemoval: true)]
     private Collection $homework;
 
     public function __construct()

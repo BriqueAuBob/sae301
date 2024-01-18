@@ -27,17 +27,17 @@
                 <div class="mt-6">
                     <span class="flex items-center gap-4">
                         Matières associées
-                        <a href="{# path('') #}">{% include('components/button.html.twig') with { text: "Ajouter une matière", color: "primary" } %}</a>
+                        <a href="{{ path('app_dashboard_subject_form', {id_course: course.id}) }}">{% include('components/button.html.twig') with { text: "Ajouter une matière", color: "primary" } %}</a>
                     </span>
                     <ul class="mt-4 bg-white rounded-lg border border-gray-200 text-gray-900 text-sm font-medium h-fit divide-y divide-gray-100">
                         {% for subject in subjects %}
                             <li class="px-4 py-3 w-full rounded-b-lg flex items-center justify-between gap-6">
                                 <span>{{ subject.nameCode }} {{ subject.name }}</span>
                                 <div class="flex items-center gap-4">
-                                    <a href="{{ path('app_dashboard_subject_edit', {id: subject.id}) }}">
+                                    <a href="{{ path('app_dashboard_subject_form', {id_course: course.id, id: subject.id}) }}">
                                         {{ include('@icons/edit.svg') }}
                                     </a>
-                                    <a href="{# path('app_dashboard_subject_delete', {id: subject.id}) #}">
+                                    <a href="{{ path('app_dashboard_subject_delete', {id: subject.id}) }}">
                                         {{ include('@icons/trash.svg') }}
                                     </a>
                                 </div>
