@@ -9,8 +9,14 @@ Encore
     .setPublicPath('/build')
 
     .addEntry('app', [
-        './assets/app.js'
+        './assets/app.js',
     ])
+    .addEntry('calendar', './assets/js/calendar.js')
+    .addEntry('modal', './assets/js/modal.js')
+    .addEntry('delete', './assets/js/delete.js')
+    .addEntry('isRead', './assets/js/isRead.js')
+
+    .enableStimulusBridge('./assets/controllers.json')
 
     .splitEntryChunks()
     .enableSingleRuntimeChunk()

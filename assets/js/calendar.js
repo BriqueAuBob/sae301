@@ -1,3 +1,5 @@
+import '../styles/calendar.css'
+
 $(document).ready(function(){
     const calendarEl = document.getElementById('calendar');
     const eventData = JSON.parse(calendarEl.dataset.events || '[]');

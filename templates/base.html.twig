@@ -13,6 +13,9 @@
         {% block javascripts %}
             <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
             {{ importmap() }}
+            {{ encore_entry_script_tags('delete') }}
+            {{ encore_entry_script_tags('isRead') }}
+            {{ encore_entry_script_tags('modal') }}
         {% endblock %}
     </head>
     <body class="min-h-screen">
