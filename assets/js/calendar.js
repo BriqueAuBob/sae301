@@ -1,4 +1,4 @@
-document.addEventListener('DOMContentLoaded', function() {
+$(document).ready(function(){
     const calendarEl = document.getElementById('calendar');
     const eventData = JSON.parse(calendarEl.dataset.events || '[]');
 
@@ -36,8 +36,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 type: 'GET',
                 success: function(data){
                     $('#CalendarModale').html(data);
-                    $('#CalendarModale').addClass('block');
-                    $('#CalendarModale').removeClass('hidden');
+                    modalCalendar(data);
                 }
             })
 
@@ -47,4 +46,23 @@ document.addEventListener('DOMContentLoaded', function() {
 
     calendar.setOption('locale', 'fr');
     calendar.render();
-});
+})
+function toggleModaleCalendar(selector){
+    selector.toggleClass('opacity-0', 'opacity-1');
+    selector.toggleClass('pointer-events-none', 'pointer-events-auto');
+    selector.find('.modal-content').toggleClass('translate-y-8', 'translate-y-0');
+    selector.find('.modal-content').toggleClass('-translate-y-1/2', 'translate-y-0');
+    selector.find('.modal-content').toggleClass('scale-75', 'scale-100');
+}
+function modalCalendar(divCalendar) {
+    let dc = divCalendar;
+    let dcId = $(dc).attr('id');
+    let selector = $('#'+dcId);
+    console.log(dcId);
+    if (dcId === 'modal-homework-calendar') {
+        toggleModaleCalendar(selector);
+        console.log('oui');
+    }else {
+        console.log('non');
+    }
+}

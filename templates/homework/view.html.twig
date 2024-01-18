@@ -1,4 +1,6 @@
-<div class="flex justify-center">
-    {% include('components/FullHomeworkCard.html.twig')%}
-</div>
-
+{%
+    include('components/modal.html.twig') with {
+    id: 'modal-homework-calendar',
+    homework: homeworks[0],
+    }
+%}
