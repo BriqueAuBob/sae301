@@ -12,6 +12,7 @@ modals.forEach((element) => {
         fetch(element.dataset.contentUrl).then((res) => res.text()).then((res) => {
             modal.querySelector("#" + target + '-content').innerHTML = res;
             loopDropdowns();
+            getCloseButtons();
             deleteAction(document.querySelectorAll('.delete'), (button) => {
                 fetch('/homework/' + button.dataset.homeworkId, {
                     method: 'DELETE',
@@ -38,22 +39,25 @@ modals.forEach((element) => {
     });
 });
 
+const getCloseButtons = () => {
 const closeButtons = document.querySelectorAll('[data-close-modal]');
-closeButtons.forEach((element) => {
-    element.addEventListener('click', (event) => {
-        event.preventDefault();
-        const target = element.dataset.closeModal;
-        const modal = document.getElementById(target);
-        modal.classList.toggle('opacity-0');
-        modal.classList.toggle('pointer-events-none');
+    closeButtons.forEach((element) => {
+        element.addEventListener('click', (event) => {
+            event.preventDefault();
+            const target = element.dataset.closeModal;
+            const modal = document.getElementById(target);
+            modal.classList.toggle('opacity-0');
+            modal.classList.toggle('pointer-events-none');
 
-        const modalContent = modal.querySelector('.modal-content');
-        modalContent.classList.toggle('translate-y-8');
-        modalContent.classList.toggle('-translate-y-1/2');
-        modalContent.classList.toggle('scale-75');
-        modalContent.classList.toggle('opacity-0');
+            const modalContent = modal.querySelector('.modal-content');
+            modalContent.classList.toggle('translate-y-8');
+            modalContent.classList.toggle('-translate-y-1/2');
+            modalContent.classList.toggle('scale-75');
+            modalContent.classList.toggle('opacity-0');
+        });
     });
-});
+}
+getCloseButtons();
 
 const loopDropdowns = () => {
     const dropdowns = document.querySelectorAll('[data-toggle="dropdown"]');
