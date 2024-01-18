@@ -27,4 +27,10 @@ class ProfileController extends AbstractController
     {
         return $this->render('profile/mentions.html.twig');
     }
+
+    #[Route ('/accessibilite.html.twig', name: 'app_accessibilite')]
+    public function viewAccessibility(): Response
+    {
+        return $this->render('profile/accessibilite.html.twig');
+    }
 }
