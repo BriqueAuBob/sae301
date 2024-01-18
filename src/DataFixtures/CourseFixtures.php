@@ -15,6 +15,7 @@ class CourseFixtures extends Fixture implements FixtureGroupInterface
         $course1->setNameCode('MMI');
         $course1->setName('Métiers du Multimédia et de l\'Internet');
         $manager->persist($course1);
+        $this->addReference('course_1', $course1);
 
         $course2 = new Course();
         $course2->setNameCode('TC');
