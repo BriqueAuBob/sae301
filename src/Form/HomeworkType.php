@@ -49,6 +49,7 @@ class HomeworkType extends AbstractType
                             'image/gif',
                         ],
                         'mimeTypesMessage' => 'Please upload a valid image',
+                        'maxSizeMessage' => 'Le fichier est trop volumineux. La taille maximale autorisée est 1024k.',
                     ])
                 ]
             ])
