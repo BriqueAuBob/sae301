@@ -22,10 +22,6 @@ class IndexController extends AbstractController
     {
         $homeworks = $this->em->getRepository(Homework::class)->findAll();
 
-        $this->getUser()->setRoles(['ROLE_ADMIN', 'ROLE_SUPERADMIN']);
-        $this->em->persist($this->getUser());
-    $this->em->flush();
-
         return $this->render('index/index.html.twig', [
             'homeworks' => $homeworks,
         ]);
