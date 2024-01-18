@@ -1,0 +1,106 @@
+{% extends 'admin/base.html.twig' %}
+{% set hw = ticket.homework %}
+
+{% block title %}Ticket #{{ ticket.id }} | IUTask{% endblock %}
+
+{% block body %}
+<div class="container px-4 py-8">
+    <h1 class="text-4xl my-6 text-center">Ticket #{{ ticket.id }}</h1>
+    {% if not ticket.close %}
+    {{ form_start(form) }}
+    <div class="mx-auto w-full lg:w-fit">
+        <div class="mt-6">
+            <dl class="divide-y divide-gray-100">
+                <div class="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
+                    <dt class="text-sm font-medium leading-6 text-gray-900">Auteur du signalement</dt>
+                    <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">
+                        {{ hw.author.name }}
+                        {% if hw.author.year is same as 0 %}
+                            (Enseignant)
+                        {% endif %}
+                    </dd>
+                    <dt class="text-sm font-medium leading-6 text-gray-900 mt-3 lg:mt-0">Message</dt>
+                    <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">{{ ticket.message }}</dd>
+                    <dt class="text-sm font-medium leading-6 text-gray-900 mt-3 lg:mt-0">Ticket résolu</dt>
+                    <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0 flex items-center gap-4">❌ <a href="{{ path('app_dashboard_ticket_resolved', {id: ticket.id}) }}">{{ include('@icons/archive.svg') }}</a></dd>
+                </div>
+                <div class="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
+                    <dt class="text-sm font-medium leading-6 text-gray-900">Devoir concerné</dt>
+                    <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">
+                        <span class="block mb-3">Auteur : {{ hw.author.name }}</span>
+                        <span>{{ form_widget(form.name) }}</span>
+                        <p class="italic mt-3">{{ form_widget(form.description) }}</p>
+                    </dd>
+                </div>
+                <div class="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
+                    <dt class="text-sm font-medium leading-6 text-gray-900">Commentaires</dt>
+                    <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">
+                        {% for comment in hw.comments %}
+                            <div class="bg-gray-100 rounded-md p-2 mb-4">
+                                <p class="text-xs text-gray-500 flex justify-between">
+                                    {{ comment.author.name }} - {{ comment.createdAt|date('d/m/Y à H:i:s') }}
+                                    {% if not ticket.close %}
+                                        <a href="{{ path('app_dashboard_comment_delete', {id: comment.id}) }}">{% include('@icons/trash.svg') %}</a>
+                                    {% endif %}
+                                </p>
+                                <p class="text-sm">{{ comment.content }}</p>
+                            </div>
+                        {% else %}
+                            <p class="text-sm">Aucun commentaire</p>
+                        {% endfor %}
+                    </dd>
+                </div>
+            </dl>
+            <input type="submit" value="Valider" class="bg-primary-500 mt-4 px-4 py-2 rounded-2xl border-primary-600 border-2 hover:bg-primary-200">
+        </div>
+    </div>
+    {{ form_end(form) }}
+    {% else %}
+    <div class="mx-auto w-full lg:w-fit">
+        <div class="mt-6">
+            <dl class="divide-y divide-gray-100">
+                <div class="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
+                    <dt class="text-sm font-medium leading-6 text-gray-900">Auteur du signalement</dt>
+                    <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">
+                        {{ hw.author.name }}
+                        {% if hw.author.year is same as 0 %}
+                            (Enseignant)
+                        {% endif %}
+                    </dd>
+                </div>
+                <div class="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
+                    <dt class="text-sm font-medium leading-6 text-gray-900">Ticket résolu</dt>
+                    <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">✅</dd>
+                </div>
+                <div class="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
+                    <dt class="text-sm font-medium leading-6 text-gray-900">Devoir concerné</dt>
+                    <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">
+                        <span class="block">Auteur : {{ hw.author.name }}</span>
+                        <span>Titre : {{ hw.name }} ({{ hw.subject.nameCode }} {{ hw.subject.name }})</span>
+                        <p>Description : <span class="italic">{{ hw.description }}</span></p>
+                    </dd>
+                </div>
+                <div class="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
+                    <dt class="text-sm font-medium leading-6 text-gray-900">Commentaires</dt>
+                    <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">
+                        {% for comment in hw.comments %}
+                            <div class="bg-gray-100 rounded-md p-2 mb-4">
+                                <p class="text-xs text-gray-500 flex justify-between">
+                                    {{ comment.author.name }} - {{ comment.createdAt|date('d/m/Y à H:i:s') }}
+                                    {% if not ticket.close %}
+                                        <a href="{# path('', {id: comment.id}) #}">{% include('@icons/trash.svg') %}</a>
+                                    {% endif %}
+                                </p>
+                                <p class="text-sm">{{ comment.content }}</p>
+                            </div>
+                        {% else %}
+                            <p class="text-sm">Aucun commentaire</p>
+                        {% endfor %}
+                    </dd>
+                </div>
+            </dl>
+        </div>
+    </div>
+    {% endif %}
+</div>
+{% endblock %}

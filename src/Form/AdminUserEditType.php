@@ -27,7 +27,14 @@ class AdminUserEditType extends AbstractType
             ->add('firstname')
             ->add('lastname')
             ->add('email')
-            ->add('year')
+            ->add('year', ChoiceType::class, [
+                'choices' => [
+                    'Non étudiant' => '0',
+                    '1ère année' => '1',
+                    '2ème année' => '2',
+                    '3ème année' => '3'
+                ],
+            ])
             ->add('group')
             ->add('course', EntityType::class, [
                 'class' => Course::class,
@@ -38,7 +45,7 @@ class AdminUserEditType extends AbstractType
         if ($this->authChecker->isGranted('ROLE_SUPER_ADMIN')) {
             $builder->add('roles', ChoiceType::class, [
                 'choices' => [
-                    'Étudiant' => 'ROLE_USER',
+                    'Utilisateur' => 'ROLE_USER',
                     'Modérateur' => 'ROLE_MOD',
                     'Administrateur' => 'ROLE_ADMIN',
                     'Super Administrateur' => 'ROLE_SUPER_ADMIN'

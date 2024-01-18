@@ -31,21 +31,7 @@ class DashboardController extends AbstractController
         $tickets = $this->em->getRepository(Ticket::class)->findBy(['status' => 0]);
 
         return $this->render('admin/index.html.twig', [
-            'controller_name' => 'DashboardController',
             'tickets' => $tickets
-        ]);
-    }
-
-    /**
-     * Gestion des tickets
-     * @param Ticket $ticket
-     * @return Response
-     */
-    #[Route('/admin/ticket/{id}', name: 'app_dashboard_ticket')]
-    public function viewTicketsDashboard(Ticket $ticket): Response
-    {
-        return $this->render('admin/ticket.html.twig', [
-            'ticket' => $ticket
         ]);
     }
 
@@ -67,6 +53,12 @@ class DashboardController extends AbstractController
     public function viewUser(Request $request, int $id): Response
     {
         $user = $this->em->getRepository(User::class)->find($id);
+
+        if (!$user) {
+            $this->addFlash('danger', 'L\'utilisateur n\'existe pas !');
+            return $this->redirectToRoute('app_dashboard_users');
+        }
+
         $form = $this->createForm(AdminUserEditType::class, $user)->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -91,20 +83,6 @@ class DashboardController extends AbstractController
 
         $this->addFlash('success', 'L\'utilisateur <b>' . $user->getName() . '</b> a bien été supprimé !');
         return $this->redirectToRoute('app_dashboard_users');
-    }
-
-    /**
-     * Gestion des tickets
-     * @return Response
-     */
-    #[Route('/admin/tickets', name: 'app_dashboard_tickets')]
-    public function viewTickets(): Response
-    {
-        $tickets = $this->em->getRepository(Ticket::class)->findAll();
-
-        return $this->render('admin/tickets/index.html.twig', [
-            'tickets' => $tickets
-        ]);
     }
 
     /**
