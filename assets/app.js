@@ -6,8 +6,6 @@ import './bootstrap.js';
  * which should already be in your base.html.twig.
  */
 // Import $ from jQuery
-import'./js/jquery.js';
-
 import './js/calendar.js'
 
 import './styles/app.css'

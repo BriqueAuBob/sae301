@@ -1,42 +1,6 @@
 <div class="absolute z-50 min-h-screen min-w-screen flex flex-col justify-center items-center opacity-0 transition-opacity duration-300 pointer-events-none" tabindex="-1" id="{{ id }}">
     <div class="fixed inset-0 bg-black opacity-50 bgCloseModal" data-close-modal="{{ id }}"></div>
     <div id="{{ id }}-content" class="modal-content fixed top-1/2 left-1/2 -translate-x-1/2 translate-y-8 scale-75 bg-white border rounded-xl shadow-lg w-[95%] max-w-[600px] max-h-[80%] overflow-y-scroll ease-out duration-300 p-6"></div>
-        <div class="p-6">
-            <div class="flex justify-between mb-2">
-                <h3 class="font-semibold font-display text-xl">Rendu</h3>
-                <div class="flex gap-2">
-                    <img class="w-6 h-6" src="{{ asset('images/icons/more-circle.svg') }}" alt="icone menu deroulant">
-                    <button class="closeModalButton" data-close-modal="modal-homework-{{ homework.id }}">
-                        <img class="closeModalButton w-6 h-6" src="{{ asset('images/icons/close.svg') }}" alt="icone croix pour fermer">
-                    </button>
-                </div>
-            </div>
 
-            {% include ('components/detailCard.html.twig') with { homework: homework } %}
-
-            <div class="my-2">
-                <div class="flex justify-between items-end mb-4">
-                    <h4 class="font-semibold font-display text-xl">Commentaires</h4>
-                    {% include('components/button.html.twig') with { text: "Ajouter un commentaire", color: "info", iconLeft: "message" } %}
-                </div>
-                <div class="my-2 after:block after:content-[''] after:w-full after:bg-text-50 after:h-px after:mt-2">
-                    <div>
-                        <div class="flex justify-between">
-                            <div class="flex items-center gap-2">
-                                <span class="font-semibold font-display">Prenom Nom</span>
-                                <span class="font-light font-sans text-sm text-text-400 ">Il y a 2h</span>
-                            </div>
-                            <div class="flex gap-2">
-                                <img class="w-4 h-4" src="{{ asset('images/icons/edit.svg') }}" alt="icone crayon pour modifier">
-                                <img class="w-4 h-4" src="{{ asset('images/icons/trash.svg') }}" alt="icone poubelle pour supprimer">
-                            </div>
-                        </div>
-                        <div>
-                            <p class="text-sm">fjezfeiehfiuefheiueheziufheziufhezfiuzehffieuzh</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
     </div>
-
+</div>
