@@ -8,5 +8,9 @@
 </div>
 {{ form_start(form) }}
 {{ form_widget(form) }}
-    {% include ('components/button.html.twig') with {text: 'Ajouter un commentaire', color: 'info'} %}
+    {% include ('components/button.html.twig') with {text: 'Ajouter un commentaire', color: 'info',
+        props: {
+            'data-close-modal': 'modal-comment'
+        }
+    } %}
 {{ form_end(form) }}

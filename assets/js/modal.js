@@ -3,6 +3,7 @@ import { deleteAction } from './delete.js';
 const getModals = () => {
     const modals = document.querySelectorAll('[data-toggle="modal"]');
     modals.forEach((element) => {
+        if(element.hasEvent) return;
         element.addEventListener('click', (event) => {
             event.preventDefault();
             const target = element.dataset.modalId;
@@ -39,6 +40,7 @@ const getModals = () => {
             modalContent.classList.toggle('scale-75');
             modalContent.classList.toggle('opacity-0');
         });
+        element.hasEvent = true;
     });
 }
 getModals();
@@ -46,8 +48,8 @@ getModals();
 const getCloseButtons = () => {
 const closeButtons = document.querySelectorAll('[data-close-modal]');
     closeButtons.forEach((element) => {
+        if(element.hasEvent) return;
         element.addEventListener('click', (event) => {
-            event.preventDefault();
             const target = element.dataset.closeModal;
             const modal = document.getElementById(target);
             modal.classList.toggle('opacity-0');
@@ -59,6 +61,7 @@ const closeButtons = document.querySelectorAll('[data-close-modal]');
             modalContent.classList.toggle('scale-75');
             modalContent.classList.toggle('opacity-0');
         });
+        element.hasEvent = true;
     });
 }
 getCloseButtons();
@@ -66,12 +69,14 @@ getCloseButtons();
 const loopDropdowns = () => {
     const dropdowns = document.querySelectorAll('[data-toggle="dropdown"]');
     dropdowns.forEach((dropdown) => {
+        if(dropdown.hasEvent) return;
         dropdown.parentElement.addEventListener('click', (event) => {
 
             dropdown.classList.toggle('opacity-0');
             dropdown.classList.toggle('pointer-events-none');
             dropdown.classList.toggle('scale-90');
         });
+        dropdown.hasEvent = true;
     });
 }
 loopDropdowns();
