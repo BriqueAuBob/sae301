@@ -54,7 +54,13 @@
         {{ colorClasses[color]['text'] }}
     {% elseif type == 'tertiary' %}
         {{ colorClasses[color]['text'] }}
-    {% endif %}">
+    {% endif %}"
+    {% if props is defined %}
+        {% for key, value in props %}
+            {{ key }}="{{ value }}"
+        {% endfor %}
+    {% endif %}
+>
     {% if iconLeft is defined %}
         <span class="{{ size == 'xl' ? 'w-12 h-12' : 'w-4 h-4' }} mr-1">
             {{ include('@icons/' ~ iconLeft ~ '.svg') }}
