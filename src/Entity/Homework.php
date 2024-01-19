@@ -62,6 +62,9 @@ class Homework
     #[ORM\Column(length: 255)]
     private ?string $platform = null;
 
+    #[ORM\Column(type: Types::BOOLEAN, options: ['default' => false])]
+    private ?bool $isVerified = null;
+
     public function __construct()
     {
         $this->checks = new ArrayCollection();
@@ -271,6 +274,23 @@ class Homework
             'checks' => $this->checks,
             'teacher' => $this->teacher,
             'platform' => $this->platform,
+            'isVerified' => $this->isVerified,
         ]);
+    }
+
+    public function isIsVerified(): ?bool
+    {
+        return $this->isVerified;
+    }
+
+    public function setIsVerified(bool $isVerified): static
+    {
+        $this->isVerified = $isVerified;
+
+        return $this;
+    }
+    public function getIsVerified(): ?bool
+    {
+        return $this->isVerified;
     }
 }
