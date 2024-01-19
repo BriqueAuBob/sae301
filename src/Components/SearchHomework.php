@@ -4,6 +4,7 @@ namespace App\Components;
 
 use App\Entity\Homework;
 use App\Repository\HomeworkRepository;
+use Symfony\Bundle\SecurityBundle\Security;
 use Symfony\UX\LiveComponent\Attribute\AsLiveComponent;
 use Symfony\UX\LiveComponent\Attribute\LiveAction;
 use Symfony\UX\LiveComponent\Attribute\LiveArg;
@@ -25,12 +26,12 @@ class SearchHomework
     #[LiveProp(writable: true)]
     public string $query = '';
 
-    public function __construct(private HomeworkRepository $homeworkRepository)
+    public function __construct(private HomeworkRepository $homeworkRepository, private Security $security)
     {
     }
 
     public function getHomeworks(): array
     {
-        return $this->homeworkRepository->search($this->query);
+        return $this->homeworkRepository->search($this->query, $this->security->getUser());
     }
 }

@@ -3,6 +3,7 @@
 namespace App\Repository;
 
 use App\Entity\Homework;
+use App\Entity\User;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
@@ -21,16 +22,6 @@ class HomeworkRepository extends ServiceEntityRepository
         parent::__construct($registry, Homework::class);
     }
 
-    public function findByGroupAndYear($group, $year)
-    {
-        return $this->createQueryBuilder('h')
-            ->andWhere('h.group = :group')
-            ->andWhere('h.year = :year')
-            ->setParameter('group', $group)
-            ->setParameter('year', $year)
-            ->getQuery()
-            ->getResult();
-    }
 //    /**
 //     * @return Homework[] Returns an array of Homework objects
 //     */
@@ -46,12 +37,16 @@ class HomeworkRepository extends ServiceEntityRepository
 //        ;
 //    }
 
-    public function search($value): array
+    public function search($value, User $user): array
     {
         return $this->createQueryBuilder('h')
             ->andWHere('h.name LIKE :val')
             ->orWhere('h.description LIKE :val')
             ->setParameter('val', '%'.$value.'%')
+            ->andWhere('h.group = :group')
+            ->setParameter('group', $user->getGroup())
+            ->andWhere('h.year = :year')
+            ->setParameter('year', $user->getYear())
             ->getQuery()
             ->getResult();
     }
