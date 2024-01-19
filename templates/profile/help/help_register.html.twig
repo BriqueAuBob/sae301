@@ -1,0 +1,70 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Aide{% endblock %}
+
+{% block body %}
+    <div class="container-fluid">
+        <div>
+            <nav class="ml-20">
+                <ul class="flex space-x-4">
+                    <li>
+                        <a href="{{ path('app_help_login') }}">Connexion</a>
+                    </li>
+                    <li  class="text-blue-500 hover:text-blue-700">
+                        <a href="{{ path('app_help_register') }}"> Inscription </a>
+                    </li>
+                    <li>
+                        <a href="{{ path('app_help_disconnect') }}">Déconnexion</a>
+                    </li>
+                    <li>
+                        <a href="{{ path('app_help_create_homework') }}">Créer un rendu ?</a>
+                    </li>
+                    <li>
+                        <a href="{{ path('app_help_delete_homework') }}">Comment supprimer un rendu ?</a>
+                    </li>
+                    <li>
+                        <a href="{{ path('app_help_edit_homework') }}">Comment modifier un rendu ?</a>
+                    </li>
+                    <li>
+                        <a href="{{ path('app_help_comments') }}">Comment laisser un commentaire ?</a>
+                    </li>
+                </ul>
+            </nav>
+
+
+            <main role="main" class="col-md-10 col-lg-10 ml-md-auto px-4">
+                <div class="container p-4">
+                    <h1 class="text-center text-5xl mb-6">L'inscription sur l'application</h1>
+
+                    <div class="mb-4">
+                        <div class="text-center indent-4 pt-2">
+                            <p>Comment s'inscire ?</p>
+                            <br>
+                            <div class="text-left">
+                                <p>Afin de vous connecter il faudra renseigner :
+
+                                <br>
+                                    <li>votre adresse mail étudiante</li>
+                                    <li>Votre Prénom et votre Nom.</li>
+                                    <li>Votre mot de passe qui doit contenir 6 caractères minimum avec des chiffres et des lettres.</li>
+                                    <li>Votre fillière</li>
+                                    <li>Votre groupe de TP/TD</li>
+                                    <li>Votre année d'étude</li>
+                                <br>
+                                    N'oubliez pas d'accpeter les termes d'utilisations.
+                                </p>
+                            </div>
+                                <p>Dans le formulaire que vous trouverez sur la page de connexion.</p>
+                            </div>
+
+                            <img src="{{ asset ('images/helpImages/register.png') }}" class="w-1/2 h-auto mx-auto">
+
+                        </div>
+                    </div>
+
+                    <span class="text-lg italic">Date de dernière mise à jour : 18/01/2024</span>
+                </div>
+            </main>
+        </div>
+    </div>
+{% endblock %}

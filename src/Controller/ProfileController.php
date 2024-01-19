@@ -58,12 +58,6 @@ class ProfileController extends AbstractController
         return $this->render('profile/help/help_create_homework.html.twig');
     }
 
-    #[Route ('/help_see_homework.html.twig', name: 'app_help_see_homework')]
-    public function viewHelpSeeHomework(): Response
-    {
-        return $this->render('profile/help/help_see_homework.html.twig');
-    }
-
     #[Route ('/help_edit_homework.html.twig', name: 'app_help_edit_homework')]
     public function viewHelpEditHomework(): Response
     {
