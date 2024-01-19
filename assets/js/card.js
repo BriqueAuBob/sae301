@@ -22,7 +22,6 @@ $(document).ready(function(){
             return l > 128;
         }
         let cardTitle = document.getElementsByClassName('cardTitle-'+modalId);
-        console.log($(cardTitle));
         function colorSetter(){
             let target = $(cardTitle);
             if(isLight(hexToRgb(colorBackground)) === true){
