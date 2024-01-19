@@ -44,7 +44,7 @@ class duplicateVerifService
     {
         foreach ($noDuplicates as $noDuplicate) {
             // Utilisez find() au lieu de findBy() pour obtenir un seul résultat
-            $homework = $this->entityManager->getRepository(Homework::class)->find($noDuplicate[0]);
+            $homework = $this->entityManager->getRepository(Homework::class)->find($noDuplicate);
 
             if ($homework instanceof Homework) {
                 $homework->setIsVerified(true);
@@ -65,27 +65,35 @@ class duplicateVerifService
         $duplicates = [];
         //Tableau des non doublons
         $noDuplicates = [];
-
-        // On compare les devoirs non vérifiés avec tous les devoirs
-        foreach ($uncheckedHomeworks as $uncheckedHomework) {
-            foreach ($homeworks as $homework) {
-                // On ne compare pas un devoir avec lui-même
-                if ($uncheckedHomework->getId() != $homework->getId()) {
-                    // On compare les devoirs par titre
-                    if ($uncheckedHomework->getName() == $homework->getName()) {
-                        // On ajoute les doublons au tableau des doublons
-                        $duplicatesArray = [$uncheckedHomework->getId(), $homework->getId()];
-                        $duplicates[] = $duplicatesArray;
-                    }else{
-                        // On ajoute les non doublons au tableau des non doublons
-                        $noDuplicatesArray = [$uncheckedHomework->getId(), $homework->getId()];
-                        $noDuplicates[] = $noDuplicatesArray;
+        $checkedPairs = [];
+        foreach ($uncheckedHomeworks as $uhw) {
+            $idUncheck = $uhw->getId();
+            $foundDuplicate = false;
+            foreach ($homeworks as $hw) {
+                $idCheck = $hw->getId();
+                // Vérifier si la paire a déjà été traitée
+                if (in_array([$idUncheck, $idCheck], $checkedPairs) || in_array([$idCheck, $idUncheck], $checkedPairs)) {
+                    continue; // Passer à la prochaine itération
+                }
+                if ($idCheck !== $idUncheck) {
+                    if ($uhw->getName() === $hw->getName()) {
+                        array_push($duplicates, [$idUncheck, $idCheck]);
+                        $foundDuplicate = true;
+                        // Ne pas ajouter au tableau des non-doublons ici
                     }
                 }
+                // Ajouter la paire aux paires déjà vérifiées
+                $checkedPairs[] = [$idUncheck, $idCheck];
+            }
+            // Ajouter au tableau des non-doublons si aucun doublon n'est trouvé
+            if (!$foundDuplicate) {
+                $noDuplicates[] = $idUncheck;
             }
         }
+
         // On ajoute les non doublons au tableau des non doublons
         $this->addIsVerifiedTrue($noDuplicates);
+
 
         return $duplicates;
     }
@@ -93,6 +101,6 @@ class duplicateVerifService
     // Fonction qui va permettre de tout exécuter en une seule commande
     public function execute(): void
     {
-        $this->addIsVerifiedTrue($this->checkDuplicates());
+        $this->checkDuplicates();
     }
 }
