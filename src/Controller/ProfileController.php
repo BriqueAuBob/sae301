@@ -49,4 +49,36 @@ class ProfileController extends AbstractController
     {
         return $this->render('profile/accessibilite.html.twig');
     }
+
+    #[Route ('/aide.html.twig', name: 'app_aide')]
+    public function viewHelp(): Response
+    {
+        return $this->render('profile/aide.html.twig');
+    }
+
+    #[Route ('/help_login.html.twig', name: 'app_help_login')]
+    public function viewHelpLogin(): Response
+    {
+        return $this->render('profile/help/help_login.html.twig');
+    }
+
+    #[Route ('/help_register.html.twig', name: 'app_help_register')]
+    public function viewHelpRegister(): Response
+    {
+        return $this->render('profile/help/help_register.html.twig');
+    }
+
+    #[Route ('/help_homework.html.twig', name: 'app_help_homework')]
+    public function viewHelpCreateHomework(): Response
+    {
+        return $this->render('profile/help/help_homework.html.twig');
+    }
+
+
+    #[Route ('/help_disconnect.html.twig', name: 'app_help_disconnect')]
+    public function viewHelpDisconnect(): Response
+    {
+        return $this->render('profile/help/help_disconnect.html.twig');
+    }
+
 }
