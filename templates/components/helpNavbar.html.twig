@@ -1,0 +1,19 @@
+<nav class="lg:ml-20 bin/console cache:pool:prune">
+    <ul class="flex flex-col lg:flex-row lg:space-x-4 lg:mb-4">
+        <li class="mb-4 lg:mb-0">
+            <a class="{{ app.request.attributes.get('_route') == 'app_aide' ? 'text-blue-500 hover:text-blue-700' : '' }}" href="{{ path('app_aide') }}">Accueil</a>
+        </li>
+        <li class="mb-4 lg:mb-0">
+            <a class="{{ app.request.attributes.get('_route') == 'app_help_login' ? 'text-blue-500 hover:text-blue-700' : '' }}" href="{{ path('app_help_login') }}">Connexion</a>
+        </li>
+        <li class="mb-4 lg:mb-0">
+            <a class="{{ app.request.attributes.get('_route') == 'app_help_register' ? 'text-blue-500 hover:text-blue-700' : '' }}" href="{{ path('app_help_register') }}">Inscription</a>
+        </li>
+        <li class="mb-4 lg:mb-0">
+            <a class="{{ app.request.attributes.get('_route') == 'app_help_disconnect' ? 'text-blue-500 hover:text-blue-700' : '' }}" href="{{ path('app_help_disconnect') }}">Déconnexion</a>
+        </li>
+        <li class="mb-4 lg:mb-0">
+            <a class="{{ app.request.attributes.get('_route') == 'app_help_homework' ? 'text-blue-500 hover:text-blue-700' : '' }}" href="{{ path('app_help_homework') }}">Tout sur les rendus</a>
+        </li>
+    </ul>
+</nav>
