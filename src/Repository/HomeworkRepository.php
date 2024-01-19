@@ -21,6 +21,16 @@ class HomeworkRepository extends ServiceEntityRepository
         parent::__construct($registry, Homework::class);
     }
 
+    public function findByGroupAndYear($group, $year)
+    {
+        return $this->createQueryBuilder('h')
+            ->andWhere('h.group = :group')
+            ->andWhere('h.year = :year')
+            ->setParameter('group', $group)
+            ->setParameter('year', $year)
+            ->getQuery()
+            ->getResult();
+    }
 //    /**
 //     * @return Homework[] Returns an array of Homework objects
 //     */

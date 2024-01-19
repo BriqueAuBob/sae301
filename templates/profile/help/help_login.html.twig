@@ -1,0 +1,40 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Aide{% endblock %}
+
+{% block body %}
+    <div class="container mx-auto py-8 px-4 lg:px-10">
+        <div class="flex flex-col lg:flex-row-reverse lg:justify-between lg:gap-16">
+            <div class="lg:w-2/3">
+                {% include('components/helpNavbar.html.twig') %}
+                <main role="main" class="mt-10">
+                    <div class="container p-4">
+                        <h1 class="text-center text-5xl mb-6">La connexion sur l'application</h1>
+
+                        <div class="mb-4">
+                            <div class="text-center lg:text-left">
+                                <p>Comment se connecter ?</p>
+                                <br>
+                                <div class="text-left">
+                                    <p>Afin de vous connecter il faudra renseigner votre adresse mail étudiante que vous avez utilisez pour vous inscrire. Puis le mot de passe que vous avez choisi lors de votre inscription.
+                                    </p>
+                                    <br>
+                                    <p>Dans le formulaire que vous trouverez sur la page de connexion.</p>
+                                </div>
+
+                                <img src="{{ asset ('images/helpImages/login.png') }}" class="w-1/2 h-auto mx-auto">
+
+                            </div>
+                        </div>
+
+                        <span class="text-lg italic">Date de dernière mise à jour : 18/01/2024</span>
+                    </div>
+                </main>
+            </div>
+            <div>
+                {% include('components/sidebar.html.twig') %}
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

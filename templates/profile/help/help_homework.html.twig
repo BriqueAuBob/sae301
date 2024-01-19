@@ -1,0 +1,45 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="container mx-auto py-8 px-4 lg:px-10">
+        <div class="flex flex-col lg:flex-row-reverse lg:justify-between lg:gap-16">
+            <div class="lg:w-2/3">
+                {% include('components/helpNavbar.html.twig') %}
+                <main role="main" class="mt-10">
+                    <div class="container p-4">
+                        <h1 class="text-center text-5xl mb-6">Tout ce que vous pouvez faire sur les rendus</h1>
+
+                        <div class="mb-4">
+                            <div class="text-center lg:text-left">
+                                <p>Comment créer, surppimer, modifier, signaler et laisser un commentaire sous un rendu ?</p>
+                                <br>
+                                <div class="text-left">
+                                    <p>Sur les rendus vous avez la large possibilité d'éffectuer un total de quatres actions majeures : </p>
+                                    <br>
+                                    <li>Tout d'abord la possibilité de créer un rendu en renseignant toutes les informations nécessaires tel que la matière, le professeur, la date ainsi l'heure de rendu,
+                                        le lieu de dépôt et autres. </li>
+                                    <li> Il vous est possible de modifier le rendu si vous en êtes l'auteur</li>
+                                    <li>La possibilité de la supprimer si vous en êtes également l'auteur</li>
+                                    <li>Egalement vous pouvez signaler un rendu, vous laisserez un message qui vous permettra de donner plus de détails</li>
+                                    <br>
+
+                                    <p>Sans oublier la fonctionnalité de pouvoir commenter sous un rendu</p>
+                                    <br>
+                                </div>
+
+                                <img src="{{ asset ('images/helpImages/card.png') }}" class="w-1/2 h-auto mx-auto">
+
+                            </div>
+                        </div>
+
+                        <span class="text-lg italic">Date de dernière mise à jour : 18/01/2024</span>
+                    </div>
+                </main>
+            </div>
+            <div>
+                {% include('components/sidebar.html.twig') %}
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

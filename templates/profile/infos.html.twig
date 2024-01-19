@@ -6,11 +6,12 @@
     <div class="container py-8 px-10">
         <div class="flex flex-col lg:justify-center gap-8 lg:gap-16 lg:flex-row-reverse">
             <div>
-                <h1 class="text-5xl mb-6 text-center">Mon profil</h1>
-                <div class="bg-primary-500 lg:px-14 py-5 px-2 rounded-2xl border-primary-600 border-2 flex flex-col items-center lg:w-fit">
-                    <h4><span class="font-bold">{{ app.user.name }}</span> TP {{ app.user.group }}</h4>
-                    <span>{{ app.user.email }}</span>
-                </div>
+                <h1 class="text-5xl mb-6 text-center">Mes informations personnelles</h1>
+                {{ form_start(form) }}
+                {{ form_row(form.firstname) }}
+                {{ form_row(form.lastname) }}
+                {{ form_row(form.email) }}
+                {{ form_end(form) }}
             </div>
             <div>
                 {% include('components/sidebar.html.twig') %}
