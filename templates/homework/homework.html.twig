@@ -5,7 +5,7 @@
 
 {% block body %}
 <div class="m-4">
-    <h1 class="text-5xl mb-4">Ajout d'un nouveau rendu</h1>
+    <h1 class="text-5xl mb-4">{{ ajout ?  "Ajout d'un nouveau rendu" : 'Modification du rendu'}}</h1>
     <h2 class="font-semibold">Informations générales</h2>
     {{ form_start(form) }}
     {{ form_row(form.name, {icon: 'user-tick'}) }}
