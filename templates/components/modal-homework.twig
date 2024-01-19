@@ -63,6 +63,14 @@
     {% endfor %}
 </div>
 
+<div class="sticky w-full bottom-1 left-0">
+    {% include('components/button.html.twig') with {
+        text: 'Marquer comme rendu',
+        fullWidth: true,
+        size: "xl"
+    } %}
+</div>
+
 {% include('components/modal.html.twig') with {
     id: 'modal-comment'
 } %}

@@ -4,25 +4,7 @@
     <div class="container mx-auto py-8 px-4 lg:px-10">
         <div class="flex flex-col lg:flex-row-reverse lg:justify-between lg:gap-16">
             <div class="lg:w-2/3">
-                <nav class="lg:ml-20 bin/console cache:pool:prune">
-                    <ul class="flex flex-col lg:flex-row lg:space-x-4 lg:mb-4">
-                        <li class="mb-4 lg:mb-0">
-                            <a href="{{ path('app_aide') }}">Accueil</a>
-                        </li>
-                        <li class="mb-4 lg:mb-0">
-                            <a href="{{ path('app_help_login') }}">Connexion</a>
-                        </li>
-                        <li class="mb-4 lg:mb-0">
-                            <a href="{{ path('app_help_register') }}">Inscription</a>
-                        </li>
-                        <li class="mb-4 lg:mb-0">
-                            <a href="{{ path('app_help_disconnect') }}">Déconnexion</a>
-                        </li>
-                        <li class="mb-4 lg:mb-0">
-                            <a class="text-blue-500 hover:text-blue-700" href="{{ path('app_help_homework') }}">Tout sur les rendus</a>
-                        </li>
-                    </ul>
-                </nav>
+                {% include('components/helpNavbar.html.twig') %}
                 <main role="main" class="mt-10">
                     <div class="container p-4">
                         <h1 class="text-center text-5xl mb-6">Tout ce que vous pouvez faire sur les rendus</h1>

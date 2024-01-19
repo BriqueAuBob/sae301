@@ -19,9 +19,11 @@ class HomeworkController extends AbstractController
     #[Route('/homework/{homework}', name: 'app_homework', methods: ['GET', 'POST'])]
     public function index(Request $request, EntityManagerInterface $em, SluggerInterface $slugger, MailerInterface $mailer, Homework $homework = null): Response
     {
+        $ajout = false;
         // Créer une instance de Homework si elle n'est pas fournie en paramètre
         if (!$homework) {
             $homework = new Homework();
+            $ajout = true;
         }
 
         // Créer le formulaire en dehors de la condition
@@ -65,6 +67,7 @@ class HomeworkController extends AbstractController
 
         return $this->render('homework/homework.html.twig', [
             'form' => $form->createView(),
+            'ajout' => $ajout
         ]);
     }
 

@@ -6,7 +6,9 @@ module.exports = {
   ],
   safelist: [
       '-translate-y-1/2',
-      'cursor-pointer'
+      'cursor-pointer',
+      'sticky',
+      'bottom-1'
   ],
   theme: {
     extend: {
