@@ -15,6 +15,7 @@ Encore
     .addEntry('modal', './assets/js/modal.js')
     .addEntry('delete', './assets/js/delete.js')
     .addEntry('isRead', './assets/js/isRead.js')
+    .addEntry('card', './assets/js/card.js')
 
     .enableStimulusBridge('./assets/controllers.json')
 

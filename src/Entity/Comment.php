@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use App\Repository\CommentRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\DBAL\Types\Types;
 
 #[ORM\Entity(repositoryClass: CommentRepository::class)]
 class Comment
@@ -16,13 +17,13 @@ class Comment
     #[ORM\ManyToOne(targetEntity: User::class, inversedBy: 'comments')]
     private ?User $author = null;
 
-    #[ORM\Column]
+    #[ORM\Column(length: 255, nullable: false)]
     private ?string $content = null;
 
     #[ORM\ManyToOne(targetEntity: Homework::class, inversedBy: 'comments')]
     private ?Homework $homework = null;
 
-    #[ORM\Column]
+    #[ORM\Column(type: Types::DATETIME_MUTABLE)]
     private ?\DateTimeInterface $createdAt = null;
 
     public function getAuthor(): ?User

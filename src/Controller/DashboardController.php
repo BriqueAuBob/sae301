@@ -14,6 +14,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Security\Core\Authorization\AuthorizationCheckerInterface;
 use Symfony\Component\Security\Http\Attribute\IsGranted;
 
 class DashboardController extends AbstractController
@@ -26,26 +27,26 @@ class DashboardController extends AbstractController
     }
 
     #[Route('/admin', name: 'app_dashboard')]
-    public function index(): Response
+    public function index(AuthorizationCheckerInterface $checker): Response
     {
-        $tickets = $this->em->getRepository(Ticket::class)->findBy(['status' => 0]);
+        $currentUser = $this->getUser();
+
+        if ($checker->isGranted('ROLE_MOD') && !$checker->isGranted('ROLE_ADMIN') && !$checker->isGranted('ROLE_SUPER_ADMIN')) {
+            $group = $currentUser->getGroup();
+            $ticketRepo = $this->em->getRepository(Ticket::class);
+            $tickets = $ticketRepo->createQueryBuilder('t')
+                ->leftJoin('t.homework', 'h')
+                ->andWhere('h.group = :group')
+                ->andWhere('t.status = 0')
+                ->setParameter('group', $group)
+                ->getQuery()
+                ->getResult();
+        } else {
+            $tickets = $this->em->getRepository(Ticket::class)->findBy(['status' => 0], ['status' => 'ASC', 'id' => 'DESC']);
+        }
 
         return $this->render('admin/index.html.twig', [
-            'controller_name' => 'DashboardController',
             'tickets' => $tickets
-        ]);
-    }
-
-    /**
-     * Gestion des tickets
-     * @param Ticket $ticket
-     * @return Response
-     */
-    #[Route('/admin/ticket/{id}', name: 'app_dashboard_ticket')]
-    public function viewTicketsDashboard(Ticket $ticket): Response
-    {
-        return $this->render('admin/ticket.html.twig', [
-            'ticket' => $ticket
         ]);
     }
 
@@ -67,12 +68,18 @@ class DashboardController extends AbstractController
     public function viewUser(Request $request, int $id): Response
     {
         $user = $this->em->getRepository(User::class)->find($id);
+
+        if (!$user) {
+            $this->addFlash('danger', 'L\'utilisateur n\'existe pas !');
+            return $this->redirectToRoute('app_dashboard_users');
+        }
+
         $form = $this->createForm(AdminUserEditType::class, $user)->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
             $form->getData();
             $this->em->flush();
-            $this->addFlash('success', 'L\'utilisateur <b>' . $user->getName() . '</b> a bien été modifié !');
+            $this->addFlash('success', 'L\'utilisateur ' . $user->getName() . ' a bien été modifié !');
             return $this->redirectToRoute('app_dashboard_users');
         }
 
@@ -89,22 +96,8 @@ class DashboardController extends AbstractController
         $this->em->remove($user);
         $this->em->flush();
 
-        $this->addFlash('success', 'L\'utilisateur <b>' . $user->getName() . '</b> a bien été supprimé !');
+        $this->addFlash('success', 'L\'utilisateur ' . $user->getName() . ' a bien été supprimé !');
         return $this->redirectToRoute('app_dashboard_users');
-    }
-
-    /**
-     * Gestion des tickets
-     * @return Response
-     */
-    #[Route('/admin/tickets', name: 'app_dashboard_tickets')]
-    public function viewTickets(): Response
-    {
-        $tickets = $this->em->getRepository(Ticket::class)->findAll();
-
-        return $this->render('admin/tickets/index.html.twig', [
-            'tickets' => $tickets
-        ]);
     }
 
     /**
@@ -139,6 +132,11 @@ class DashboardController extends AbstractController
             $form->getData();
             $this->em->persist($course);
             $this->em->flush();
+            if ($id) {
+                $this->addFlash('success', 'Le département ' . $course->getName() . ' a bien été modifié !');
+            } else {
+                $this->addFlash('success', 'Le département ' . $course->getName() . ' a bien été ajouté !');
+            }
             return $this->redirectToRoute('app_dashboard_courses');
         }
 
@@ -156,7 +154,7 @@ class DashboardController extends AbstractController
         $this->em->remove($course);
         $this->em->flush();
 
-        $this->addFlash('success', 'Le département <b>' . $course->getName() . '</b> a bien été supprimée !');
+        $this->addFlash('success', 'Le département ' . $course->getName() . ' a bien été supprimé !');
         return $this->redirectToRoute('app_dashboard_courses');
     }
 
@@ -184,6 +182,11 @@ class DashboardController extends AbstractController
             $form->getData();
             $this->em->persist($subject);
             $this->em->flush();
+            if ($id) {
+                $this->addFlash('success', 'La matière ' . $subject->getName() . ' a bien été modifiée !');
+            } else {
+                $this->addFlash('success', 'La matière ' . $subject->getName() . ' a bien été ajoutée !');
+            }
             return $this->redirectToRoute('app_dashboard_course_form', ['id_course' => $subject->getCourse()->getId()]);
         }
 
@@ -200,7 +203,7 @@ class DashboardController extends AbstractController
         $this->em->remove($subject);
         $this->em->flush();
 
-        $this->addFlash('success', 'La matière <b>' . $subject->getName() . '</b> a bien été supprimée !');
+        $this->addFlash('success', 'La matière ' . $subject->getName() . ' a bien été supprimée !');
         return $this->redirectToRoute('app_dashboard_course_form', ['id' => $subject->getCourse()->getId()]);
     }
 }

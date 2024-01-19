@@ -35,7 +35,11 @@ class SubjectType extends AbstractType
         $builder
             ->add('name_code')
             ->add('name')
-            ->add('color', ColorType::class)
+            ->add('color', ColorType::class, [
+                'attr' => [
+                    'class' => 'w-full'
+                ]
+            ])
             ->add('course', EntityType::class, [
                 'class' => Course::class,
                 'choice_label' => 'name',

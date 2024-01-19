@@ -1,0 +1,16 @@
+<div class="flex justify-between mb-2">
+    <h3 class="font-semibold font-display text-xl">Commentaires</h3>
+    <div class="flex gap-2">
+        <button data-close-modal="modal-comment">
+            <img class="w-6 h-6" src="{{ asset('images/icons/close.svg') }}" alt="icone croix pour fermer">
+        </button>
+    </div>
+</div>
+{{ form_start(form) }}
+{{ form_widget(form) }}
+    {% include ('components/button.html.twig') with {text: 'Ajouter un commentaire', color: 'info',
+        props: {
+            'data-close-modal': 'modal-comment'
+        }
+    } %}
+{{ form_end(form) }}

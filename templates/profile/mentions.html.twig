@@ -3,48 +3,55 @@
 {% block title %}Mentions légales{% endblock %}
 
 {% block body %}
-    <div class="container p-4">
-        <h1 class="text-5xl mb-6">Mentions légales</h1>
-        <div class="mb-4">
-            <h6 class="text-2xl">Informations générales</h6>
-            <div class="indent-4 pt-2">
-                Ce site est la propriété de TaskIUT et a été développé pour l'IUT de Troyes et de l'Université de Reims Champagne-Ardenne.
-                <br>
-                Son siège social est situé au 9 rue de Québec, CS 90396, 10026 Troyes Cedex.
-                <br>
-                Le directeur de la publication du site est TaskIUT (IUT de Troyes, 9 rue de Québec, CS 90396, 10026 Troyes Cedex).
+    <div class="container py-8 px-10">
+        <div class="flex flex-col lg:justify-center gap-8 lg:gap-16 lg:flex-row-reverse">
+            <div>
+                <h1 class="text-5xl mb-6">Mentions légales</h1>
+                <div class="mb-4">
+                    <h6 class="text-2xl">Informations générales</h6>
+                    <div class="indent-4 pt-2">
+                        Ce site est la propriété de TaskIUT et a été développé pour l'IUT de Troyes et de l'Université de Reims Champagne-Ardenne.
+                        <br>
+                        Son siège social est situé au 9 rue de Québec, CS 90396, 10026 Troyes Cedex.
+                        <br>
+                        Le directeur de la publication du site est TaskIUT (IUT de Troyes, 9 rue de Québec, CS 90396, 10026 Troyes Cedex).
+                    </div>
+                </div>
+                <div class="mb-4">
+                    <h6 class="text-2xl">Hébergeur</h6>
+                    <div class="indent-4 pt-2">
+                        Ce site est hébergé par PulseHeberg. Il s'agit d'une SAS (Société par Actions Simplifiée), se trouvant au 9 boulevard de Strasbourg à Toulon (83000).
+                        <br>
+                        Il est joignable par téléphone au 04 22 14 13 60, et par mail à l'adresse contact@pulseheberg.com.
+                    </div>
+                </div>
+                <div class="mb-4">
+                    <h6 class="text-2xl">Traceurs et cookies</h6>
+                    <span class="text-xl mb-2">Cookies internes</span>
+                    <div class="indent-4 p-2">
+                        Ces cookies permettent à notre site de fonctionner de façon optimale. Vous pouvez vous y opposer ainsi que les supprimer en utilisant les paramètres de votre navigateur. Cependant votre expérience utilisateur risque d'être dégradée.
+                    </div>
+                    <span class="text-xl">Moyens d'opposition au dépôt des cookies via votre navigateur</span>
+                    <div class="indent-4 p-2">
+                        Vous pouvez à tout moment choisir de désactiver l’ensemble des cookies, même ceux nécessaires au fonctionnement du site.
+                        <br>
+                        Cependant, votre expérience utilisateur risque d’être dégradée. Si vous souhaitez désactiver uniquement les cookies non indispensables au fonctionnement du site, utilisez notre outil de gestion des cookies.
+                        <br><br>
+                        Voici les procédures pour bloquer toute création de cookies à partir des options de votre navigateur :
+                        <ul>
+                            <li><a href="https://support.mozilla.org/fr/kb/protection-renforcee-contre-pistage-firefox-ordinateur?redirectslug=activer-desactiver-cookies&redirectlocale=fr">Firefox</a></li>
+                            <li><a href="https://support.google.com/chrome/answer/95647?hl=fr">Chrome</a></li>
+                            <li><a href="https://support.google.com/chrome/answer/95647?hl=fr">Edge</a></li>
+                            <li><a href="https://support.apple.com/fr-fr/guide/safari/sfri11471/mac">Safari</a></li>
+                            <li><a href="https://help.opera.com/en/latest/web-preferences/#cookies">Opera</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <span class="text-lg italic">Date de dernière mise à jour : 16/01/2024</span>
+            </div>
+            <div>
+                {% include('components/sidebar.html.twig') %}
             </div>
         </div>
-        <div class="mb-4">
-            <h6 class="text-2xl">Hébergeur</h6>
-            <div class="indent-4 pt-2">
-                Ce site est hébergé par PulseHeberg. Il s'agit d'une SAS (Société par Actions Simplifiée), se trouvant au 9 boulevard de Strasbourg à Toulon (83000).
-                <br>
-                Il est joignable par téléphone au 04 22 14 13 60, et par mail à l'adresse contact@pulseheberg.com.
-            </div>
-        </div>
-        <div class="mb-4">
-            <h6 class="text-2xl">Traceurs et cookies</h6>
-            <span class="text-xl mb-2">Cookies internes</span>
-            <div class="indent-4 p-2">
-                Ces cookies permettent à notre site de fonctionner de façon optimale. Vous pouvez vous y opposer ainsi que les supprimer en utilisant les paramètres de votre navigateur. Cependant votre expérience utilisateur risque d'être dégradée.
-            </div>
-            <span class="text-xl">Moyens d'opposition au dépôt des cookies via votre navigateur</span>
-            <div class="indent-4 p-2">
-                Vous pouvez à tout moment choisir de désactiver l’ensemble des cookies, même ceux nécessaires au fonctionnement du site.
-                <br>
-                Cependant, votre expérience utilisateur risque d’être dégradée. Si vous souhaitez désactiver uniquement les cookies non indispensables au fonctionnement du site, utilisez notre outil de gestion des cookies.
-                <br><br>
-                Voici les procédures pour bloquer toute création de cookies à partir des options de votre navigateur :
-                <ul>
-                    <li><a href="https://support.mozilla.org/fr/kb/protection-renforcee-contre-pistage-firefox-ordinateur?redirectslug=activer-desactiver-cookies&redirectlocale=fr">Firefox</a></li>
-                    <li><a href="https://support.google.com/chrome/answer/95647?hl=fr">Chrome</a></li>
-                    <li><a href="https://support.google.com/chrome/answer/95647?hl=fr">Edge</a></li>
-                    <li><a href="https://support.apple.com/fr-fr/guide/safari/sfri11471/mac">Safari</a></li>
-                    <li><a href="https://help.opera.com/en/latest/web-preferences/#cookies">Opera</a></li>
-                </ul>
-            </div>
-        </div>
-        <span class="text-lg italic">Date de dernière mise à jour : 16/01/2024</span>
     </div>
 {% endblock %}

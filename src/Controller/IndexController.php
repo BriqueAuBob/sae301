@@ -20,7 +20,11 @@ class IndexController extends AbstractController
     #[Route('/', name: 'app_index')]
     public function index(): Response
     {
-        $homeworks = $this->em->getRepository(Homework::class)->findAll();
+        $group = $this->getUser()->getGroup();
+        $year = $this->getUser()->getYear();
+        dump($group, $year);
+        $homeworks = $this->em->getRepository(Homework::class)->findbyGroupAndYear($group, $year);
+
 
         return $this->render('index/index.html.twig', [
             'homeworks' => $homeworks,
