@@ -1,45 +1,41 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Aide{% endblock %}
-
 {% block body %}
-
-    <div class="container py-8 px-10">
-        <div class="flex flex-col lg:justify-center gap-8 lg:gap-16 lg:flex-row-reverse">
-            <div>
-                <nav class="ml-20">
-                    <ul class="flex space-x-4">
-                        <li class="text-blue-500 hover:text-blue-700">
-                            <a href="{{ path('app_aide') }}">Accueil</a>
-                        <li>
+    <div class="container mx-auto py-8 px-4 lg:px-10">
+        <div class="flex flex-col lg:flex-row-reverse lg:justify-between lg:gap-16">
+            <div class="lg:w-2/3">
+                <nav class="lg:ml-20 bin/console cache:pool:prune">
+                    <ul class="flex flex-col lg:flex-row lg:space-x-4 lg:mb-4">
+                        <li class="mb-4 lg:mb-0">
+                            <a class="text-blue-500 hover:text-blue-700" href="{{ path('app_aide') }}">Accueil</a>
+                        </li>
+                        <li class="mb-4 lg:mb-0">
                             <a href="{{ path('app_help_login') }}">Connexion</a>
                         </li>
-                        <li>
-                            <a href="{{ path('app_help_register') }}"> Inscription </a>
+                        <li class="mb-4 lg:mb-0">
+                            <a href="{{ path('app_help_register') }}">Inscription</a>
                         </li>
-                        <li>
+                        <li class="mb-4 lg:mb-0">
                             <a href="{{ path('app_help_disconnect') }}">Déconnexion</a>
                         </li>
-                        <li>
+                        <li class="mb-4 lg:mb-0">
                             <a href="{{ path('app_help_homework') }}">Tout sur les rendus</a>
                         </li>
                     </ul>
                 </nav>
-                <main role="main" class="col-md-10 col-lg-10 ml-md-auto px-4">
+                <main role="main" class="mt-10">
                     <div class="container p-4">
-                        <h1 class="text-center text-5xl mb-6 my-10">Aide</h1>
+                        <h1 class="text-center text-5xl mb-6">Aide</h1>
 
                         <div class="mb-4">
-                            <div class="text-center indent-4 pt-2">
+                            <div class="text-center lg:text-left">
                                 <p>Bienvenue sur la page d'aide dédiée à l'application IUTask.</p>
                                 <br>
-                                <p>Vous trouverez ici toutes les informations nécessaires pour utiliser cette application. En passant par la connexion ainsi que la déconnexion, puis les rendus. Vous trouverez
-                                toutes les informations dans la bar de navigation.</p>
-
+                                <p>Vous trouverez ici toutes les informations nécessaires pour utiliser cette application. En passant par la connexion ainsi que la déconnexion, puis les rendus. Vous trouverez toutes les informations dans la bar de navigation.</p>
                             </div>
                         </div>
 
-                        <span class="text-lg italic">Date de dernière mise à jour : 18/01/2024</span>
+                        <span class="text-lg italic block">Date de dernière mise à jour : 18/01/2024</span>
                     </div>
                 </main>
             </div>
@@ -48,5 +44,4 @@
             </div>
         </div>
     </div>
-
 {% endblock %}
