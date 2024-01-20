@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Check;
 use App\Entity\Homework;
+use App\Service\DuplicateVerifService;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -107,7 +108,7 @@ class HomeworkController extends AbstractController
     }
 
     #[Route('/doublon/{id_homework}/{id_doublon}', name: 'app_homework-doublon', methods: 'GET')]
-    public function doublon(Request $request, EntityManagerInterface $entityManager): Response {
+    public function doublon(Request $request, EntityManagerInterface $entityManager, DuplicateVerifService $duplicateVerifService): Response {
         // récupérer les deux devoirs
         $homework = $entityManager->getRepository(Homework::class)->findBy(['id' => $request->attributes->get('id_homework')]);
         $doublon = $entityManager->getRepository(Homework::class)->findBy(['id' => $request->attributes->get('id_doublon')]);

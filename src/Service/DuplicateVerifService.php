@@ -97,14 +97,22 @@ class DuplicateVerifService
     {
         $duplicates = $this->checkDuplicates();
 
+//        Si l'utilisateur n'est pas connecté, on ne fait rien
+
         if (!empty($duplicates)) {
             $url = '/doublon/' . $duplicates[0][1] . '/' . $duplicates[0][0];
-
             // Vérifier si l'URL de destination est différente de l'URL actuelle
             if ($this->getCurrentUrl() !== $url) {
-                $response = new RedirectResponse($url);
-                $response->send();
-                exit;
+                if ($this->getCurrentUrl() === '/doublon/' . $duplicates[0][1] . '/' . $duplicates[0][0]. '?cancel=1'){
+                    $this->cancel($duplicates[0][0]);
+                }elseif ($this->getCurrentUrl() === '/doublon/' . $duplicates[0][1] . '/' . $duplicates[0][0]. '?create=1'){
+                    $this->createAnyways($duplicates[0][0]);
+                }else{
+                    // Rediriger vers l'URL de destination
+                    $response = new RedirectResponse($url);
+                    $response->send();
+                    exit;
+                }
             }
         }
     }
@@ -115,6 +123,9 @@ class DuplicateVerifService
         $homework->setIsVerified(true);
         $this->entityManager->persist($homework);
         $this->entityManager->flush();
+        $response = new RedirectResponse('/');
+        $response->send();
+        exit;
     }
 
     public function cancel($id):void
@@ -122,6 +133,9 @@ class DuplicateVerifService
         $homework = $this->entityManager->getRepository(Homework::class)->find($id);
         $this->entityManager->remove($homework);
         $this->entityManager->flush();
+        $response = new RedirectResponse('/');
+        $response->send();
+        exit;
     }
 
     private function getCurrentUrl(): string

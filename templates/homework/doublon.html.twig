@@ -19,8 +19,12 @@
                 {% include('components/card-homework.html.twig') with { homework: doublon[0] } %}
             </div>
             <div class="flex justify-center w-full">
-                {% include('components/button.html.twig') with { text: 'Créer quand même', iconLeft: 'add-circle', size: "xl", rounded: true, fullWidth: true } %}
-                {% include ('components/button.html.twig') with {text: 'Annuler', type: 'secondary', color: 'info', fullWidth: true} %}
+                <a href="{{ path('app_homework-doublon', {'id_homework': homework[0].id, 'id_doublon': doublon[0].id, 'create': true}) }}">
+                    {% include('components/button.html.twig') with { text: 'Créer quand même', iconLeft: 'add-circle', size: "xl", rounded: true, fullWidth: true } %}
+                </a>
+                <a href="{{ path('app_homework-doublon', {'id_homework': homework[0].id, 'id_doublon': doublon[0].id, 'cancel': true}) }}">
+                    {% include ('components/button.html.twig') with {text: 'Annuler', type: 'secondary', color: 'info', fullWidth: true} %}
+                </a>
 
             </div>
         </div>
