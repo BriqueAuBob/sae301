@@ -1,7 +1,7 @@
 {% extends 'base.html.twig' %}
 
 
-{% block title %}Hello HomeworkController!{% endblock %}
+{% block title %}{{ ajout ?  "Ajout d'un nouveau rendu" : 'Modification du rendu'}}{% endblock %}
 
 {% block body %}
 <div class="m-4">
