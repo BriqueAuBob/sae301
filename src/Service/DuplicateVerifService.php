@@ -109,6 +109,21 @@ class DuplicateVerifService
         }
     }
 
+    public function createAnyways($id):void
+    {
+        $homework = $this->entityManager->getRepository(Homework::class)->find($id);
+        $homework->setIsVerified(true);
+        $this->entityManager->persist($homework);
+        $this->entityManager->flush();
+    }
+
+    public function cancel($id):void
+    {
+        $homework = $this->entityManager->getRepository(Homework::class)->find($id);
+        $this->entityManager->remove($homework);
+        $this->entityManager->flush();
+    }
+
     private function getCurrentUrl(): string
     {
         $currentUrl = $_SERVER['REQUEST_URI'];
