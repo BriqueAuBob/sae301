@@ -64,11 +64,13 @@
 </div>
 
 <div class="sticky w-full bottom-1 left-0">
-    {% include('components/button.html.twig') with {
-        text: 'Marquer comme rendu',
-        fullWidth: true,
-        size: "xl"
-    } %}
+    {{ form_start(form) }}
+        {% include('components/button.html.twig') with {
+            text: 'Marquer comme rendu',
+            fullWidth: true,
+            size: "xl"
+        } %}
+    {{ form_end(form) }}
 </div>
 
 {% include('components/modal.html.twig') with {

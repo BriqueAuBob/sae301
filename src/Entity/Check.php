@@ -17,11 +17,11 @@ class Check
 
     #[ORM\ManyToOne(inversedBy: 'checks')]
     #[ORM\JoinColumn(nullable: false)]
-    private ?User $user_id = null;
+    private ?User $user = null;
 
     #[ORM\ManyToOne(inversedBy: 'checks')]
     #[ORM\JoinColumn(nullable: false)]
-    private ?Homework $homework_id = null;
+    private ?Homework $homework = null;
 
     #[ORM\Column(type: Types::DATETIME_MUTABLE)]
     private ?\DateTimeInterface $created_at = null;
@@ -31,36 +31,36 @@ class Check
         return $this->id;
     }
 
-    public function getUserId(): ?User
+    public function getUser(): ?User
     {
-        return $this->user_id;
+        return $this->user;
     }
 
-    public function setUserId(?User $che_usr_id): static
+    public function setUser(?User $che_usr_id): static
     {
-        $this->user_id = $che_usr_id;
+        $this->user = $che_usr_id;
 
         return $this;
     }
 
     public function getHomework(): ?Homework
     {
-        return $this->homework_id;
+        return $this->homework;
     }
 
-    public function setCheHwId(?Homework $che_hw_id): static
+    public function setHomework(?Homework $che_hw_id): static
     {
-        $this->homework_id = $che_hw_id;
+        $this->homework = $che_hw_id;
 
         return $this;
     }
 
-    public function getHwDatetimeCreate(): ?\DateTimeInterface
+    public function getCreatedAt(): ?\DateTimeInterface
     {
         return $this->created_at;
     }
 
-    public function setHwDatetimeCreate(\DateTimeInterface $hw_datetime_create): static
+    public function setCreatedAt(\DateTimeInterface $hw_datetime_create): static
     {
         $this->created_at = $hw_datetime_create;
 
