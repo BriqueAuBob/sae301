@@ -69,6 +69,7 @@ class Homework
     {
         $this->checks = new ArrayCollection();
         $this->comments = new ArrayCollection();
+        $this->isVerified = false;
     }
 
     public function getId(): ?int
