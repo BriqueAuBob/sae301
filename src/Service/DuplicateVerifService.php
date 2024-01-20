@@ -4,19 +4,21 @@ namespace App\Service;
 
 use AllowDynamicProperties;
 use App\Entity\Homework;
-use App\Entity\User;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\RedirectResponse;
+use Symfony\Component\Security\Core\Authorization\AuthorizationCheckerInterface;
 
 
 #[AllowDynamicProperties]
 class DuplicateVerifService
 {
     private EntityManagerInterface $entityManager;
+    private AuthorizationCheckerInterface $authorizationChecker;
 
-    public function __construct(EntityManagerInterface $entityManager)
+    public function __construct(EntityManagerInterface $entityManager, AuthorizationCheckerInterface $authorizationChecker)
     {
         $this->entityManager = $entityManager;
+        $this->authorizationChecker = $authorizationChecker;
     }
 
     public function getAllHomeworks(): array
@@ -95,26 +97,29 @@ class DuplicateVerifService
 
     public function execute(): void
     {
-        $duplicates = $this->checkDuplicates();
+        if (!$this->authorizationChecker->isGranted('IS_AUTHENTICATED_FULLY')) {
+            return;
+        }else{
+            $duplicates = $this->checkDuplicates();
 
-//        Si l'utilisateur n'est pas connecté, on ne fait rien
-
-        if (!empty($duplicates)) {
-            $url = '/doublon/' . $duplicates[0][1] . '/' . $duplicates[0][0];
-            // Vérifier si l'URL de destination est différente de l'URL actuelle
-            if ($this->getCurrentUrl() !== $url) {
-                if ($this->getCurrentUrl() === '/doublon/' . $duplicates[0][1] . '/' . $duplicates[0][0]. '?cancel=1'){
-                    $this->cancel($duplicates[0][0]);
-                }elseif ($this->getCurrentUrl() === '/doublon/' . $duplicates[0][1] . '/' . $duplicates[0][0]. '?create=1'){
-                    $this->createAnyways($duplicates[0][0]);
-                }else{
-                    // Rediriger vers l'URL de destination
-                    $response = new RedirectResponse($url);
-                    $response->send();
-                    exit;
+            if (!empty($duplicates)) {
+                $url = '/doublon/' . $duplicates[0][1] . '/' . $duplicates[0][0];
+                // Vérifier si l'URL de destination est différente de l'URL actuelle
+                if ($this->getCurrentUrl() !== $url) {
+                    if ($this->getCurrentUrl() === '/doublon/' . $duplicates[0][1] . '/' . $duplicates[0][0]. '?cancel=1'){
+                        $this->cancel($duplicates[0][0]);
+                    }elseif ($this->getCurrentUrl() === '/doublon/' . $duplicates[0][1] . '/' . $duplicates[0][0]. '?create=1'){
+                        $this->createAnyways($duplicates[0][0]);
+                    }else{
+                        // Rediriger vers l'URL de destination
+                        $response = new RedirectResponse($url);
+                        $response->send();
+                        exit;
+                    }
                 }
             }
         }
+
     }
 
     public function createAnyways($id):void
