@@ -38,5 +38,16 @@ services:
         tags:
             - { name: twig.extension }
 
+    App\Event\DuplicateListener:
+        arguments:
+            $duplicateVerifService: '@App\Service\DuplicateVerifService'
+        tags:
+            - { name: kernel.event_subscriber }
+
+    App\Service\DuplicateVerifService:
+        arguments:
+            $entityManager: '@doctrine.orm.entity_manager'
+
+
     # add more service definitions when explicit configuration is needed
     # please note that last definitions always *replace* previous ones
