@@ -2,27 +2,28 @@
 
 namespace App\Service;
 
+use AllowDynamicProperties;
 use App\Entity\Homework;
+use App\Entity\User;
 use Doctrine\ORM\EntityManagerInterface;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 
-class duplicateVerifService
+
+#[AllowDynamicProperties]
+class DuplicateVerifService
 {
-    private $entityManager;
+    private EntityManagerInterface $entityManager;
 
-    // Constructeur
     public function __construct(EntityManagerInterface $entityManager)
     {
         $this->entityManager = $entityManager;
     }
 
-    // Récupération de tous les devoirs
     public function getAllHomeworks(): array
     {
         return $this->entityManager->getRepository(Homework::class)->findAll();
     }
 
-    // Récupération des devoirs qui ne sont pas vérifiés (isVerified = false) ou (isVerified = null)
-    // Récupération des devoirs qui ne sont pas vérifiés (isVerified = false) ou (isVerified = null)
     public function getUncheckedHomeworks(): array
     {
         $queryBuilder = $this->entityManager->createQueryBuilder();
@@ -37,13 +38,9 @@ class duplicateVerifService
         return $queryBuilder->getQuery()->getResult();
     }
 
-
-
-    // Ajouter les non en isVerified = true dans la BDD
     public function addIsVerifiedTrue(array $noDuplicates): void
     {
         foreach ($noDuplicates as $noDuplicate) {
-            // Utilisez find() au lieu de findBy() pour obtenir un seul résultat
             $homework = $this->entityManager->getRepository(Homework::class)->find($noDuplicate);
 
             if ($homework instanceof Homework) {
@@ -52,55 +49,71 @@ class duplicateVerifService
             }
         }
 
-        // Flush une seule fois après la boucle
         $this->entityManager->flush();
     }
 
-    // Vérification des doublons
-    public function checkDuplicates() : array
+    public function checkDuplicates(): array
     {
         $homeworks = $this->getAllHomeworks();
         $uncheckedHomeworks = $this->getUncheckedHomeworks();
-        //Tableau des doublons
         $duplicates = [];
-        //Tableau des non doublons
         $noDuplicates = [];
         $checkedPairs = [];
+
         foreach ($uncheckedHomeworks as $uhw) {
             $idUncheck = $uhw->getId();
             $foundDuplicate = false;
+
             foreach ($homeworks as $hw) {
                 $idCheck = $hw->getId();
-                // Vérifier si la paire a déjà été traitée
+
                 if (in_array([$idUncheck, $idCheck], $checkedPairs) || in_array([$idCheck, $idUncheck], $checkedPairs)) {
-                    continue; // Passer à la prochaine itération
+                    continue;
                 }
+
                 if ($idCheck !== $idUncheck) {
                     if ($uhw->getName() === $hw->getName()) {
                         array_push($duplicates, [$idUncheck, $idCheck]);
                         $foundDuplicate = true;
-                        // Ne pas ajouter au tableau des non-doublons ici
                     }
                 }
-                // Ajouter la paire aux paires déjà vérifiées
+
                 $checkedPairs[] = [$idUncheck, $idCheck];
             }
-            // Ajouter au tableau des non-doublons si aucun doublon n'est trouvé
+
             if (!$foundDuplicate) {
                 $noDuplicates[] = $idUncheck;
             }
         }
 
-        // On ajoute les non doublons au tableau des non doublons
-        $this->addIsVerifiedTrue($noDuplicates);
-
+        if (!empty($noDuplicates)) {
+            $this->addIsVerifiedTrue($noDuplicates);
+        }
 
         return $duplicates;
     }
 
-    // Fonction qui va permettre de tout exécuter en une seule commande
     public function execute(): void
     {
-        $this->checkDuplicates();
+        $duplicates = $this->checkDuplicates();
+
+        if (!empty($duplicates)) {
+            $url = '/doublon/' . $duplicates[0][1] . '/' . $duplicates[0][0];
+
+            // Vérifier si l'URL de destination est différente de l'URL actuelle
+            if ($this->getCurrentUrl() !== $url) {
+                $response = new RedirectResponse($url);
+                $response->send();
+                exit;
+            }
+        }
     }
+
+    private function getCurrentUrl(): string
+    {
+        $currentUrl = $_SERVER['REQUEST_URI'];
+        return $currentUrl;
+    }
+
+
 }

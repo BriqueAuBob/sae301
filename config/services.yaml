@@ -40,9 +40,13 @@ services:
 
     App\Event\DuplicateListener:
         arguments:
-            $duplicateVerifService: '@App\Service\duplicateVerifService'
+            $duplicateVerifService: '@App\Service\DuplicateVerifService'
         tags:
             - { name: kernel.event_subscriber }
+
+    App\Service\DuplicateVerifService:
+        arguments:
+            $entityManager: '@doctrine.orm.entity_manager'
 
 
     # add more service definitions when explicit configuration is needed
