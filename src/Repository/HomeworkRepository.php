@@ -47,6 +47,12 @@ class HomeworkRepository extends ServiceEntityRepository
             ->setParameter('group', $user->getGroup())
             ->andWhere('h.year = :year')
             ->setParameter('year', $user->getYear())
+            ->innerJoin('h.subject', 's')
+            ->andWhere('s.course = :course')
+            ->setParameter('course', $user->getCourse())
+            ->leftJoin('h.checks', 'c', 'WITH', 'h.id = c.homework AND c.user = :userId')
+            ->andWhere('c.id IS NULL')
+            ->setParameter('userId', $user->getId())
             ->getQuery()
             ->getResult();
     }

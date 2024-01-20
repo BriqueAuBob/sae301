@@ -50,7 +50,7 @@ class Homework
     #[ORM\Column(type: Types::DATETIME_MUTABLE)]
     private ?\DateTimeInterface $updated_at = null;
 
-    #[ORM\OneToMany(mappedBy: 'homework_id', targetEntity: Check::class, orphanRemoval: true)]
+    #[ORM\OneToMany(mappedBy: 'homework', targetEntity: Check::class, orphanRemoval: true)]
     private Collection $checks;
 
     #[ORM\OneToMany(mappedBy: 'homework', targetEntity: Comment::class, orphanRemoval: true)]

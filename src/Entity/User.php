@@ -50,6 +50,9 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\OneToMany(mappedBy: 'user', targetEntity: Notification::class)]
     private Collection $notifications;
 
+    #[ORM\OneToMany(mappedBy: 'user', targetEntity: Check::class)]
+    private Collection $checks;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -205,8 +208,15 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this->notifications;
     }
 
-    /**
-     * @return Collection
-     */
+    public function setChecks(Collection $checks): static
+    {
+        $this->checks = $checks;
 
+        return $this;
+    }
+
+    public function getChecks(): Collection
+    {
+        return $this->checks;
+    }
 }

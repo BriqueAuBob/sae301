@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Check;
 use App\Entity\Homework;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -80,10 +81,29 @@ class HomeworkController extends AbstractController
 
     #[Route('/homework/{homework}/view', name: 'app_homework-view', methods: 'GET')]
     public function view(Request $request, Homework $homework): Response {
+        // mark homework as done form
+        $form = $this->createFormBuilder()
+            ->setAction($this->generateUrl('app_homework-finish', ['homework' => $homework->getId()]))
+            ->setMethod('POST')
+            ->getForm();
+
         return $this->render('homework/view.html.twig', [
             'homework' => $homework,
+            'form' => $form->createView(),
         ]);
 
+    }
+
+    #[Route('/homework/{homework}/finish', name: 'app_homework-finish', methods: 'POST')]
+    public function finish(Request $request, EntityManagerInterface $em, Homework $homework): Response {
+        $check = new Check();
+        $check->setHomework($homework);
+        $check->setUser($this->getUser());
+        $check->setCreatedAt(new \DateTime('now'));
+
+        $em->persist($check);
+        $em->flush();
+        return $this->redirectToRoute('app_index');
     }
 
     #[Route('/doublon/{id_homework}/{id_doublon}', name: 'app_homework-doublon', methods: 'GET')]
