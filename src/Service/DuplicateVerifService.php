@@ -7,6 +7,7 @@ use App\Entity\Homework;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\Security\Core\Authorization\AuthorizationCheckerInterface;
+use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
 
 
 #[AllowDynamicProperties]
@@ -14,11 +15,13 @@ class DuplicateVerifService
 {
     private EntityManagerInterface $entityManager;
     private AuthorizationCheckerInterface $authorizationChecker;
+    private TokenStorageInterface $tokenStorage;
 
-    public function __construct(EntityManagerInterface $entityManager, AuthorizationCheckerInterface $authorizationChecker)
+    public function __construct(EntityManagerInterface $entityManager, AuthorizationCheckerInterface $authorizationChecker, TokenStorageInterface $tokenStorage)
     {
         $this->entityManager = $entityManager;
         $this->authorizationChecker = $authorizationChecker;
+        $this->tokenStorage = $tokenStorage;
     }
 
     public function getAllHomeworks(): array
@@ -97,24 +100,35 @@ class DuplicateVerifService
 
     public function execute(): void
     {
+        $token = $this->tokenStorage->getToken();
         if (!$this->authorizationChecker->isGranted('IS_AUTHENTICATED_FULLY')) {
             return;
         }else{
+            // Récupérer l'id de l'utilisateur connecté
+            $user = $token->getUser();
+            $id = $user->getId();
+
             $duplicates = $this->checkDuplicates();
 
             if (!empty($duplicates)) {
-                $url = '/doublon/' . $duplicates[0][1] . '/' . $duplicates[0][0];
-                // Vérifier si l'URL de destination est différente de l'URL actuelle
-                if ($this->getCurrentUrl() !== $url) {
-                    if ($this->getCurrentUrl() === '/doublon/' . $duplicates[0][1] . '/' . $duplicates[0][0]. '?cancel=1'){
-                        $this->cancel($duplicates[0][0]);
-                    }elseif ($this->getCurrentUrl() === '/doublon/' . $duplicates[0][1] . '/' . $duplicates[0][0]. '?create=1'){
-                        $this->createAnyways($duplicates[0][0]);
-                    }else{
-                        // Rediriger vers l'URL de destination
-                        $response = new RedirectResponse($url);
-                        $response->send();
-                        exit;
+                // Vérifier si l'utilisateur connecté est l'auteur des devoirs en doublon
+                $auteur = $this->entityManager->getRepository(Homework::class)->find($duplicates[0][0])->getAuthor()->getId();
+                if ($auteur !== $id) {
+                    return;
+                }else{
+                    $url = '/doublon/' . $duplicates[0][1] . '/' . $duplicates[0][0];
+                    // Vérifier si l'URL de destination est différente de l'URL actuelle
+                    if ($this->getCurrentUrl() !== $url) {
+                        if ($this->getCurrentUrl() === '/doublon/' . $duplicates[0][1] . '/' . $duplicates[0][0]. '?cancel=1'){
+                            $this->cancel($duplicates[0][0]);
+                        }elseif ($this->getCurrentUrl() === '/doublon/' . $duplicates[0][1] . '/' . $duplicates[0][0]. '?create=1'){
+                            $this->createAnyways($duplicates[0][0]);
+                        }else{
+                            // Rediriger vers l'URL de destination
+                            $response = new RedirectResponse($url);
+                            $response->send();
+                            exit;
+                        }
                     }
                 }
             }
