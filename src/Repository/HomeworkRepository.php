@@ -53,6 +53,7 @@ class HomeworkRepository extends ServiceEntityRepository
             ->leftJoin('h.checks', 'c', 'WITH', 'h.id = c.homework AND c.user = :userId')
             ->andWhere('c.id IS NULL')
             ->setParameter('userId', $user->getId())
+            ->andWhere('h.isVerified = true')
             ->getQuery()
             ->getResult();
     }
