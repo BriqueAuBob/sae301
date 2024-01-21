@@ -11,6 +11,9 @@
         {% endblock %}
     </head>
     <body class="min-h-screen pb-32">
+        <img class="fixed -z-10 " src="{{ asset('images/wallpaper/ellipseRed.png') }}" alt="ellipse rouge">
+        <img class="fixed -z-10 bottom-1/2 left-1/4 " src="{{ asset('images/wallpaper/ellipseOrange.png') }}" alt="ellipse orange">
+        <img class="fixed -z-10 -bottom-1/4 right-0" src="{{ asset('images/wallpaper/ellipseGreen.png') }}" alt="ellipse verte">
     {% if app.user %}
         {% include('components/navbar.html.twig') %}
     {% endif %}
