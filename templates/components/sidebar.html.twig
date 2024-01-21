@@ -9,7 +9,7 @@
         <li class="px-4 py-3 border-b border-gray-200 w-full"><a href="{{ path('app_accessibilite') }}">Accessibilité</a></li>
         <li class="px-4 py-3 w-full rounded-b-lg"><a href="{{ path('app_aide') }}">Aide</a></li>
     </ul>
-    <div class="mt-6 flex flex-col gap-2">
+    <div class="mt-6 flex gap-2">
         <a href="{{ path('app_logout') }}">{% include('components/button.html.twig') with { text: "Déconnexion", color: "danger" } %}</a>
         {% if is_granted('ROLE_ADMIN')  %}
         <a href="{{ path('app_dashboard') }}" target="_blank">{% include('components/button.html.twig') with { text: "Administration", color: "warning" } %}</a>
