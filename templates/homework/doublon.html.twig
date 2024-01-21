@@ -1,22 +1,22 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello HomeworkController!{% endblock %}
+{% block title %}Rendu(s) similaire(s){% endblock %}
 
 {% block body %}
     <div id="doublon" class="flex flex-col justify-center items-center">
         <div>
-            <h2 class="text-4xl mb-4">Rendus similaires</h2>
-            <p class="text-2xl">
+            <h2 class=" font-semibold text-xl mb-4">Rendu(s) similaire(s)</h2>
+            <p>
                 Nous avons trouvé
                 {% if homework is defined and homework|length > 0 %}
-                <span class="text-3xl text-orange-400">{{ homework|length }} rendus similaires</span>
+                <span class="font-semibold text-orange-400">{{ homework|length }} rendu(s) similaire(s)</span>
             {% else %}
-                <span class="text-3xl text-orange-400">0 rendu similaire</span>
+                <span class="font-semibold text-orange-400">0 rendu similaire</span>
                 {% endif %},
                 vérifie que tu ne publies pas un doublon !
             </p>
-            <div class="my-24">
-                <h3 class="text-1xl text-left my-2">Carte existante :</h3>
+            <div class="my-4">
+                <h3 class="text-1xl text-left my-2">Rendu(s) existant(s) :</h3>
                 {% if homework is defined and homework|length > 0 %}
                     <button type="button" id="card-homework-{{ homework[0].id }}" class="text-left w-full" data-toggle="modal" data-modal-id="modal-homework" data-content-url="{{ path('app_homework-view', {
                         homework: homework[0].id,
@@ -26,7 +26,7 @@
                 {% else %}
                     <p>Aucune carte existante disponible.</p>
                 {% endif %}
-                <h3 class="text-1xl text-left my-2">Votre carte :</h3>
+                <h3 class="text-1xl text-left my-2">Votre rendu:</h3>
                 {% if doublon is defined and doublon|length > 0 %}
                     {% include('components/card-homework.html.twig') with { homework: doublon[0] } %}
                 {% else %}
@@ -35,12 +35,14 @@
             </div>
             <div class="flex justify-center w-full">
                 {% if homework is defined and doublon is defined and homework|length > 0 and doublon|length > 0 %}
-                    <a href="{{ path('app_homework-doublon', {'id_homework': homework[0].id, 'id_doublon': doublon[0].id, 'create': true}) }}">
-                        {% include('components/button.html.twig') with { text: 'Créer quand même', iconLeft: 'add-circle', size: "xl", rounded: true, fullWidth: true } %}
-                    </a>
-                    <a href="{{ path('app_homework-doublon', {'id_homework': homework[0].id, 'id_doublon': doublon[0].id, 'cancel': true}) }}">
-                        {% include ('components/button.html.twig') with {text: 'Annuler', type: 'secondary', color: 'info', fullWidth: true} %}
-                    </a>
+                    <div class="flex items-center p-1 border border-primary-400 rounded-3xl">
+                        <a href="{{ path('app_homework-doublon', {'id_homework': homework[0].id, 'id_doublon': doublon[0].id, 'cancel': true}) }}">
+                            {% include ('components/button.html.twig') with {text: 'Annuler', type: 'tertiary', color: 'light', fullWidth: true} %}
+                        </a>
+                        <a href="{{ path('app_homework-doublon', {'id_homework': homework[0].id, 'id_doublon': doublon[0].id, 'create': true}) }}">
+                            {% include('components/button.html.twig') with { text: 'Créer', iconLeft: 'add-circle', rounded: true, fullWidth: true } %}
+                        </a>
+                    </div>
                 {% else %}
                     <p>Impossible de créer ou d'annuler, les données nécessaires sont manquantes.</p>
                 {% endif %}

@@ -35,9 +35,23 @@ class Ticket
         return $this->homework;
     }
 
+    public function setHomework(Homework $homework): static
+    {
+        $this->homework = $homework;
+
+        return $this;
+    }
+
     public function getAuthor(): ?User
     {
         return $this->author;
+    }
+
+    public function setAuthor(User $author): static
+    {
+        $this->author = $author;
+
+        return $this;
     }
 
     public function isClose(): ?bool
