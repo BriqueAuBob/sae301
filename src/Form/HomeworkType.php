@@ -24,20 +24,36 @@ class HomeworkType extends AbstractType
 //            ->add('year')
 //            ->add('group')
             ->add('name', TextType::class, [
-                'label' => 'Titre du rendu (requis)'
+                'label' => 'Titre du rendu (requis)',
+                'attr' => [
+                    'placeholder' => 'Ex: SAE 301...',
+                ],
+                'required' => true,
             ])
             ->add('description', TextType::class, [
-                'label' => 'Description',
+                'label' => 'Description (optionnel)',
+                'attr' => [
+                    'placeholder' => 'Ex: Rendu de la matière SAE 301...',
+                ],
                 'required' => false,
             ])
             ->add('teacher', TextType::class, [
-                'label' => 'Enseignant (requis)'
+                'label' => 'Enseignant (requis)',
+                'attr' => [
+                    'placeholder' => 'Ex: M. Dupont',
+                ],
+                'required' => true,
             ])
             ->add('platform', TextType::class, [
-                'label' => 'Où déposer ? (requis)'
+                'label' => 'Où déposer ? (requis)',
+                'attr' => [
+                    'placeholder' => 'Ex: Moodle, Teams, Discord...',
+                ],
+                'required' => true,
             ])
             ->add('picture', FileType::class, [
                 'mapped' => false,
+                'label' => 'Image (optionnel)',
                 'required' => false,
                 'constraints' =>  [
                     new File([
@@ -49,7 +65,6 @@ class HomeworkType extends AbstractType
                             'image/gif',
                         ],
                         'mimeTypesMessage' => 'Please upload a valid image',
-                        'maxSizeMessage' => 'Le fichier est trop volumineux. La taille maximale autorisée est 1024k.',
                     ])
                 ]
             ])
@@ -60,6 +75,7 @@ class HomeworkType extends AbstractType
 //            ->add('created_at')
             ->add('subject', EntityType::class, [
                 'class' => Subject::class,
+                'label' => 'Matière (requis)',
                 'choice_label' => 'name',
             ])
         ;

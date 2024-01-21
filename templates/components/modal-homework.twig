@@ -59,7 +59,7 @@
                         <span class="font-light font-sans text-sm text-text-400 ">{{ comment.createdAt|format_datetime('relative_short') }}</span>
                     </div>
                     <div class="flex gap-2">
-                        {% if app.user == homework.author %}
+                        {% if app.user == comment.author %}
                         <img class="w-4 h-4" src="{{ asset('images/icons/edit.svg') }}" alt="icone crayon pour modifier">
                         <img class="w-4 h-4" src="{{ asset('images/icons/trash.svg') }}" alt="icone poubelle pour supprimer">
                         {% endif %}
