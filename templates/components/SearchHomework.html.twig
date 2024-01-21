@@ -6,19 +6,25 @@
         {% endif %}
         <input data-model="debounce(300)|query" id="search" class="w-full py-2 focus:outline-none" type="text" placeholder="{{ placeholder }}">
     </div>
-    <div class="grid lg:grid-cols-4 gap-4">
-        {% for hw in this.homeworks %}
-            <button type="button" id="card-homework-{{ hw.id }}" class="text-left" data-toggle="modal" data-modal-id="modal-homework" data-content-url="{{ path('app_homework-view', {
-                homework: hw.id,
-            }) }}">
-                {% include('components/card-homework.html.twig') with { homework: hw } %}
-            </button>
-        {% endfor %}
-
-        {%
-            include('components/modal.html.twig') with {
-                id: 'modal-homework',
-            }
-        %}
-    </div>
+    {% if this.homeworks|length > 0 %}
+        <div class="grid lg:grid-cols-3 gap-4">
+            {% for hw in this.homeworks %}
+                <button type="button" id="card-homework-{{ hw.id }}" class="text-left" data-toggle="modal" data-modal-id="modal-homework" data-content-url="{{ path('app_homework-view', {
+                    homework: hw.id,
+                }) }}">
+                    {% include('components/card-homework.html.twig') with { homework: hw } %}
+                </button>
+            {% endfor %}
+        </div>
+    {% else %}
+        <div class="container mx-auto text-center">
+            <img class="w-1/3 mx-auto mb-4" src="{{ asset('images/search.svg') }}" />
+            <p class="text-center mx-auto font-medium text-lg max-w-md">Aucun rendu trouvé pour cette recherche</p>
+        </div>
+    {% endif %}
+    {%
+        include('components/modal.html.twig') with {
+        id: 'modal-homework',
+    }
+    %}
 </div>
