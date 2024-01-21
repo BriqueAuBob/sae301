@@ -85,7 +85,7 @@ class DashboardController extends AbstractController
 
         return $this->render('admin/users/edit.html.twig', [
             'user' => $user,
-            'form' => $form
+            'form' => $form->createView()
         ]);
     }
 

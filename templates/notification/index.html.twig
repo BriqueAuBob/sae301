@@ -3,7 +3,7 @@
 {% block title %}Notifications{% endblock %}
 
 {% block body %}
-    <div class="m-4">
+    <div class="container p-4">
         <h1 class="text-5xl mb-4">Notifications</h1>
         <div class="flex flex-col gap-2">
             {{ form_start(readAllButton, {'action': path('app_notification-read-all'), 'method': 'PATCH'}) }}
@@ -17,15 +17,10 @@
                 <h2>Tu as <span id="readNotificationsCount"> {{ readNotificationsCount }} </span> notification(s) non lue(s).</h2>
             </div>
         </div>
-    </div>
-    <div class="m-4">
-        {% for notification in notifications %}
-
-
-            {% include('components/notification-pill.html.twig') %}
-
-
-
-        {% endfor %}
+        <div class="my-4">
+            {% for notification in notifications %}
+                {% include('components/notification-pill.html.twig') %}
+            {% endfor %}
+        </div>
     </div>
 {% endblock %}
