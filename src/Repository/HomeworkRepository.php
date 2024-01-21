@@ -54,6 +54,7 @@ class HomeworkRepository extends ServiceEntityRepository
             ->andWhere('c.id IS NULL')
             ->setParameter('userId', $user->getId())
             ->andWhere('h.isVerified = true')
+            ->orderBy('h.due_date', 'ASC')
             ->getQuery()
             ->getResult();
     }
