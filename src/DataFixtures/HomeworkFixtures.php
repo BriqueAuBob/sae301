@@ -32,7 +32,7 @@ class HomeworkFixtures extends Fixture implements DependentFixtureInterface
             $homework->setGroup('E');
             $homework->setTeacher('John Doe');
             $homework->setPlatform('Moodle');
-            $homework->setIsVerified(0);
+            $homework->setIsVerified(1);
 
             $manager->persist($homework);
         }
