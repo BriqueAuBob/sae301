@@ -9,6 +9,7 @@
                 <div class="mb-7">
                     <h1 class="text-2xl mb-4">Mon profil</h1>
                     <div class="bg-primary-500 lg:px-14 py-5 px-2 rounded-2xl border-primary-600 border-2 flex flex-col items-center lg:w-full">
+                        <img class="h-16 w-16 rounded-full object-cover mb-2" src="https://ui-avatars.com/api/?name={{ app.user.firstname }}+{{ app.user.lastname }}" alt="{{ app.user.name }}">
                         <h4><span class="font-bold">{{ app.user.name }}</span> TP {{ app.user.group }}</h4>
                         <span>{{ app.user.email }}</span>
                     </div>
