@@ -6,10 +6,10 @@
     {{ encore_entry_link_tags('calendar') }}
     {{ encore_entry_script_tags('calendar') }}
     <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.10/index.global.min.js" integrity="sha256-J37ZtjEw94oWBNZ9w/XC73raGXE9t10//XHJfKz2QCM=" crossorigin="anonymous"></script>
-    <h1 class="text-5xl">Calendrier</h1>
-    <div id="calendar" data-events='[
+    <div class="container px-4">
+        <h1 class="text-5xl font-display">Calendrier</h1>
+        <div id="calendar" data-events='[
             {% for homework in homeworks %}
-{#                Si dernière ligne#}
                 {% if loop.last %}
                     { "title": "{{ homework.name }}", "start": "{{ homework.dueDate|date('Y-m-d H:i:s')}}", "allDay": false, "HomeworkID":"{{ homework.id }}"}
                 {% else %}
@@ -17,9 +17,10 @@
                 {% endif %}
             {% endfor %}
         ]'></div>
-    {%
-        include('components/modal.html.twig') with {
-            id: 'homework-modal'
-        }
-    %}
+        {%
+            include('components/modal.html.twig') with {
+                id: 'homework-modal'
+            }
+        %}
+    </div>
 {% endblock %}

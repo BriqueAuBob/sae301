@@ -81,7 +81,7 @@ module.exports = {
       },
       fontFamily: {
         sans: 'Inter',
-        display: 'Fredoka One'
+        display: 'Fredoka'
       },
       boxShadow: {
         'inner-lg': '0px 4px 10px 0px rgba(255, 255, 255, 0.30) inset',

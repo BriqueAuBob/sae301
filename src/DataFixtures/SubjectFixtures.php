@@ -40,6 +40,7 @@ class SubjectFixtures extends Fixture implements FixtureGroupInterface, Dependen
         $subject1->setColor(getRandomColor());
         $subject1->setCourse($mmi);
         $manager->persist($subject1);
+        $this->addReference('subject1', $subject1);
 
         $subject2 = new Subject();
         $subject2->setNameCode('WR302');
@@ -47,6 +48,7 @@ class SubjectFixtures extends Fixture implements FixtureGroupInterface, Dependen
         $subject2->setColor(getRandomColor());
         $subject2->setCourse($mmi);
         $manager->persist($subject2);
+        $this->addReference('subject2', $subject2);
 
         $subject3 = new Subject();
         $subject3->setNameCode('WR303');
@@ -54,6 +56,7 @@ class SubjectFixtures extends Fixture implements FixtureGroupInterface, Dependen
         $subject3->setColor(getRandomColor());
         $subject3->setCourse($mmi);
         $manager->persist($subject3);
+        $this->addReference('subject3', $subject3);
 
         $subject4 = new Subject();
         $subject4->setNameCode('WR304');
@@ -61,6 +64,7 @@ class SubjectFixtures extends Fixture implements FixtureGroupInterface, Dependen
         $subject4->setColor(getRandomColor());
         $subject4->setCourse($mmi);
         $manager->persist($subject4);
+        $this->addReference('subject4', $subject4);
 
         $subject5 = new Subject();
         $subject5->setNameCode('WR305');
@@ -68,6 +72,7 @@ class SubjectFixtures extends Fixture implements FixtureGroupInterface, Dependen
         $subject5->setColor(getRandomColor());
         $subject5->setCourse($mmi);
         $manager->persist($subject5);
+        $this->addReference('subject5', $subject5);
 
         $subject6 = new Subject();
         $subject6->setNameCode('WR306');
@@ -75,6 +80,7 @@ class SubjectFixtures extends Fixture implements FixtureGroupInterface, Dependen
         $subject6->setColor(getRandomColor());
         $subject6->setCourse($mmi);
         $manager->persist($subject6);
+        $this->addReference('subject6', $subject6);
 
         $subject7 = new Subject();
         $subject7->setNameCode('WR307');
@@ -82,6 +88,7 @@ class SubjectFixtures extends Fixture implements FixtureGroupInterface, Dependen
         $subject7->setColor(getRandomColor());
         $subject7->setCourse($mmi);
         $manager->persist($subject7);
+        $this->addReference('subject7', $subject7);
 
         $subject8 = new Subject();
         $subject8->setNameCode('WR308');
@@ -89,6 +96,7 @@ class SubjectFixtures extends Fixture implements FixtureGroupInterface, Dependen
         $subject8->setColor(getRandomColor());
         $subject8->setCourse($mmi);
         $manager->persist($subject8);
+        $this->addReference('subject8', $subject8);
 
         $subject9 = new Subject();
         $subject9->setNameCode('WR309');
@@ -96,6 +104,7 @@ class SubjectFixtures extends Fixture implements FixtureGroupInterface, Dependen
         $subject9->setColor(getRandomColor());
         $subject9->setCourse($mmi);
         $manager->persist($subject9);
+        $this->addReference('subject9', $subject9);
 
         $subject10 = new Subject();
         $subject10->setNameCode('WR310');
@@ -103,6 +112,7 @@ class SubjectFixtures extends Fixture implements FixtureGroupInterface, Dependen
         $subject10->setColor(getRandomColor());
         $subject10->setCourse($mmi);
         $manager->persist($subject10);
+        $this->addReference('subject10', $subject10);
 
         $subject11 = new Subject();
         $subject11->setNameCode('WR311');

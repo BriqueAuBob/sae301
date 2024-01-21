@@ -35,9 +35,7 @@
 /* Changemement the width */
 #calendar{
     display: inline-block;
-    width: 90%;
-    margin-left: 80px;
-
+    width: 100%;
 }
 
 .fc .fc-button:disabled{
@@ -143,7 +141,6 @@ thead{
 
     #calendar{
         display: inline-block;
-        width: 90%;
 
         h1{
             text-align: center;

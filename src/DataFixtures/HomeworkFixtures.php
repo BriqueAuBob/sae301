@@ -25,9 +25,7 @@ class HomeworkFixtures extends Fixture implements DependentFixtureInterface
             $homework->setDescription('Description '.$i);
             $homework->setDueDate(new \DateTime('now + '.rand(1, 10).' days'));
             $homework->setAuthor($user);
-            $homework->setSubject($this->subjectRepository->findBy([
-                'course' => $user->getCourse(),
-            ])[0]);
+            $homework->setSubject($this->getReference('subject'.rand(1, 10)));
             $homework->setYear(2);
             $homework->setGroup('E');
             $homework->setTeacher('John Doe');
