@@ -3,8 +3,10 @@
 namespace App\Controller;
 
 use App\Entity\Comment;
+use App\Entity\Homework;
 use App\Entity\Ticket;
 use App\Form\TicketHomeworkType;
+use App\Form\TicketType;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -20,6 +22,28 @@ class TicketController extends AbstractController
     public function __construct(EntityManagerInterface $em)
     {
         $this->em = $em;
+    }
+
+    #[Route('/ticket/create/{homeworkId}', name: 'app_ticket_create', methods: ['GET', 'POST'])]
+    public function createTicket(Request $request, int $homeworkId): Response
+    {
+        $homework = $this->em->getRepository(Homework::class)->find($homeworkId);
+        if ($homework) {
+            $currentUser = $this->getUser();
+            $ticket = new Ticket();
+            $form = $this->createForm(TicketType::class, $ticket)->handleRequest($request);
+
+            if ($form->isSubmitted() && $form->isValid()) {
+                $ticket->setHomework($homework);
+                $ticket->setAuthor($currentUser->getId());
+                $this->em->persist($ticket);
+                $this->em->flush();
+                $this->addFlash('success', 'Le ticket a bien été créé !');
+            }
+        } else {
+            $this->addFlash('danger', 'Le devoir n\'existe pas !');
+        }
+        return $this->redirectToRoute('app_dashboard');
     }
 
     /**
