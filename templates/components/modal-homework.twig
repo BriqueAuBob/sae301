@@ -9,14 +9,18 @@
                         {{ include('@icons/danger.svg') }}
                         Signaler
                     </li>
-                    <li class="flex items-center gap-1 text-warning-500 hover:bg-gray-100 px-2 py-1">
-                        {{ include('@icons/edit.svg') }}
-                        <a href="{{ path('app_homework', {homework: homework.id}) }}">Modifier</a>
-                    </li>
-                    <li class="flex items-center gap-1 delete hover:bg-gray-100 px-2 py-1 text-danger-500 cursor-pointer" data-homework-id="{{ homework.id }}">
-                        {{ include('@icons/trash.svg') }}
-                        Supprimer
-                    </li>
+                    {% if app.user == homework.author %}
+                        <li class="flex items-center gap-1 text-warning-500 hover:bg-gray-100 px-2 py-1">
+                            {{ include('@icons/edit.svg') }}
+                            <a href="{{ path('app_homework', {homework: homework.id}) }}">Modifier</a>
+                        </li>
+                    {% endif %}
+                    {% if app.user == homework.author %}
+                        <li class="flex items-center gap-1 delete hover:bg-gray-100 px-2 py-1 text-danger-500 cursor-pointer" data-homework-id="{{ homework.id }}">
+                            {{ include('@icons/trash.svg') }}
+                            Supprimer
+                        </li>
+                    {% endif %}
                 </ul>
             </div>
         </div>
