@@ -85,7 +85,6 @@ class DuplicateVerifService
                             $getPlatform1 = $uhw->getPlatform();
                             $getPlatform2 = $hw->getPlatform();
                             similar_text($getPlatform1, $getPlatform2, $percent3);
-                            echo $getPlatform1 . ' ' . $getPlatform2 . ' - '.$percent3.'<br>';
                             if ($percent3 >= 50) {
                                 $duplicates[] = [$idUncheck, $idCheck];
                                 $foundDuplicate = true;
