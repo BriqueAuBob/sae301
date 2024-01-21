@@ -67,12 +67,12 @@
     {% endif %}
 >
     {% if iconLeft is defined %}
-        <span class="{{ size == 'xl' ? 'w-12 h-12' : 'w-4 h-4' }} mr-1">
+        <span class="{{ size == 'xl' ? 'w-12 h-12' : 'w-4 h-4' }}">
             {{ include('@icons/' ~ iconLeft ~ '.svg') }}
         </span>
     {% endif %}
     {{ text }}
-    {% if iconRight is defined %}%}
+    {% if iconRight is defined %}
         <span class="w-4 h-4 ml-1">
             {{ include('@icons/' ~ iconRight ~ '.svg') }}
         </span>
