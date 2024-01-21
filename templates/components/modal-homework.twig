@@ -50,25 +50,29 @@
             }
         } %}
     </div>
-    {% for comment in homework.comments %}
-        <div class="py-2 after:block after:content-[''] after:w-full after:bg-text-50 after:h-px after:mt-2 border-b">
-            <div class="flex justify-between">
-                <div class="flex items-center gap-2">
-                    <span class="font-semibold font-display">{{ comment.author.firstname }} {{ comment.author.lastname }}</span>
-                    <span class="font-light font-sans text-sm text-text-400 ">{{ comment.createdAt|format_datetime('relative_short') }}</span>
+    {% if homework.comments|length > 0 %}
+        {% for comment in homework.comments %}
+            <div class="py-2 after:block after:content-[''] after:w-full after:bg-text-50 after:h-px after:mt-2 border-b">
+                <div class="flex justify-between">
+                    <div class="flex items-center gap-2">
+                        <span class="font-semibold font-display">{{ comment.author.firstname }} {{ comment.author.lastname }}</span>
+                        <span class="font-light font-sans text-sm text-text-400 ">{{ comment.createdAt|format_datetime('relative_short') }}</span>
+                    </div>
+                    <div class="flex gap-2">
+                        {% if app.user == homework.author %}
+                        <img class="w-4 h-4" src="{{ asset('images/icons/edit.svg') }}" alt="icone crayon pour modifier">
+                        <img class="w-4 h-4" src="{{ asset('images/icons/trash.svg') }}" alt="icone poubelle pour supprimer">
+                        {% endif %}
+                    </div>
                 </div>
-                <div class="flex gap-2">
-                    {% if app.user == homework.author %}
-                    <img class="w-4 h-4" src="{{ asset('images/icons/edit.svg') }}" alt="icone crayon pour modifier">
-                    <img class="w-4 h-4" src="{{ asset('images/icons/trash.svg') }}" alt="icone poubelle pour supprimer">
-                    {% endif %}
+                <div>
+                    <p class="text-sm"> {{ comment.content }}</p>
                 </div>
             </div>
-            <div>
-                <p class="text-sm"> {{ comment.content }}</p>
-            </div>
-        </div>
-    {% endfor %}
+        {% endfor %}
+    {% else %}
+        {% include('components/empty.html.twig') with { text: 'Aucun commentaire', hideIllustration: true } %}
+    {% endif %}
 </div>
 
 <div class="sticky w-full bottom-1 left-0">
