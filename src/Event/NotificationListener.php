@@ -29,7 +29,7 @@ class NotificationListener
 
         foreach ($emails as $email) {
             $mail = new Email();
-            $mail->from('contact@iutask.com')
+            $mail->from('mailtrap@bclement.fr')
                 ->to($email)
                 ->subject($notification->getTitle())
                 ->html('<p>'.$notification->getMessage().'</p>');
