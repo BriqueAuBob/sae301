@@ -36,6 +36,7 @@ class TicketController extends AbstractController
             if ($form->isSubmitted() && $form->isValid()) {
                 $ticket->setHomework($homework);
                 $ticket->setAuthor($currentUser->getId());
+                $ticket->setStatus(0);
                 $this->em->persist($ticket);
                 $this->em->flush();
                 $this->addFlash('success', 'Le ticket a bien été créé !');
