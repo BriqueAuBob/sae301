@@ -77,9 +77,22 @@ class DuplicateVerifService
                 }
 
                 if ($idCheck !== $idUncheck) {
-                    if ($uhw->getName() === $hw->getName()) {
-                        array_push($duplicates, [$idUncheck, $idCheck]);
-                        $foundDuplicate = true;
+                    if ($uhw->getSubject() === $hw->getSubject()) {
+                        $getName1 = $uhw->getName();
+                        $getName2 = $hw->getName();
+                        similar_text($getName1, $getName2, $percent1);
+                        echo $getName1 . ' ' . $getName2 . ' - '.$percent1.'<br>';
+                        if ($percent1 >= 50) {
+                            $getPlatform1 = $uhw->getPlatform();
+                            $getPlatform2 = $hw->getPlatform();
+                            similar_text($getPlatform1, $getPlatform2, $percent3);
+                            echo $getPlatform1 . ' ' . $getPlatform2 . ' - '.$percent3.'<br>';
+                            if ($percent3 >= 50) {
+                                $duplicates[] = [$idUncheck, $idCheck];
+                                $foundDuplicate = true;
+                                break;
+                            }
+                        }
                     }
                 }
 
