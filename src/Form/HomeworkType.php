@@ -31,7 +31,7 @@ class HomeworkType extends AbstractType
                 'required' => true,
             ])
             ->add('description', TextType::class, [
-                'label' => 'Description',
+                'label' => 'Description (optionnel)',
                 'attr' => [
                     'placeholder' => 'Ex: Rendu de la matière SAE 301...',
                 ],
@@ -53,6 +53,7 @@ class HomeworkType extends AbstractType
             ])
             ->add('picture', FileType::class, [
                 'mapped' => false,
+                'label' => 'Image (optionnel)',
                 'required' => false,
                 'constraints' =>  [
                     new File([
@@ -74,6 +75,7 @@ class HomeworkType extends AbstractType
 //            ->add('created_at')
             ->add('subject', EntityType::class, [
                 'class' => Subject::class,
+                'label' => 'Matière (requis)',
                 'choice_label' => 'name',
             ])
         ;
