@@ -3,13 +3,49 @@
 {% block title %}Profil{% endblock %}
 
 {% block body %}
-    <div class="container py-8 px-10">
-        <div class="flex flex-col lg:justify-center gap-8 lg:gap-16 lg:flex-row-reverse">
-            <div>
-                <h1 class="text-5xl mb-6 text-center">Mon profil</h1>
-                <div class="bg-primary-500 lg:px-14 py-5 px-2 rounded-2xl border-primary-600 border-2 flex flex-col items-center lg:w-fit">
-                    <h4><span class="font-bold">{{ app.user.name }}</span> TP {{ app.user.group }}</h4>
-                    <span>{{ app.user.email }}</span>
+    <div class="container p-4">
+        <div class="grid lg:grid-cols-3 gap-6">
+            <div class="divide-y divide-gray-100 lg:col-span-2 lg:order-last">
+                <div class="mb-7">
+                    <h1 class="text-2xl mb-4">Mon profil</h1>
+                    <div class="bg-primary-500 lg:px-14 py-5 px-2 rounded-2xl border-primary-600 border-2 flex flex-col items-center lg:w-fit">
+                        <h4><span class="font-bold">{{ app.user.name }}</span> TP {{ app.user.group }}</h4>
+                        <span>{{ app.user.email }}</span>
+                    </div>
+                </div>
+                <div class="my-7">
+                    <h3 class="text-2xl my-4">Mes travaux rendus</h3>
+                    <div>
+                        <ul class="mt-4 bg-white rounded-lg border border-gray-200 text-gray-900 text-sm font-medium h-fit divide-y divide-gray-100">
+                            {% for check in homeworksChecked %}
+                                <li class="px-4 py-3 w-full rounded-b-lg flex items-center justify-between gap-6">
+                                    <span>{{ check.homework.name }} ({{ check.homework.subject.nameCode }} {{ check.homework.subject.name }}) pour le {{ check.homework.dueDate|date('d/m/y à H:i') }}</span>
+                                    <a href="{{ path('app_homework-removemark', {id: check.id}) }}">
+                                        {{ include('@icons/trash.svg') }}
+                                    </a>
+                                </li>
+                            {% else %}
+                                <li class="p-4">Aucun travail rendu</li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                </div>
+                <div class="my-7">
+                    <h3 class="text-2xl my-4">Mes travaux postés</h3>
+                    <div>
+                        <ul class="mt-4 bg-white rounded-lg border border-gray-200 text-gray-900 text-sm font-medium h-fit divide-y divide-gray-100">
+                            {% for post in homeworksPosted %}
+                                <li class="px-4 py-3 w-full rounded-b-lg flex items-center justify-between gap-6">
+                                    <span>{{ post.name }} ({{ post.subject.nameCode }} {{ post.subject.name }}) pour le {{ post.dueDate|date('d/m/y à H:i') }}</span>
+                                    <a href="{{ path('app_homework', {homework: post.id}) }}">
+                                        {{ include('@icons/edit.svg') }}
+                                    </a>
+                                </li>
+                            {% else %}
+                                <li class="p-4">Aucun travail posté</li>
+                            {% endfor %}
+                        </ul>
+                    </div>
                 </div>
             </div>
             <div>

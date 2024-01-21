@@ -1,9 +1,9 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <div class="container mx-auto py-8 px-4 lg:px-10">
-        <div class="flex flex-col lg:flex-row-reverse lg:justify-between lg:gap-16">
-            <div class="lg:w-2/3">
+    <div class="container p-4">
+        <div class="grid lg:grid-cols-3 gap-6">
+            <div class="lg:col-span-2 lg:order-last">
                 {% include('components/helpNavbar.html.twig') %}
                 <main role="main" class="mt-10">
                     <div class="container p-4">
