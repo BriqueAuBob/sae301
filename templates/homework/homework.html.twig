@@ -17,7 +17,7 @@
     {{ form_row(form.teacher, {'icon': 'user-tick'}) }}
     {{ form_row(form.platform, {'icon': 'location'}) }}
 
-    {% include ('components/button.html.twig') with {text: 'Ajouter le rendu', iconLeft: 'add-circle', fullWidth: true} %}
+    {% include ('components/button.html.twig') with {text: ajout ? 'Ajouter le rendu' : 'Modifier le rendu', iconLeft: 'add-circle', fullWidth: true} %}
 
     {{ form_end(form) }}
 
