@@ -4,6 +4,8 @@ namespace App\Controller;
 
 use App\Entity\User;
 use App\Form\UserType;
+use App\Repository\CheckRepository;
+use App\Repository\HomeworkRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -13,9 +15,14 @@ use Symfony\Component\Routing\Annotation\Route;
 class ProfileController extends AbstractController
 {
     #[Route('/profil', name: 'app_profile')]
-    public function index(): Response
+    public function index(CheckRepository $checkRepo, HomeworkRepository $homeworkRepo): Response
     {
-        return $this->render('profile/profile.html.twig');
+        $homeworkChecked = $checkRepo->findBy(['user' => $this->getUser()], ['created_at' => 'DESC']);
+        $homeworkPosted = $homeworkRepo->findBy(['author' => $this->getUser()], ['created_at' => 'DESC']);
+        return $this->render('profile/profile.html.twig', [
+            'homeworksChecked' => $homeworkChecked,
+            'homeworksPosted' => $homeworkPosted,
+        ]);
     }
 
     #[Route('/profil/informations', name: 'app_profile_informations')]

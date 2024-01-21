@@ -107,6 +107,14 @@ class HomeworkController extends AbstractController
         return $this->redirectToRoute('app_index');
     }
 
+    #[Route('/homework/{id}/remove-mark', name: 'app_homework-removemark', methods: 'GET')]
+    public function removeMark(EntityManagerInterface $em, Check $check): Response {
+        $check = $em->getRepository(Check::class)->findOneBy(['id' => $check->getId()]);
+        $em->remove($check);
+        $em->flush();
+        return $this->redirectToRoute('app_profile');
+    }
+
     #[Route('/doublon/{id_homework}/{id_doublon}', name: 'app_homework-doublon', methods: 'GET')]
     public function doublon(Request $request, EntityManagerInterface $entityManager, DuplicateVerifService $duplicateVerifService): Response {
         // récupérer les deux devoirs
