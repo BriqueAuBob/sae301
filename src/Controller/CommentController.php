@@ -36,6 +36,9 @@ class CommentController extends AbstractController
 
             $em->persist($comment);
             $em->flush();
+
+            $this->addFlash('success', 'Votre commentaire a bien été ajouté.');
+            return $this->redirectToRoute('app_index');
         }
 
         return $this->render('comment/index.html.twig', [

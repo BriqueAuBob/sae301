@@ -1,11 +1,11 @@
 {% for label, messages in app.flashes %}
     {% for message in messages %}
         {% if label == 'success' %}
-            <div class="mx-auto py-4 px-7 mt-7 text-sm text-green-800 rounded-lg bg-green-100 w-fit" role="alert">
+            <div class="container mb-4 w-full mx-auto py-4 px-7 mt-7 text-sm text-green-800 rounded-lg bg-green-100" role="alert">
                 {{ message }}
             </div>
         {% elseif label == 'danger' %}
-            <div class="mx-auto py-4 px-7 mt-7 text-sm text-yellow-800 rounded-lg bg-red-100 w-fit" role="alert">
+            <div class="container mb-4 w-full mx-auto py-4 px-7 mt-7 text-sm text-yellow-800 rounded-lg bg-red-100" role="alert">
                 <span class="font-medium">Erreur :</span> {{ message }}
             </div>
         {% endif %}
