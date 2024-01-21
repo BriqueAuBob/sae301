@@ -29,22 +29,29 @@ class TicketController extends AbstractController
     {
         $homework = $this->em->getRepository(Homework::class)->find($homeworkId);
         if ($homework) {
-            $currentUser = $this->getUser();
             $ticket = new Ticket();
-            $form = $this->createForm(TicketType::class, $ticket)->handleRequest($request);
+            $form = $this->createForm(TicketType::class, $ticket, [
+                'action' => $this->generateUrl('app_ticket_create', ['homeworkId' => $homeworkId]),
+                'method' => 'POST',
+            ])->handleRequest($request);
 
             if ($form->isSubmitted() && $form->isValid()) {
                 $ticket->setHomework($homework);
-                $ticket->setAuthor($currentUser->getId());
+                $ticket->setAuthor($this->getUser());
                 $ticket->setStatus(0);
                 $this->em->persist($ticket);
                 $this->em->flush();
-                $this->addFlash('success', 'Le ticket a bien été créé !');
+                $this->addFlash('success', 'Le signalement a bien été créé !');
+            } elseif(!$form->isSubmitted()) {
+                return $this->render('ticket/create.html.twig', [
+                    'form' => $form->createView(),
+                    'homework' => $homework
+                ]);
             }
         } else {
             $this->addFlash('danger', 'Le devoir n\'existe pas !');
         }
-        return $this->redirectToRoute('app_dashboard');
+        return $this->redirectToRoute('app_index');
     }
 
     /**
