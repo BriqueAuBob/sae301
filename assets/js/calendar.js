@@ -59,6 +59,7 @@ $(document).ready(function(){
             modalContent.classList.toggle('translate-y-8');
             modalContent.classList.toggle('-translate-y-1/2');
             modalContent.classList.toggle('scale-75');
+            modalContent.classList.toggle('opacity-0')
 
             info.el.style.borderColor = 'red';
         }
